@@ -1,0 +1,108 @@
+.mainPage_carousel {
+    height: auto;
+}
+
+.carousel_caption {
+    --width: 100%;
+    --time: 0.7s;
+
+    /* background-color: rgba(0, 0, 0, 0.6); */
+    color: white;
+    width: fit-content;
+    /* max-width: 40vw; */
+    /* max-height: 30vh; */
+
+    /* margin-left: auto; */
+    margin-right: auto;
+
+    overflow: hidden;
+    text-align: start;
+    z-index: 1;
+
+
+
+}
+
+.mainPage_carousel .carousel-caption {
+    /* width: 70%; */
+    /* bottom:0; */
+    top: 43%;
+    left: 12%;
+    max-width: 60%;
+    text-align: start;
+    /* padding: 4rem 8rem 4rem 0rem; */
+}
+
+.carousel_caption h3 {
+    font-size: 3rem;
+    font-weight: 500;
+    line-height: 3.5rem;
+    margin-bottom: 1rem;
+}
+
+.carousel-caption button {
+    width: 14rem;
+    height: 3rem;
+    left: 112px;
+    top: 605px;
+    border-radius: 8px;
+    border: 0;
+    outline: none;
+    margin-right: 1rem;
+}
+
+.carousel-caption button.info {
+    background-color: #ED1C24;
+    color: white;
+}
+
+carousel-caption button.group {
+    background-color: white;
+    color: #222222;
+}
+
+.mainPage_carousel .carousel-inner {
+
+    height: 100%;
+}
+
+
+@media screen and (max-width:723px) {
+
+    .mainPage_carousel .carousel-caption {
+
+        top: 33%;
+        left: 13%;
+        max-width: 100%;
+        padding: 0rem 0rem;
+
+    }
+
+    .carousel_caption h3 {
+        font-size: 1.3rem;
+        margin: 0 0 0.8rem 0;
+        font-weight: 500;
+        line-height: 1.5rem;
+    }
+    .carousel-caption button {
+        width: 7.4rem;
+        height: 3.5rem;
+        font-size: 1rem;
+        /* font-family: 'Arial, Helvetica, sans-serif'; */
+        font-weight: 500 !important;
+        border-radius: 8px;
+        border: 0;
+        outline: none;
+        margin-right: 0.5rem;
+        padding: 0.1rem;
+    }
+
+    .carousel-caption p {
+        font-size: 1rem;
+        margin-bottom: 0;
+    }
+
+    .mainPage_carousel {
+        height: 32vh;
+    }
+}

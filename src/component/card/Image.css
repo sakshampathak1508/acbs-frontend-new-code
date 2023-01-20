@@ -1,0 +1,88 @@
+.imagecard
+{
+    position: relative;
+    /* min-width: 28rem;
+    max-width: 32rem; */
+    width: 100%;
+    height: 28rem;
+    background-size:cover;
+    background-repeat:no-repeat;
+    /* border : 1px solid #ebebeb; */
+    outline: 0;
+    /* transition: all 0.5s linear; */
+    /* margin-right: 3.5rem; */
+    /* margin-bottom: 2rem; */
+    cursor: pointer;
+    border-radius: 6px;
+}
+.imagecardBg{
+    height: 100%;
+    width: 100%;
+    background: linear-gradient(to bottom, rgb(0,0,0,0.9) 0%, rgba(255, 255, 255,0) 20% 55%, rgba(0,0,0,0.9) 100%)
+}
+
+.imagecard .title{
+    position: absolute;
+    transform: translate(-50%,-50%);
+    top:10%;
+    left: 50%;
+    width: 100%;
+    padding-left: 5%;
+    /* z-index: 2; */
+    font-size: 1.5rem;
+    color: white;
+    text-decoration: underline #ED1C24 2px;
+    text-underline-offset: 5px;
+    /* padding: 3rem; */
+}
+
+.card_image
+{
+    height: 50%;
+}
+.Imagecard-container
+{
+    position: absolute;
+    transform: translate(-50%,-50%);
+    top:80%;
+    left: 50%;
+    padding-left: 5%;
+    width: 100%;
+    overflow: hidden;
+}
+.Imagecard-container h4{
+    font-size: 2.5rem;
+    color: #FFFFFF;
+    line-height: 2.7rem;
+    margin-top: 0;
+    -webkit-text-stroke: 1px rgba(0, 0, 0, 0.3);
+
+    
+}
+.Imagecard-container p{
+    color: white;
+    font-size: 1rem;
+}
+
+.card_body:hover
+{
+    border: 1px solid black;
+
+    transition: all 0.5s linear;
+}
+.card_container h4:hover{
+    color: #0da1ff;
+    transition: color 500ms;
+}
+
+@media screen and (max-width:723px) {
+
+    .imagecard
+    {   
+        height: 26rem;
+        margin-right: 0;
+        margin: auto;
+        margin-bottom: 1.5rem;
+    }
+    
+}

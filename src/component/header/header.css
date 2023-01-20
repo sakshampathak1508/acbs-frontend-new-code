@@ -1,0 +1,79 @@
+@import url('https://fonts.googleapis.com/css2?family=Lato:wght@700&display=swap');
+
+:root{
+    --RED:'#ED1C24';
+    --FONT:'Lato', sans-serif;
+    --BLACK:'#22222'
+}
+*{
+    font-family: var(--FONT);
+}
+
+header{
+    /* max-width: 1400px; */
+    margin: 0 auto;
+    padding: 0 !important;
+    top:0;
+    position: sticky;
+    z-index: 100;
+}
+nav.navbar{
+    /* background-color: yellow; */
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.23);
+    top:0;
+    position: sticky;
+    background-color: white;
+    z-index: 100;
+}
+.navbar .navbar-brand{
+    margin-left: 1rem;
+}
+
+.nav-link{
+    cursor: pointer;
+}
+
+#navbarNav .navbar-nav{
+    width:100%;
+    display: flex;
+    justify-content: center;
+}
+#navbarNav .navbar-nav .nav-item{
+    margin: 0 0.8rem;
+}
+#navbarNav .navbar-nav .active .nav-link{
+    color:var(--red);
+}
+
+#navbarNav .navbar-nav .nav-link{
+    color: var(--BLACK);
+}
+
+.nav-back{
+    float: right;
+}
+
+nav.navbar button{
+    color: var(--RED);
+}
+.search-bar{
+    display: flex;
+    width: 100%;
+    justify-content: center;
+}
+
+.search-bar #searchForm{
+    width: 50%;
+    border-radius: 32px;
+    height: 48px;
+    margin: 24px 0;
+    display: flex;
+    align-items: center;
+    
+}
+
+.search-bar input{
+    width: 90%;
+    border: none;
+    outline: none;
+}
