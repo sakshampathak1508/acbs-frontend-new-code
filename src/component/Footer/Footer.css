@@ -8,10 +8,20 @@
 }
 .all_footer .doping_image 
 {
-   
-    text-align: center;
+    display: flex;
     width: 100%;
 }
+
+
+.all_footer .doping_image .logo{
+    width: 35%;
+}
+
+.all_footer .doping_image .doping{
+    width: 50%;
+}
+
+
 .home_footer
 {
     position: relative;
@@ -45,7 +55,7 @@
     }
     .all_footer .doping_image img
     {
-        width: 25rem;
+        /* width: 25rem; */
     }
 }
 

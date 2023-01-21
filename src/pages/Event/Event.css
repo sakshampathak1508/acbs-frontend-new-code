@@ -1,0 +1,103 @@
+.event-page .search-bar {
+    display: none;
+}
+
+.event-page>main {
+    max-width: var(--maxWidth);
+    margin: 2rem auto;
+}
+
+.event-page>main>header {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    flex-wrap: wrap;
+    margin-bottom: 1rem;
+}
+
+.event-page>main>header section {
+    display: flex;
+    align-items: center;
+    margin-right: 2rem;
+    margin-bottom: 1rem;
+}
+
+.event-page>main>header section label {
+    margin-bottom: 0;
+}
+
+.event-page>main>header section.search #searchForm {
+    min-width: 24rem;
+    border-radius: 32px;
+    height: 48px;
+    margin: 0 0;
+    display: flex;
+    align-items: center;
+}
+
+.event-page>main>header section.search input {
+    width: 85%;
+    border: none;
+    outline: none;
+}
+
+.event-page>main>main h2 {
+    font-size: 3rem;
+    line-height: 3rem;
+    text-transform: capitalize;
+    color: var(--black);
+    margin-bottom: 3rem;
+}
+
+.event-page>main>main>section.event-content {
+    display: flex;
+    justify-content: space-between;
+}
+
+
+.event-page>main>main>section.event-content .left-container {
+    width: 66%;
+}
+
+.event-page>main>main>section.event-content .right-container {
+    width: 32%;
+    display: flex;
+    flex-direction: column;
+}
+
+.event-page>main>main>section.event-content .right-container section.top {
+    padding: 2.5rem 2rem;
+    background: #FFFFFF;
+    box-shadow: 0px 0px 6px rgba(52, 52, 52, 0.25);
+    border-radius: 4px;
+    margin-bottom: 2rem;
+}
+
+.event-page>main>main>section.event-content .right-container .top div,
+.bottom div {
+    margin-bottom: 1.5rem;
+}
+
+.event-page>main>main>section.event-content .right-container .top div.date,
+div.date h5 {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 0;
+}
+
+.event-page>main>main>section.event-content .right-container h4 {
+    text-transform: uppercase;
+    color: var(--black);
+    margin-bottom: 1rem;
+    text-decoration: underline var(--red) 2px;
+    text-underline-offset: 8px;
+    font-style: normal;
+    font-weight: 900;
+}
+
+.event-page>main>main>section.event-content .right-container .bottom {
+    padding: 2.5rem 2rem;
+    background: #F8F8F8;
+    border-radius: 4px;
+    margin-bottom: 2rem;
+}

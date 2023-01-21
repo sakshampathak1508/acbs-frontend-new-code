@@ -10,24 +10,7 @@ import Back from "../../assets/back.png";
 import SearchIcon from '../../assets/searchIcon.png'
 import "bootstrap/dist/css/bootstrap.css";
 
-const useStyles = makeStyles((theme) => ({
-    root: {
-        padding: "0px 2px",
-        display: "flex",
-        alignItems: "center",
-        width: "auto",
-    },
-    input: {
-        padding: "0rem",
-        fontSize: "1rem",
-    },
-    iconButton: {
-        padding: 5,
-        fontSize: "1rem",
-        border: "none",
-        outline: "none",
-    },
-}));
+
 
 function myFunction() {
     var x = document.getElementsByClassName("ui")[0];
@@ -40,7 +23,6 @@ function myFunction() {
 
 function Header({ active }) {
     const navigate = useNavigate();
-    const classes = useStyles();
     const [value, setValue] = useState("");
 
     const handleSearch = (event) => {
@@ -52,7 +34,7 @@ function Header({ active }) {
             <header className='header'>
                 <nav class="navbar navbar-expand-lg navbar-light ">
                     <a class="navbar-brand" href="#">
-                        <img src={LOGO}/>
+                        <img src={LOGO} height='35px'/>
                     </a>
                     <button
                         class="navbar-toggler"
@@ -117,8 +99,7 @@ function Header({ active }) {
                 <section className="search-bar">
                     <form id="searchForm" style={{background:'#F5F5F5'}}>  
                         <IconButton
-                            onClick={handleSearch}
-                            className={classes.iconButton} aria-label="search">
+                            onClick={handleSearch} aria-label="search">
                             <img src={SearchIcon} />
                         </IconButton>
                         <input placeholder="Search" style={{background:'#F5F5F5'}}/>

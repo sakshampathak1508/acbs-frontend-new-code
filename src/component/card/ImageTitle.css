@@ -1,7 +1,7 @@
 .imageTitle-card_body
 {
     height: 16rem;
-    max-width:24rem;
+    width:100%;
     margin-right: 0;
     /* border : 1px solid #ebebeb; */
     outline: 0;
@@ -23,7 +23,7 @@
 {
     
     height: 30%;
-    padding: 1rem 0rem 0rem 0rem;
+    padding: 0.6rem 0rem 0rem 0rem;
     overflow: hidden;
 }
 

@@ -25,9 +25,9 @@ function Title(props) {
         <div onClick={() => history.push(`/news/${props?.id}/${props?.slug}`)} className="title-card_body" style={page === "main" && window.innerWidth > 768 ? { maxWidth: '30rem', marginRight: "1.2rem", overflow: "hidden" } : { overflow: "hidden" }}>
 
             <div className="card_container">
-                <h4>Tournament Info: Asian 6-Red Snooker Championship 2022</h4>
+                <h4>Tournament Info: Asian 6-</h4>
                 <p className='title' style={{ overflow: 'hidden', textOverflow: "ellipsis" }} >
-                    {"Asian Confederation of Billiard Sports (ACBS) is happy to d mk smdms ds dks dsmkdm s dmsmdmks dsdk sk dsdms dksd s dk s dksjnd  sk djnsjndkjsjdnjknskjnd skmndjnsnd"}
+                    {"Asian Confederation of Billiard "}
                     {props?.cf.length === 60 && <span>....</span>}
                 </p>
                 <div className='dateviews'>

@@ -27,7 +27,7 @@ function Card(props) {
             </div>
             <div className="card_container">
             <p style={{marginBottom:"0rem", overflow:'hidden', textOverflow:"ellipsis"}} >
-            {"props?.cf dkm dmkwedmw wmdkmwd kwk wm d lsmd msw d"}
+            {"props?.cf ldpd dsd d,d skdmam dlakmd saml dka da dakd slad "}
             {props?.cf.length === 60 && <span>....</span>}
             </p>
             </div>
