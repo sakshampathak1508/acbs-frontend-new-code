@@ -19,7 +19,7 @@ const ParticularNews = (props) => {
             <Header />
             <main>
                 <header>
-                    <section class="back-btn">
+                    <section className="back-btn">
                         <p><span><KeyboardBackspaceIcon style={{ marginRight: '1rem' }} /></span> Back</p>
                     </section>
 

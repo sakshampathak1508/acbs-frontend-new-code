@@ -1,52 +1,23 @@
 import React from 'react';
-import { makeStyles } from "@mui/styles";
 import Header from '../../component/header/header';
-import ImageTitle from '../../component/card/ImageTitle';
-import Carousel from '../../component/carousel/Carousel';
-import ImageCard from "../../component/card/Image"
-import TitleCard from '../../component/card/Title'
-import ImageTitleDate from '../../component/card/ImageTitleDate';
-import Title from '../../component/card/Title';
-import CarouselWrapper from '../../component/carousel/CarouselWrapper';
 import Footer from '../../component/Footer/Footer';
-import KeyboardBackspaceIcon from '@mui/icons-material/KeyboardBackspace';
-import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
-import FormHelperText from '@mui/material/FormHelperText';
 import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
-import Partnews from '../../assets/partnews.png'
 import SearchIcon from '../../assets/searchIcon.png'
 import IconButton from "@mui/material/IconButton";
 
 import './Event.css'
 
-const useStyles = makeStyles((theme) => ({
-    root: {
-        padding: "0px 2px",
-        display: "flex",
-        alignItems: "center",
-        width: "auto",
-    },
-    input: {
-        padding: "0rem",
-        fontSize: "1rem",
-    },
-    iconButton: {
-        padding: 5,
-        fontSize: "1rem",
-        border: "none",
-        outline: "none",
-    },
-}));
-
 const Event = (props) => {
-    const [year, setYear] = React.useState('');
-    const [eventName, setEventName] = React.useState('');
-    const classes = useStyles();
-
+    const [state, setState] = React.useState({
+        year: '', eventName: '', search: ''
+    });
     const handleChange = (event) => {
-        setYear(event.target.value);
+
+        const name = event.target.name;
+        const value = event.target.value;
+        setState((prev) => ({ ...prev, [name]: value }));
     };
 
     return (
@@ -54,28 +25,32 @@ const Event = (props) => {
             <Header />
             <main>
                 <header>
-                    <section class="year">
+                    <section className="year">
                         <label>Year</label>
-                        <FormControl sx={{ m: 1, minWidth: 120 }}>
+                        <FormControl sx={{ m: 1, minWidth: 120, height: '2.7rem' }}>
                             <Select
-                                value={year}
+                                sx={{ height: '100%' }}
+                                value={state.year}
                                 onChange={handleChange}
                                 displayEmpty
+                                name='year'
                             >
-                                <MenuItem value={10}>Ten</MenuItem>
-                                <MenuItem value={20}>Twenty</MenuItem>
-                                <MenuItem value={30}>Thirty</MenuItem>
+                                <MenuItem value={2001}>2001</MenuItem>
+                                <MenuItem value={2002}>2002</MenuItem>
+                                <MenuItem value={2003}>2003</MenuItem>
                             </Select>
                         </FormControl>
                     </section>
 
                     <section className='event-name'>
                         <label>Event</label>
-                        <FormControl sx={{ m: 1, minWidth: 220 }}>
+                        <FormControl sx={{ m: 1, minWidth: 250, height: '2.7rem' }}>
                             <Select
-                                value={eventName}
+                                sx={{ height: '100%' }}
+                                value={state.eventName}
                                 onChange={handleChange}
                                 displayEmpty
+                                name='eventName'
                             >
                                 <MenuItem value={10}>Ten</MenuItem>
                                 <MenuItem value={20}>Twenty</MenuItem>
@@ -84,14 +59,14 @@ const Event = (props) => {
                         </FormControl>
                     </section>
 
-                    <section class="search">
+                    <section className="search">
                         <form id="searchForm" style={{ background: '#F5F5F5' }}>
                             <IconButton
                                 onClick={handleChange}
-                                className={classes.iconButton} aria-label="search">
+                                aria-label="search">
                                 <img src={SearchIcon} />
                             </IconButton>
-                            <input placeholder="Search" style={{ background: '#F5F5F5' }} />
+                            <input onChange={handleChange} placeholder="Search" style={{ background: '#F5F5F5' }} value={state.search} name='search' />
                         </form>
                     </section>
                 </header>
