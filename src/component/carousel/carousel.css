@@ -33,10 +33,10 @@
     /* padding: 4rem 8rem 4rem 0rem; */
 }
 
-.carousel_caption h3 {
-    font-size: 3rem;
+.mainPage_carousel .carousel_caption h3 {
+    font-size: 250%;
     font-weight: 500;
-    line-height: 3.5rem;
+    line-height: 100%;
     margin-bottom: 1rem;
 }
 
@@ -67,7 +67,7 @@ carousel-caption button.group {
 }
 
 
-@media screen and (max-width:723px) {
+@media only screen and (max-width:900px) {
 
     .mainPage_carousel .carousel-caption {
 
@@ -75,19 +75,18 @@ carousel-caption button.group {
         left: 13%;
         max-width: 100%;
         padding: 0rem 0rem;
-
     }
 
-    .carousel_caption h3 {
-        font-size: 1.3rem;
+    .mainPage_carousel .carousel_caption h3 {
+        font-size: 5vw;
         margin: 0 0 0.8rem 0;
         font-weight: 500;
-        line-height: 1.5rem;
+        line-height: 100%;
     }
-    .carousel-caption button {
-        width: 7.4rem;
-        height: 3.5rem;
-        font-size: 1rem;
+    .mainPage_carousel .carousel-caption button {
+        width: 30vw;
+        height: 7vw;
+        font-size: 3vw;
         /* font-family: 'Arial, Helvetica, sans-serif'; */
         font-weight: 500 !important;
         border-radius: 8px;
@@ -97,12 +96,12 @@ carousel-caption button.group {
         padding: 0.1rem;
     }
 
-    .carousel-caption p {
+    .mainPage_carousel .carousel-caption p {
         font-size: 1rem;
         margin-bottom: 0;
     }
 
-    .mainPage_carousel {
+    .mainPage_carousel .mainPage_carousel {
         height: 32vh;
     }
 }

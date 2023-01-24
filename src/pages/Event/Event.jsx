@@ -1,10 +1,11 @@
-import React from 'react';
+import React, { useEffect, useRef } from 'react';
 import Header from '../../component/header/header';
 import Footer from '../../component/Footer/Footer';
 import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
 import SearchIcon from '../../assets/searchIcon.png'
+import InputLabel from '@mui/material/InputLabel';
 import IconButton from "@mui/material/IconButton";
 
 import './Event.css'
@@ -13,6 +14,28 @@ const Event = (props) => {
     const [state, setState] = React.useState({
         year: '', eventName: '', search: ''
     });
+    const yearRef = useRef();
+
+
+    useEffect(() => {
+        
+        const currentyear = new Date().getFullYear();
+        var select = yearRef.current?.firstChild?.firstChild;
+
+        while(select.firstChild)
+        {
+            select.removeChild(select.lastChild);
+        }
+        
+        for(let i = currentyear; i>=2010;i--)
+        {   
+        let option = document.createElement("option");
+        option.text = i.toString();
+        option.value = i;
+        select.appendChild(option)
+        }
+    }, [])
+
     const handleChange = (event) => {
 
         const name = event.target.name;
@@ -27,24 +50,25 @@ const Event = (props) => {
                 <header>
                     <section className="year">
                         <label>Year</label>
-                        <FormControl sx={{ m: 1, minWidth: 120, height: '2.7rem' }}>
+                        <FormControl variant="outlined" sx={{ m: 1, minWidth: 120, height: '2.7rem' }} ref={yearRef}>
                             <Select
+                                native
                                 sx={{ height: '100%' }}
                                 value={state.year}
+                                className="input-label-select"
                                 onChange={handleChange}
                                 displayEmpty
                                 name='year'
                             >
-                                <MenuItem value={2001}>2001</MenuItem>
-                                <MenuItem value={2002}>2002</MenuItem>
-                                <MenuItem value={2003}>2003</MenuItem>
+                                <option className="input-label-option" value="2021" >2021</option>
                             </Select>
                         </FormControl>
+
                     </section>
 
                     <section className='event-name'>
                         <label>Event</label>
-                        <FormControl sx={{ m: 1, minWidth: 250, height: '2.7rem' }}>
+                        <FormControl sx={{ m: 1, minWidth: 550, height: '2.7rem' }}>
                             <Select
                                 sx={{ height: '100%' }}
                                 value={state.eventName}

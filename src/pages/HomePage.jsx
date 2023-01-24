@@ -55,7 +55,7 @@ const HomePage = (props) => {
                         </div>
                     </section>
 
-                    <section style={{ background: "#EBEBEB" ,marginTop:'4rem' }}>
+                    <section style={{ background: "#EBEBEB" ,marginTop:'2rem' }}>
                         <CarouselWrapper />
                     </section>
                 </main>

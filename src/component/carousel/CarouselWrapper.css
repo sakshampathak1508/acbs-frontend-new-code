@@ -33,11 +33,11 @@ h2{
     object-fit: contain;
 }
 
-@media screen and (max-width:723px) {
+@media only screen and (max-width:769px) {
     
     .carouselwrapper_container{
     
-        padding:1rem 10rem;
+        padding:1rem 0rem;
     }
 }
 /*

@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router';
 import { useMediaQuery } from 'react-responsive'
-import carouselEx from '../../assets/cardEx.png'
+import carouselEx from '../../assets/carouselEx.jpg'
 import "./Image.css"
 
 function ImageCard(props) {
@@ -21,7 +21,7 @@ function ImageCard(props) {
 
     props = props?.data
     return (
-        <div onClick={()=>history.push(`/news/${props?.id}/${props?.slug}`)} className="imagecard" style={page==="main" && window.innerWidth>768? {backgroundImage:`url(${carouselEx})`, maxWidth:'30rem' , marginRight:"1.2rem" , overflow:"hidden"}:{backgroundImage:`url(${carouselEx})`, overflow:"hidden"}}>
+        <div onClick={()=>history.push(`/news/${props?.id}/${props?.slug}`)} className="imagecard" style={page==="main" && window.innerWidth>768? {backgroundImage:`url(${carouselEx})`, overflow:"hidden"}:{backgroundImage:`url(${carouselEx})`, overflow:"hidden"}}>
 
             <div className="imagecardBg">
 

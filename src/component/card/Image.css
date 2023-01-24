@@ -4,15 +4,12 @@
     /* min-width: 28rem;
     max-width: 32rem; */
     width: 98%;
-    height: 32rem;
+    height: 34rem;
     background-size:cover;
     background-repeat:no-repeat;
-    /* border : 1px solid #ebebeb; */
     outline: 0;
-    /* transition: all 0.5s linear; */
-    /* margin-right: 3.5rem; */
-    /* margin-bottom: 2rem; */
     cursor: pointer;
+    background-position: center;
     border-radius: 6px;
 }
 .imagecardBg{
@@ -75,14 +72,18 @@
     transition: color 500ms;
 }
 
-@media screen and (max-width:723px) {
+@media only screen and (max-width:769px) {
 
     .imagecard
     {   
         height: 26rem;
+        width: 100%;
         margin-right: 0;
         margin: auto;
-        margin-bottom: 1.5rem;
+    }
+    .Imagecard-container h4{
+        font-size: 160%;
+        line-height: 110%;
     }
     
 }
