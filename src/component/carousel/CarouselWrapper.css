@@ -1,6 +1,6 @@
 
 .carouselwrapper_container{
-    padding:2rem 0rem;
+    padding: 2rem 30vw;
     width: 100%;
     /* max-height: 200px; */
 }
@@ -28,9 +28,11 @@ h2{
 .slide_image img{
     /* width: 50%;
     min-width: 120px; */
+    /* height: 150px; */
+    max-width: 150px;
     margin: auto;
-    height:  100%;
-    object-fit: contain;
+    /* height:  100%; */
+    /* object-fit: contain; */
 }
 
 @media only screen and (max-width:769px) {

@@ -25,6 +25,10 @@
     margin-left: 3rem;
 }
 
+
+.particular-news-page>main header .title > h4{
+        font-size: 180%;
+}
 .particular-news-page>main>main section {
     width: 100%;
     margin-top: 2rem;

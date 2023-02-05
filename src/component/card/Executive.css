@@ -1,0 +1,51 @@
+.executive-outer {
+    background: var(--white);
+    box-shadow: 0px 0px 25px rgba(182, 182, 182, 0.22);
+    border-radius: 4px;
+    height: 24rem;
+    width: 24rem;
+    display: flex;
+    flex-direction: column;
+}
+
+.executive-outer>.executive-image {
+    height: 60%;
+    width: 100%;
+    border-radius: 4px;
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    /* width: 100px; */
+}
+
+.executive-outer>.executive-content {
+    /* height: 0%; */
+    height: 40%;
+    box-sizing: border-box;
+    padding: 1rem;
+}
+
+.executive-outer>.executive-content>h6 {
+    font-size: 1.1rem;
+}
+
+.executive-outer>.executive-content>p {
+    color: rgba(0, 0, 0, 0.7);
+    /* color: green; */
+}
+
+.executive-outer>.executive-content>p>strong {
+    color: rgba(0, 0, 0, 1);
+}
+
+.executive-outer>.executive-content>.icons {
+    display: flex;
+    flex-direction: row;
+    gap: 0.5rem;
+}
+
+
+.executive-outer>.executive-content>.icons * {
+
+    font-size: 1.8rem;
+}

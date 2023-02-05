@@ -1,11 +1,12 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import Header from '../../component/header/header';
-import Footer from '../../component/Footer/Footer';
-import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
+import ImageTitleDate from '../../component/card/ImageTitleDate';
+import Footer from '../../component/Footer/Footer';
+
+import MenuItem from '@mui/material/MenuItem';
 import SearchIcon from '../../assets/searchIcon.png'
-import InputLabel from '@mui/material/InputLabel';
 import IconButton from "@mui/material/IconButton";
 
 import './Event.css'
@@ -15,24 +16,24 @@ const Event = (props) => {
         year: '', eventName: '', search: ''
     });
     const yearRef = useRef();
+    const [hasMore, setHasMore] = useState(true);
+    const [page, setPage] = useState(1);
 
 
     useEffect(() => {
-        
+
         const currentyear = new Date().getFullYear();
         var select = yearRef.current?.firstChild?.firstChild;
 
-        while(select.firstChild)
-        {
+        while (select.firstChild) {
             select.removeChild(select.lastChild);
         }
-        
-        for(let i = currentyear; i>=2010;i--)
-        {   
-        let option = document.createElement("option");
-        option.text = i.toString();
-        option.value = i;
-        select.appendChild(option)
+
+        for (let i = currentyear; i >= 2010; i--) {
+            let option = document.createElement("option");
+            option.text = i.toString();
+            option.value = i;
+            select.appendChild(option)
         }
     }, [])
 
@@ -43,10 +44,31 @@ const Event = (props) => {
         setState((prev) => ({ ...prev, [name]: value }));
     };
 
+    useEffect(() => {
+        window.onscroll = () => {
+            console.log(window.innerHeight, document.documentElement.scrollTop, document.documentElement.offsetHeight, page)
+            if (window.innerHeight + document.documentElement.scrollTop + 10 >= document.documentElement.offsetHeight) {
+                console.log("here")
+                setPage((prev) => prev + 1);
+
+                // loadItems();
+            }
+        };
+        return () => (window.onscroll = null);
+    }, [hasMore]);
+
+    useEffect(() => {
+        if (page == 3)
+            setHasMore(false)
+
+    }, [page])
+
+
     return (
         <div className='event-page'>
             <Header />
             <main>
+
                 <header>
                     <section className="year">
                         <label>Year</label>
@@ -94,70 +116,30 @@ const Event = (props) => {
                         </form>
                     </section>
                 </header>
-
                 <main>
-                    <h2>World Snooker Championship 2022</h2>
-                    <section className='event-content'>
-                        <section className='left-container'>
-                            <p>a,mds</p>
-                        </section>
+                    <section className='events'>
+                        <h4>Events</h4>
+                        <div className='events-container'>
+                            <ImageTitleDate />
+                            <ImageTitleDate />
+                            <ImageTitleDate />
+                            <ImageTitleDate />
+                            <ImageTitleDate />
+                            <ImageTitleDate />
+                            <ImageTitleDate />
+                            <ImageTitleDate />
 
-                        <section className='right-container'>
-                            <section className='top'>
-                                <div className='location'>
-                                    <h4>Location</h4>
-                                    <h5>Antalya, Turkey</h5>
-                                    <label>Resultksldm skd s kdksdj skdmsk dskdm skdmskom sdms</label>
-                                </div>
-
-                                <div className='venue'>
-                                    <h4>Venue</h4>
-                                    <h5>Antalya, Turkey</h5>
-                                    <label>Photographs</label>
-                                </div>
-
-                                <div className='date'>
-                                    <div className='start-date'>
-                                        <h4>Start Date</h4>
-                                        <h5>2019-10-29</h5>
-                                    </div>
-
-                                    <div className='end-date'>
-                                        <h4>End Date</h4>
-                                        <h5>2019-10-29</h5>
-                                    </div>
-                                </div>
-                            </section>
-
-                            <section className='bottom'>
-                                <div className='about'>
-                                    <h4>Location</h4>
-                                    <h5>Antalya, Turkey</h5>
-                                    <label>Resultksldm skd s kdksdj skdmsk dskdm skdmskom sdms</label>
-                                </div>
-
-                                <div className='hotel-assoc'>
-                                    <h4>HOST ASSOCIATION CONTACT</h4>
-                                    <label>Antalya, Turkey msdkmd smdks dsmkd s, ds,mdskldsd s,mdk s, dsdmksmd ld</label>
-                                </div>
-
-                                <div className='hotel-assoc'>
-                                    <h4>Venue</h4>
-                                    <label>Antalya, Turkey msdkmd smdks dsmkd s, ds,mdskldsd s,mdk s, dsdmksmd ld</label>
-                                </div>
-
-                                <div className='hotel-assoc'>
-                                    <h4>Venue</h4>
-                                    <label>Antalya, Turkey msdkmd smdks dsmkd s, ds,mdskldsd s,mdk s, dsdmksmd ld</label>
-                                </div>
-                            </section>
-                        </section>
+                        </div>
                     </section>
                 </main>
 
             </main>
 
-            <Footer />
+            {hasMore ? (<p>Loading</p>)
+                :
+                <Footer>
+                </Footer>
+            }
         </div>
     );
 };

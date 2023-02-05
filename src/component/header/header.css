@@ -1,67 +1,82 @@
-.header{
-    /* max-width: 1400px; */
+.main-navbar {
     position: sticky;
     margin: 0 auto;
     padding: 0 !important;
-    top:0;
+    top: 0;
     background-color: white;
     z-index: 100;
-}
-nav.navbar{
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.23);
-    top:0;
-    position: sticky;
-    background-color: white;
-    z-index: 100;
-}
-.navbar .navbar-brand{
-    margin-left: 1rem;
 }
 
-.nav-link{
+.header {
+    max-width: var(--maxWidth);
+    margin: 0 auto;
+}
+
+.nav-link {
     cursor: pointer;
 }
 
-#navbarNav .navbar-nav{
-    width:100%;
+#navbarNav .navbar-nav {
+    width: 100%;
     display: flex;
     justify-content: center;
 }
-#navbarNav .navbar-nav .nav-item{
+
+#navbarNav .navbar-nav .nav-item {
     margin: 0 0.8rem;
 }
-#navbarNav .navbar-nav .active .nav-link{
-    color:var(--red);
+
+#navbarNav .navbar-nav .active .nav-link {
+    color: var(--red);
 }
 
-#navbarNav .navbar-nav .nav-link{
+#navbarNav .navbar-nav .nav-link {
     color: var(--BLACK);
 }
+#navbarNav .nav-item {
+    list-style-type: none;
+    /* margin: 0.8rem; */
+}
+#navbarNav .nav-item>button {
+    background-color: var(--red);
+    color: white;
+    border-radius: 8px;
+    padding: 0.2rem 1.8rem;
+    border: 1px solid var(--red);
+    margin-left: 0.8rem;
+}
 
-.nav-back{
+#navbarNav .nav-item>button:hover{
+    background-color: var(--white);
+    color: var(--black);
+}
+
+.nav-back {
     float: right;
 }
 
-nav.navbar button{
+nav.navbar button {
     color: var(--RED);
 }
-.search-bar{
+
+.search-bar {
     display: flex;
     width: 100%;
     justify-content: center;
 }
 
-.search-bar #searchForm{
+.search-bar #searchForm {
     width: 50%;
     border-radius: 32px;
     height: 48px;
     margin: 24px 0;
     display: flex;
     align-items: center;
-    
+
 }
 
-.search-bar input{
+.search-bar input {
     width: 90%;
     border: none;
     outline: none;
@@ -72,5 +87,19 @@ nav.navbar button{
     .search-bar #searchForm {
         width: 85%;
     }
+
+    .navbar .navbar-brand {
+        margin-left: 1rem;
+    }
+
+
+    #navbarNav .nav-item {
+        margin: 0.8rem 0;
+    }
+
+
+
+    
+
 
 }

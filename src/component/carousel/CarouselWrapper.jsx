@@ -3,9 +3,9 @@ import Slider from "react-slick";
 import { useMediaQuery } from 'react-responsive'
 import "./CarouselWrapper.css"
 import pox from '../../assets/cardEx.png'
-import Sponsor1 from '../../assets/sponsor1.png';
-import Sponsor2 from '../../assets/sponsor2.png';
-import Sponsor3 from '../../assets/sponsor3.png';
+import Sponsor1 from '../../assets/sponsor-1.jpg';
+import Sponsor2 from '../../assets/sponsor-2.jpg';
+import Sponsor3 from '../../assets/sponsor-3.jpg';
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 
@@ -19,7 +19,7 @@ const CarouselWrapper = (props) => {
     useEffect(() => {
         const width = window.innerWidth;
 
-        width > 768 ? setslidesToShow(3) : setslidesToShow(1)
+        width > 768 ? setslidesToShow(2) : setslidesToShow(1)
 
     })
 
@@ -31,7 +31,7 @@ const CarouselWrapper = (props) => {
 
     const handleMediaQueryChange1 = (matches) => {
         if (matches)
-            setslidesToShow(3);
+            setslidesToShow(2);
     }
 
 
@@ -64,10 +64,11 @@ const CarouselWrapper = (props) => {
 
             <Slider style={{ height: "100%", overflow: "hidden" }} {...setting}>
 
-                <div key={1} onClick={() => window.open('data.url', '_blank')} className="slide_image" ><img src={Sponsor3} width="auto" height="100%" alt="img" /></div>
-                <div key={1} onClick={() => window.open('data.url', '_blank')} className="slide_image" ><img src={Sponsor2} width="auto" height="100%" alt="img" /></div>
-                <div key={1} onClick={() => window.open('data.url', '_blank')} className="slide_image" ><img src={Sponsor1} width="auto" height="100%" alt="img" /></div>
-                <div key={1} onClick={() => window.open('data.url', '_blank')} className="slide_image" ><img src={Sponsor2} width="auto" height="100%" alt="img" /></div>
+                <div key={1} onClick={() => window.open('data.url', '_blank')} className="slide_image" ><img src={Sponsor3} alt="img" /></div>
+                <div key={1} onClick={() => window.open('data.url', '_blank')} className="slide_image" ><img src={Sponsor2} alt="img" /></div>
+                <div key={1} onClick={() => window.open('data.url', '_blank')} className="slide_image" ><img src={Sponsor1} alt="img" /></div>
+                <div key={1} onClick={() => window.open('data.url', '_blank')} className="slide_image" ><img src={Sponsor2} alt="img" /></div>
+                {/* <div key={1} onClick={() => window.open('data.url', '_blank')} className="slide_image" ><img src={Sponsor2} width="auto" height="100%" alt="img" /></div> */}
                 {
 
                     // props.data&&props.data.map((data , index)=>

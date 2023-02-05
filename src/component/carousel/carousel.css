@@ -26,7 +26,7 @@
 .mainPage_carousel .carousel-caption {
     /* width: 70%; */
     /* bottom:0; */
-    top: 43%;
+    bottom: 20%;
     left: 12%;
     max-width: 60%;
     text-align: start;
@@ -50,16 +50,58 @@
     outline: none;
     margin-right: 1rem;
 }
+.carousel-caption .dropdown{
+    /* position: relative; */
+    position: relative;
+}
+
+.carousel-caption .dropdown-content{
+    display: flex;
+    flex-direction: column;
+    display: none;
+}
+
+.carousel-caption .dropdown-content *{
+    background-color: white;
+    width: 10rem;
+    display: flex;
+    flex-wrap: wrap;
+}
 
 .carousel-caption button.info {
-    background-color: #ED1C24;
+    background-color: var(--red);
     color: white;
 }
 
-carousel-caption button.group {
+.carousel-caption button.groups {
+    height: 45px;
+    width: 45px;
+    border-radius: 50%;
     background-color: white;
-    color: #222222;
+    color: var(--red);
+    /* overflow: hidden; */
+    animation-delay: 3s;
 }
+
+.carousel-caption button.groups:hover {
+    display: none;
+}
+.carousel-caption button.groups  .dropdown-content
+{
+    display: block;
+    background-color: red;
+    position: absolute;
+    /* transform: translate(-50%, -50%); */
+    left: 0%;
+    top: 0%;
+    height: auto;
+    z-index: 100;
+    /* top:10px; */
+}   
+/* 
+.carousel-caption button.groups:hover {
+    color: white;
+} */
 
 .mainPage_carousel .carousel-inner {
 
@@ -69,22 +111,28 @@ carousel-caption button.group {
 
 @media only screen and (max-width:900px) {
 
+    .mainPage_carousel {
+        height: 52vw;
+        /* position: relative; */
+    }
+
     .mainPage_carousel .carousel-caption {
 
-        top: 33%;
+        bottom: 10%;
         left: 13%;
         max-width: 100%;
         padding: 0rem 0rem;
     }
 
     .mainPage_carousel .carousel_caption h3 {
-        font-size: 5vw;
-        margin: 0 0 0.8rem 0;
+        font-size: 4.2vw;
+        margin: 0 0 1vw 0;
         font-weight: 500;
         line-height: 100%;
     }
+
     .mainPage_carousel .carousel-caption button {
-        width: 30vw;
+        width: 30.3vw;
         height: 7vw;
         font-size: 3vw;
         /* font-family: 'Arial, Helvetica, sans-serif'; */

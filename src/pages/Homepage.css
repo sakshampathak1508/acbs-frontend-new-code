@@ -83,7 +83,7 @@ main .latest-news h4 {
 
 main .latest-news .latest-news-container {
     display: flex;
-    justify-content: space-between;
+    /* justify-content: space-between; */
 }
 
 @media only screen and (max-width:769px) {
