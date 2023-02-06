@@ -51,8 +51,7 @@
     margin-right: 1rem;
 }
 .carousel-caption .dropdown{
-    /* position: relative; */
-    position: relative;
+    display: flex;
 }
 
 .carousel-caption .dropdown-content{
@@ -74,17 +73,31 @@
 }
 
 .carousel-caption button.groups {
-    height: 45px;
-    width: 45px;
-    border-radius: 50%;
+    /* height: 45px;
+    width: 45px; */
+    /* border-radius: 50%; */
     background-color: white;
     color: var(--red);
     /* overflow: hidden; */
     animation-delay: 3s;
 }
 
-.carousel-caption button.groups:hover {
-    display: none;
+.carousel-caption button.groups {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+.carousel-caption button.groups > label {
+    height: 30px;
+    width: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    color: var(--white);
+    background-color: var(--red);
+
 }
 .carousel-caption button.groups  .dropdown-content
 {

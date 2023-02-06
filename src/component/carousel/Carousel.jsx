@@ -4,14 +4,34 @@ import axios from "../../axios"
 import { useNavigate } from 'react-router';
 import './carousel.css'
 import Image from '../../assets/carouselEx.jpg'
-import Image2 from '../../assets/whitishBack.jpg'
-
+import Select from '@mui/material/Select';
+import OutlinedInput from '@mui/material/OutlinedInput';
+import FormControl from '@mui/material/FormControl';
+import { MenuItem } from '@mui/material';
 
 function ControlledCarousel() {
 
     const [navbar, setNavbar] = useState();
     const history = useNavigate();
+    const [state, setState] = React.useState({
+        year: '', search: ''
+    });
+    const [age, setAge] = React.useState('');
 
+    const handleChange = (event) => {
+        setAge(event.target.value);
+    };
+
+    const ITEM_HEIGHT = 48;
+    const ITEM_PADDING_TOP = 8;
+    const MenuProps = {
+        PaperProps: {
+            style: {
+                maxHeight: ITEM_HEIGHT * 4.5 + ITEM_PADDING_TOP,
+                width: 250,
+            },
+        },
+    };
 
     useEffect(() => {
         axios.get("https://ibsf.info/api/news/featured/")
@@ -44,7 +64,24 @@ function ControlledCarousel() {
                                 Tournament Info
                             </button>
                             <button className='groups dropbtn'>
-                                <label>+3</label>
+                                <FormControl variant='standard' sx={{ m: 1, width:'100%' }}>
+                                    <Select
+                                        value={age}
+                                        onChange={handleChange}
+                                        displayEmpty
+                                        inputProps={{ 'aria-label': 'Without label' }}
+                                    >
+                                        <MenuItem value="">
+                                            <em>Links</em>
+                                        </MenuItem>
+                                        <MenuItem value={10}>Ten</MenuItem>
+                                        <MenuItem value={20}>Twenty</MenuItem>
+                                        <MenuItem value={30}>Thirty</MenuItem>
+                                    </Select>
+                                    {/* <FormHelperText>Without label</FormHelperText> */}
+                                </FormControl>
+
+                                {/* <label>+3</label> */}
                             </button>
 
                             <div className="dropdown-content">

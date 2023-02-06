@@ -1,13 +1,10 @@
 import React, { useState, useEffect, useRef } from 'react';
 import Header from '../../component/header/header';
-import ImageTitle from '../../component/card/ImageTitle';
-import Carousel from '../../component/carousel/Carousel';
-import ImageCard from "../../component/card/Image"
-import TitleCard from '../../component/card/Title'
 import ImageTitleDate from '../../component/card/ImageTitleDate';
 import Footer from '../../component/Footer/Footer';
 import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
+import axios from '../../axios';
 import SearchIcon from '../../assets/searchIcon.png'
 import IconButton from "@mui/material/IconButton";
 import './AllNews.css'
@@ -33,6 +30,11 @@ const AllNews = (props) => {
         return () => (window.onscroll = null);
     }, [hasMore]);
     useEffect(() => {
+
+        axios.get('/news/all').then((data)=>
+        console.log(data))
+        .catch((err)=>console.log(err))
+
         const currentyear = new Date().getFullYear();
         var select = yearRef.current?.firstChild?.firstChild;
         while (select.firstChild) {

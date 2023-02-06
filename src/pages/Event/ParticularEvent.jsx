@@ -5,8 +5,6 @@ import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
 import SearchIcon from '../../assets/searchIcon.png'
-import InputLabel from '@mui/material/InputLabel';
-import VisibilityIcon from '@mui/icons-material/Visibility';
 import IconButton from "@mui/material/IconButton";
 
 import './ParticularEvent.css'

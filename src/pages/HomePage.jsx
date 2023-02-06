@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import Header from '../component/header/header';
 import ImageTitle from '../component/card/ImageTitle';
 import Carousel from '../component/carousel/Carousel';
@@ -9,8 +9,16 @@ import Title from '../component/card/Title';
 import CarouselWrapper from '../component/carousel/CarouselWrapper';
 import Footer from '../component/Footer/Footer';
 import './Homepage.css'
+import axios from '../axios';
 
 const HomePage = (props) => {
+
+    useEffect(()=>
+    {
+        axios.get('news/all/')
+        .then((data)=>console.log(data))
+        .catch((err)=>console.log(err))
+    } , [])
     return (
         <>
             <Header />

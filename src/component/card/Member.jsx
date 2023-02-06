@@ -24,6 +24,8 @@ function Card(props) {
                 <FacebookIcon/>
                 <InstagramIcon/>
                 <MailOutlineIcon/>
+                <MailOutlineIcon/>
+                <MailOutlineIcon/>
             </div>
             </section>
         </main>

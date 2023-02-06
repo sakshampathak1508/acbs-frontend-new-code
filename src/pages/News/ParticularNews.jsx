@@ -1,41 +1,113 @@
-import React from 'react';
+import React , {useEffect, useRef} from 'react';
 import Header from '../../component/header/header';
-import ImageTitle from '../../component/card/ImageTitle';
-import Carousel from '../../component/carousel/Carousel';
-import ImageCard from "../../component/card/Image"
-import TitleCard from '../../component/card/Title'
 import ImageTitleDate from '../../component/card/ImageTitleDate';
-import Title from '../../component/card/Title';
-import CarouselWrapper from '../../component/carousel/CarouselWrapper';
 import Footer from '../../component/Footer/Footer';
 import KeyboardBackspaceIcon from '@mui/icons-material/KeyboardBackspace';
-// import KeyboardNextspaceIcon from '@mui/icons-material/KeyboardNextspace';
 import Partnews from '../../assets/partnews.png'
-
-// import { WhatsappShareButton, FacebookShareButton, TwitterShareButton } from "react-share"
 import Avatar from '@mui/material/Avatar';
 import InstagramIcon from '@mui/icons-material/Instagram';
-// import FacebookIcon from '@mui/icons/Facebook'
-// import WhatsappIcon from '@mui/icons/WhatsApp';
 import MailOutlineIcon from '@mui/icons-material/MailOutline';
 import PrintIcon from '@mui/icons-material/Print';
-// import TwitterIcon from '@mui/icons/Twitter';
-
+import MenuItem from '@mui/material/MenuItem';
+import FormControl from '@mui/material/FormControl';
+import Select from '@mui/material/Select';
+import SearchIcon from '../../assets/searchIcon.png'
 import './ParticularNews.css'
+import IconButton from "@mui/material/IconButton";
 import { Visibility } from '@mui/icons-material';
 
 const ParticularNews = (props) => {
+    const [state, setState] = React.useState({
+        year: '', eventName: '', search: ''
+    });
+    const yearRef = useRef();
+
+
+    useEffect(() => {
+        
+        const currentyear = new Date().getFullYear();
+        var select = yearRef.current?.firstChild?.firstChild;
+
+        while(select.firstChild)
+        {
+            select.removeChild(select.lastChild);
+        }
+        
+        for(let i = currentyear; i>=2010;i--)
+        {   
+        let option = document.createElement("option");
+        option.text = i.toString();
+        option.value = i;
+        select.appendChild(option)
+        }
+    }, [])
+
+    const handleChange = (event) => {
+
+        const name = event.target.name;
+        const value = event.target.value;
+        setState((prev) => ({ ...prev, [name]: value }));
+    };
+
     return (
         <div className='particular-news-page'>
             <Header />
             <main>
                 <header>
+                    <section className="year">
+                        <label>Year</label>
+                        <FormControl variant="outlined" sx={{ m: 1, minWidth: 120, height: '2.7rem' }} ref={yearRef}>
+                            <Select
+                                native
+                                sx={{ height: '100%' }}
+                                value={state.year}
+                                className="input-label-select"
+                                onChange={handleChange}
+                                displayEmpty
+                                name='year'
+                            >
+                                <option className="input-label-option" value="2021" >2021</option>
+                            </Select>
+                        </FormControl>
+
+                    </section>
+
+                    <section className='event-name'>
+                        <label>Event</label>
+                        <FormControl sx={{ m: 1, minWidth: 550, height: '2.7rem' }}>
+                            <Select
+                                sx={{ height: '100%' }}
+                                value={state.eventName}
+                                onChange={handleChange}
+                                displayEmpty
+                                name='eventName'
+                            >
+                                <MenuItem value={10}>Ten</MenuItem>
+                                <MenuItem value={20}>Twenty</MenuItem>
+                                <MenuItem value={30}>Thirty</MenuItem>
+                            </Select>
+                        </FormControl>
+                    </section>
+
+                    <section className="search">
+                        <form id="searchForm" style={{ background: '#F5F5F5' }}>
+                            <IconButton
+                                onClick={handleChange}
+                                aria-label="search">
+                                <img src={SearchIcon} />
+                            </IconButton>
+                            <input onChange={handleChange} placeholder="Search" style={{ background: '#F5F5F5' }} value={state.search} name='search' />
+                        </form>
+                    </section>
+                </header>
+
+                <header>
                     <section className="back-btn">
                         <p><span><KeyboardBackspaceIcon style={{ marginRight: '1rem' }} /></span> Back</p>
                     </section>
                     <section className='title'>
-                        <p>Wednesday 04 January 2023, 21:35</p>
                         <h4>Tournament Information: Asian 6-Red Pool Championship 2022</h4>
+                        <p>Wednesday 04 January 2023, 21:35</p>
                     </section>
                 </header>
                 <main>
@@ -45,30 +117,26 @@ const ParticularNews = (props) => {
 
                     <section className='event-section'>
                         <section className='left'>
-                            <div className="newspage_share_links" style={{ display: "flex", flexDirection: "column", width: "27%" }}>
+                            <div className="newspage_share_links" style={{ display: "flex", flexDirection: "column" }}>
 
                                 <ul style={{ listStyleType: "none", width: "100%" }}>
-                                    <li style={{ marginBottom: "1.2rem", fontWeight: "600" }}><Visibility/>Views: newsData.views</li>
+                                    <li style={{ marginBottom: "1rem", fontWeight: "600" }}> <Visibility /> Views newsData.views</li>
                                     <li className="shareLinks">
-                                        <PrintIcon onClick={() => window.print()} style={{ fontSize: "3rem", marginRight: "1rem" }}></PrintIcon>
-                                        <MailOutlineIcon onClick={() => window.location.href = "mailto: ibsfinfo@gmail.com "} style={{ fontSize: "3rem", marginRight: "1rem" }} ></MailOutlineIcon>
-                                        {/* <FacebookShareButton url={shareUrl} quote={"oo"}>  <FacebookIcon style={{ fontSize: "3rem", marginRight: "1rem" }} round={true} /></FacebookShareButton> */}
-                                        <InstagramIcon onClick={() => { window.open('http://www.instagram.com', 'blank') }} style={{ cursor: "pointer", marginRight: "1rem", fontSize: "3rem" }} />
-                                        {/* <TwitterShareButton url={shareUrl}> <TwitterIcon style={{ fontSize: "3rem", marginRight: "1rem" }} round={true} /> </TwitterShareButton> */}
-                                        {/* <WhatsappShareButton url={shareUrl} separator=":: "> <WhatsappIcon style={{ fontSize: "3rem", marginRight: "1rem" }} round={true} /></WhatsappShareButton> */}
+                                        <PrintIcon onClick={() => window.print()} ></PrintIcon>
+                                        <MailOutlineIcon onClick={() => window.location.href = "mailto: ibsfinfo@gmail.com "}  ></MailOutlineIcon>
+                                        {/* <FacebookShareButton url={shareUrl} quote={"oo"}>  <FacebookIcon  round={true} /></FacebookShareButton> */}
+                                        <InstagramIcon onClick={() => { window.open('http://www.instagram.com', 'blank') }} style={{ cursor: "pointer", marginRight: "1rem" }} />
+                                        {/* <TwitterShareButton url={shareUrl}> <TwitterIcon  round={true} /> </TwitterShareButton> */}
+                                        {/* <WhatsappShareButton url={shareUrl} separator=":: "> <WhatsappIcon  round={true} /></WhatsappShareButton> */}
                                     </li>
                                 </ul>
 
-                                <hr></hr>
-
                                 <div className="author">
+                                    <h4>Author</h4>
+                                    <Avatar style={{ width: "6rem", height: "6rem", marginBottom: '1rem' }} alt="Remy Sharp" src={``} />
 
-                                    <Avatar style={{ width: "6rem", height: "6rem" }} alt="Remy Sharp" src={``} />
-
-                                    <h5>newsData.writer_data.name, newsData.writer_data.position</h5>
+                                    <h6>newsData.writer_data.name, newsData.wr iter_data .position</h6>
                                 </div>
-
-                                <hr></hr>
 
                                 <div className="news_tags">
                                     {/* {
@@ -80,7 +148,7 @@ const ParticularNews = (props) => {
 
                                         )
                                         )} */}
-                                        <p>Hello world</p>
+                                    <p>Tags</p>
 
                                 </div>
 

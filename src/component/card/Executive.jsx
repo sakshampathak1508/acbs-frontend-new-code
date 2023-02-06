@@ -18,8 +18,8 @@ function Card(props) {
             <section className = "executive-image" style={{backgroundImage:`url(${carouselEx})`}}>
             </section>
             <section className="executive-content">
-            <h6>Bowling , Billiard & Boules Federation of I.R.Iran</h6>
-            <p><strong>President:</strong> dfk dfpd f</p>
+            <h6>President</h6>
+            <h5> dfk dfpd f</h5>
             <div className='icons'>
                 <FacebookIcon/>
                 <InstagramIcon/>
