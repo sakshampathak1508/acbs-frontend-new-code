@@ -64,7 +64,7 @@ function ControlledCarousel() {
                                 Tournament Info
                             </button>
                             <button className='groups dropbtn'>
-                                <FormControl variant='standard' sx={{ m: 1, width:'100%' }}>
+                                <FormControl variant='' sx={{ m: '0' , b:0, width:'100%',padding:0 }}>
                                     <Select
                                         value={age}
                                         onChange={handleChange}

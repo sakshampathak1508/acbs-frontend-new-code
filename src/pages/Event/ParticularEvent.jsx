@@ -49,7 +49,7 @@ const ParticularEvent = (props) => {
                 <header>
                     <section className="year">
                         <label>Year</label>
-                        <FormControl variant="outlined" sx={{ m: 1, minWidth: 120, height: '2.7rem' }} ref={yearRef}>
+                        <FormControl variant="outlined" sx={{ m: 1, minWidth: 80, height: '2.7rem' }} ref={yearRef}>
                             <Select
                                 native
                                 sx={{ height: '100%' }}
@@ -67,7 +67,7 @@ const ParticularEvent = (props) => {
 
                     <section className='event-name'>
                         <label>Event</label>
-                        <FormControl sx={{ m: 1, minWidth: 550, height: '2.7rem' }}>
+                        <FormControl sx={{ m: 1, minWidth: 320, height: '2.7rem' }}>
                             <Select
                                 sx={{ height: '100%' }}
                                 value={state.eventName}

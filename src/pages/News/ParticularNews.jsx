@@ -26,11 +26,11 @@ const ParticularNews = (props) => {
     useEffect(() => {
         
         const currentyear = new Date().getFullYear();
-        var select = yearRef.current?.firstChild?.firstChild;
+        var select = yearRef?.current?.firstChild?.firstChild;
 
-        while(select.firstChild)
+        while(select?.firstChild)
         {
-            select.removeChild(select.lastChild);
+            select.removeChild(select?.lastChild);
         }
         
         for(let i = currentyear; i>=2010;i--)
@@ -38,7 +38,7 @@ const ParticularNews = (props) => {
         let option = document.createElement("option");
         option.text = i.toString();
         option.value = i;
-        select.appendChild(option)
+        select?.appendChild(option)
         }
     }, [])
 
@@ -53,7 +53,7 @@ const ParticularNews = (props) => {
         <div className='particular-news-page'>
             <Header />
             <main>
-                <header>
+                {/* <header>
                     <section className="year">
                         <label>Year</label>
                         <FormControl variant="outlined" sx={{ m: 1, minWidth: 120, height: '2.7rem' }} ref={yearRef}>
@@ -99,7 +99,7 @@ const ParticularNews = (props) => {
                             <input onChange={handleChange} placeholder="Search" style={{ background: '#F5F5F5' }} value={state.search} name='search' />
                         </form>
                     </section>
-                </header>
+                </header> */}
 
                 <header>
                     <section className="back-btn">
