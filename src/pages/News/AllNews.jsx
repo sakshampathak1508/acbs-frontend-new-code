@@ -66,7 +66,7 @@ const AllNews = (props) => {
         <div className='news-page'>
             <Header />
 
-            <main>
+            <main className='container'>
                 <header>
                     <section className="year">
                         <label>Year</label>

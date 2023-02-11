@@ -7,9 +7,7 @@
 }
 
 .particular-news-page>main {
-    max-width: var(--maxWidth);
     margin: 2rem auto;
-    padding: 0 1rem;
 }
 
 .particular-news-page>main header {
@@ -82,6 +80,7 @@
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+    gap:0.5rem;
     margin-bottom: 2rem;
 }
 
@@ -117,7 +116,7 @@
     margin-bottom: 1.5rem;
 }
 
-@media only screen and (max-width:900px) {
+@media only screen and (max-width:992px) {
     .particular-news-page>main>main .event-section {
         flex-direction: column;
         justify-content: center;

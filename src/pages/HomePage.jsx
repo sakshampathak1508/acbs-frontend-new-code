@@ -13,19 +13,18 @@ import axios from '../axios';
 
 const HomePage = (props) => {
 
-    useEffect(()=>
-    {
+    useEffect(() => {
         axios.get('news/all/')
-        .then((data)=>console.log(data))
-        .catch((err)=>console.log(err))
-    } , [])
+            .then((data) => console.log(data))
+            .catch((err) => console.log(err))
+    }, [])
     return (
         <>
             <Header />
             <section>
                 <Carousel />
 
-                <main>
+                <main className='container'>
                     <section className='attractive-news'>
                         <div className='left-outer'>
                             <div className='left-inner'>
@@ -62,16 +61,15 @@ const HomePage = (props) => {
 
                         </div>
                     </section>
-
-                    <section style={{ background: "#EBEBEB" ,marginTop:'2rem' }}>
-                        <CarouselWrapper />
-                    </section>
                 </main>
-                
+                <section style={{ background: "#EBEBEB", marginTop: '2rem' }}>
+                    <CarouselWrapper />
+                </section>
+
             </section>
 
             <Footer>
-                <Footer/>
+                <Footer />
             </Footer>
         </>
     );

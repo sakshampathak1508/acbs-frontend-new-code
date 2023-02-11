@@ -12,7 +12,7 @@ function Footer(props) {
     const history = useNavigate();
     return (
         <footer className="all_footer">
-            <section className='inner-footer'>
+            <section className='inner-footer container'>
 
                 <div className="doping_image">
                     <div className='logo'>

@@ -2,9 +2,8 @@
     display: none;
 }
 
-.news-page>main {
-    margin: 1rem auto;
-    max-width: var(--maxWidth);
+.news-page>main>header {
+    margin-top: 2rem;
 }
 
 .news-page .latest-news {

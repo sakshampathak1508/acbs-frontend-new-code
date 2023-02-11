@@ -32,7 +32,7 @@ function Executive(props) {
             <Header active="aboutus" />
             <div className="ui container" style={{  margin: "auto" }}>
                 <div style={{ width: 'max-content' }}>
-                    <h1 className='executive-heading' >Executives</h1>
+                    <h1 className='executive-heading' >EXECUTIVES</h1>
                 </div>
 
                 <div style={{ display: "flex", gap:'1rem', flexWrap: "wrap" }}>

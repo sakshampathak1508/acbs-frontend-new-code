@@ -1,6 +1,4 @@
 .event-page > main{
-    max-width: var(--maxWidth);
-    margin: 1rem auto;
 }
 .event-page .events{
     /* display: flex; */

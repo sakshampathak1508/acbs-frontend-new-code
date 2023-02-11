@@ -32,7 +32,7 @@ function Header({ active }) {
     return (
         <>
             <section className="main-navbar">
-                <header className='header'>
+                <header className='header container'>
                     <nav className="navbar navbar-expand-lg navbar-light ">
                         <a className="navbar-brand" href="#">
                             <img src={LOGO} height='35px' />
@@ -65,11 +65,11 @@ function Header({ active }) {
                                         About
                                     </a>
                                 </li>
-                                <li className="nav-item">
+                                {/* <li className="nav-item">
                                     <a className="nav-link" href="#">
                                         Archives
                                     </a>
-                                </li>
+                                </li> */}
                                 <li className="nav-item">
                                     <a className="nav-link" href="#">
                                         Tournaments

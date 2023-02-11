@@ -1,7 +1,6 @@
 .main-navbar {
     position: sticky;
     margin: 0 auto;
-    padding: 0 !important;
     top: 0;
     background-color: white;
     z-index: 100;
@@ -86,10 +85,6 @@ nav.navbar button {
 
     .search-bar #searchForm {
         width: 85%;
-    }
-
-    .navbar .navbar-brand {
-        margin-left: 1rem;
     }
 
 

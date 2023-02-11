@@ -67,7 +67,7 @@ const Event = (props) => {
     return (
         <div className='event-page'>
             <Header />
-            <main>
+            <main className='container'>
 
                 <header>
                     <section className="year">

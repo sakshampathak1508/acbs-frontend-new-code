@@ -31,8 +31,8 @@ function Members(props) {
 
             <Header active="aboutus" />
             <main className="ui container" style={{  }}>
-                <section className='member-heading' style={{ width: 'max-content' }}>
-                    <h1>Members</h1>
+                <section className='member-heading'>
+                    <h1>MEMBERS</h1>
                 </section>
 
                 <div style={{ display:'flex',gap:'1rem' , flexWrap: "wrap" }}>

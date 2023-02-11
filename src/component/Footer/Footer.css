@@ -5,11 +5,11 @@
 }
 
 .all_footer>.inner-footer {
-    max-width: var(--maxWidth);
     margin: 0 auto;
     display: flex;
     flex-direction: column;
-    padding: 3rem;
+    padding-top: 3rem;
+    padding-bottom: 3rem;
 }
 
 .all_footer .inner-footer .doping_image {
@@ -118,7 +118,7 @@
 
 @media only screen and (max-width:769px) {
     .all_footer>.inner-footer {
-        padding: 1.5rem;
+        /* padding: 1.5rem; */
     }
     .all_footer .inner-footer .doping_image img{
         width: auto;

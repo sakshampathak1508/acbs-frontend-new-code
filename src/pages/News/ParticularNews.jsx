@@ -52,7 +52,7 @@ const ParticularNews = (props) => {
     return (
         <div className='particular-news-page'>
             <Header />
-            <main>
+            <main className='container'>
                 {/* <header>
                     <section className="year">
                         <label>Year</label>
