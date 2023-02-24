@@ -56,6 +56,7 @@
 
 .event-page>main>main>section.event-content .left-container {
     width: 66%;
+    overflow: hidden;
 }
 
 .event-page>main>main>section.event-content .right-container {

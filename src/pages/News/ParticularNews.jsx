@@ -1,4 +1,5 @@
 import React , {useEffect, useRef} from 'react';
+import { useParams } from "react-router-dom";
 import Header from '../../component/header/header';
 import ImageTitleDate from '../../component/card/ImageTitleDate';
 import Footer from '../../component/Footer/Footer';
@@ -8,6 +9,7 @@ import Avatar from '@mui/material/Avatar';
 import InstagramIcon from '@mui/icons-material/Instagram';
 import MailOutlineIcon from '@mui/icons-material/MailOutline';
 import PrintIcon from '@mui/icons-material/Print';
+import moment from 'moment';
 import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
@@ -15,16 +17,24 @@ import SearchIcon from '../../assets/searchIcon.png'
 import './ParticularNews.css'
 import IconButton from "@mui/material/IconButton";
 import { Visibility } from '@mui/icons-material';
+import axios from '../../axios';
 
 const ParticularNews = (props) => {
     const [state, setState] = React.useState({
-        year: '', eventName: '', search: ''
+        year: '', event: '', search: ''
     });
+    const {id } =useParams();
     const yearRef = useRef();
+    const baseUrl = 'https://sakshampathak.pythonanywhere.com'
 
 
     useEffect(() => {
         
+        axios.get(`news/?id=${id}`)
+        .then((res)=>{
+            setState((prev) => ({ ...prev, ['event']: res?.data }));
+        })
+
         const currentyear = new Date().getFullYear();
         var select = yearRef?.current?.firstChild?.firstChild;
 
@@ -46,7 +56,7 @@ const ParticularNews = (props) => {
 
         const name = event.target.name;
         const value = event.target.value;
-        setState((prev) => ({ ...prev, [name]: value }));
+        
     };
 
     return (
@@ -106,13 +116,13 @@ const ParticularNews = (props) => {
                         <p><span><KeyboardBackspaceIcon style={{ marginRight: '1rem' }} /></span> Back</p>
                     </section>
                     <section className='title'>
-                        <h4>Tournament Information: Asian 6-Red Pool Championship 2022</h4>
-                        <p>Wednesday 04 January 2023, 21:35</p>
+                        <h4>{state?.event?.title}</h4>
+                        <p>{moment(state?.event?.timestamp).format(`MMMM d, YYYY`)} &nbsp;&nbsp;{moment(state?.event?.timestamp).format(`h:mma`)}</p>
                     </section>
                 </header>
                 <main>
                     <section className='image-section'>
-                        <img src={Partnews} width={'100%'} ></img>
+                        <img src={baseUrl + state.event.image} width={'100%'} ></img>
                     </section>
 
                     <section className='event-section'>
@@ -120,7 +130,7 @@ const ParticularNews = (props) => {
                             <div className="newspage_share_links" style={{ display: "flex", flexDirection: "column" }}>
 
                                 <ul style={{ listStyleType: "none", width: "100%" }}>
-                                    <li style={{ marginBottom: "1rem", fontWeight: "600" }}> <Visibility /> Views newsData.views</li>
+                                    <li style={{ marginBottom: "1rem", fontWeight: "600" }}> <Visibility />&nbsp; {state?.event?.views}</li>
                                     <li className="shareLinks">
                                         <PrintIcon onClick={() => window.print()} ></PrintIcon>
                                         <MailOutlineIcon onClick={() => window.location.href = "mailto: ibsfinfo@gmail.com "}  ></MailOutlineIcon>
@@ -157,8 +167,8 @@ const ParticularNews = (props) => {
                             </div>
                         </section>
 
-                        <section className='right'>
-                            <p>kdfodkfmkls fmds f msflsml clk skckldmcmkslcldmf ls flcsl cf s m l f l s m f l s l;c ls clslfc lslfmdk fkls cl s l k m l k m s k lsk cksklm ck;lvs  csf sl fls lf ls fmls f</p>
+                        <section className='right' dangerouslySetInnerHTML={{__html: state?.event?.content}}>
+                            {/* <p>kdfodkfmkls fmds f msflsml clk skckldmcmkslcldmf ls flcsl cf s m l f l s m f l s l;c ls clslfc lslfmdk fkls cl s l k m l k m s k lsk cksklm ck;lvs  csf sl fls lf ls fmls f</p> */}
                         </section>
                     </section>
 

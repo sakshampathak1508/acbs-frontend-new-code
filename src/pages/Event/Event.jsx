@@ -2,30 +2,29 @@ import React, { useState, useEffect, useRef } from 'react';
 import Header from '../../component/header/header';
 import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
-import ImageTitleDate from '../../component/card/ImageTitleDate';
+import EventImageTitle from '../../component/card/EventImageTitle';
 import Footer from '../../component/Footer/Footer';
-
 import MenuItem from '@mui/material/MenuItem';
 import SearchIcon from '../../assets/searchIcon.png'
 import IconButton from "@mui/material/IconButton";
-
+import axios from '../../axios';
+import CircularProgress from '@mui/material/CircularProgress';
 import './Event.css'
 
 const Event = (props) => {
     const [state, setState] = React.useState({
-        year: '', eventName: '', search: ''
+        year: '', event: [], search: ''
     });
     const yearRef = useRef();
     const [hasMore, setHasMore] = useState(true);
     const [page, setPage] = useState(1);
+    const [isLoading, setIsLoading] = useState(true);
 
 
     useEffect(() => {
-
         const currentyear = new Date().getFullYear();
         var select = yearRef.current?.firstChild?.firstChild;
-
-        while (select.firstChild) {
+        while (select?.firstChild) {
             select.removeChild(select.lastChild);
         }
 
@@ -33,9 +32,20 @@ const Event = (props) => {
             let option = document.createElement("option");
             option.text = i.toString();
             option.value = i;
+            option.key = i + 1;
             select.appendChild(option)
         }
+
+
+        return () => window.onscroll()
     }, [])
+
+    window.onscroll = () => {
+        if (window.innerHeight + document.documentElement.scrollTop + 100 >= document.documentElement.offsetHeight && isLoading == true) {
+            setIsLoading(false)
+            setPage((prev) => prev + 1);
+        }
+    }
 
     const handleChange = (event) => {
 
@@ -45,27 +55,23 @@ const Event = (props) => {
     };
 
     useEffect(() => {
-        window.onscroll = () => {
-            console.log(window.innerHeight, document.documentElement.scrollTop, document.documentElement.offsetHeight, page)
-            if (window.innerHeight + document.documentElement.scrollTop + 10 >= document.documentElement.offsetHeight) {
-                console.log("here")
-                setPage((prev) => prev + 1);
 
-                // loadItems();
-            }
-        };
-        return () => (window.onscroll = null);
-    }, [hasMore]);
-
-    useEffect(() => {
-        if (page == 3)
-            setHasMore(false)
+        axios.get(`/events/all/?year=2022/${page}/`)
+            .then((res) => {
+                console.log(res?.data)
+                if (res?.data?.results?.length === 0)
+                    setHasMore(false)
+                setIsLoading(true)
+                setState((prev) => ({ ...prev, ['event']: prev.event.concat(res?.data?.results) }))
+            })
+            .catch((e) => console.log(e));
 
     }, [page])
 
 
     return (
         <div className='event-page'>
+            {console.log(state?.event)}
             <Header />
             <main className='container'>
 
@@ -120,14 +126,15 @@ const Event = (props) => {
                     <section className='events'>
                         <h4>Events</h4>
                         <div className='events-container'>
-                            <ImageTitleDate />
-                            <ImageTitleDate />
-                            <ImageTitleDate />
-                            <ImageTitleDate />
-                            <ImageTitleDate />
-                            <ImageTitleDate />
-                            <ImageTitleDate />
-                            <ImageTitleDate />
+                            {
+                                state?.event?.map((val, index) =>
+                                (
+                                    <EventImageTitle data={val} key={index} />
+                                ))
+                            }
+                            {
+                                state?.event?.length == 0 && hasMore == false && <div style={{ margin: "auto" }}><h3>Nothing Found...</h3></div>
+                            }
 
                         </div>
                     </section>
@@ -135,10 +142,11 @@ const Event = (props) => {
 
             </main>
 
-            {hasMore ? (<p>Loading</p>)
-                :
-                <Footer>
-                </Footer>
+            {
+                isLoading | hasMore ? (<div id="loader" style={{ width: "100%", textAlign: "center" }}> <CircularProgress /> </div>)
+                    :
+                    <Footer>
+                    </Footer>
             }
         </div>
     );

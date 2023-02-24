@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useContext, useEffect, useRef } from 'react';
 import Header from '../../component/header/header';
 import ImageTitleDate from '../../component/card/ImageTitleDate';
 import Footer from '../../component/Footer/Footer';
@@ -7,37 +7,27 @@ import Select from '@mui/material/Select';
 import axios from '../../axios';
 import SearchIcon from '../../assets/searchIcon.png'
 import IconButton from "@mui/material/IconButton";
+import CircularProgress from '@mui/material/CircularProgress';
+import { StateContext } from '../../StateProvider';
 import './AllNews.css'
 
 const AllNews = (props) => {
     const [hasMore, setHasMore] = useState(true);
+    const [isLoading, setIsLoading] = useState(true);
+    // const { isLoading, setIsLoading } = useContext(StateContext);
     const [page, setPage] = useState(1);
+    const [data, setData] = useState([])
     const yearRef = useRef();
     const [state, setState] = React.useState({
         year: '', search: ''
     });
 
+
+
     useEffect(() => {
-        window.onscroll = () => {
-            console.log(window.innerHeight, document.documentElement.scrollTop, document.documentElement.offsetHeight, page)
-            if (window.innerHeight + document.documentElement.scrollTop + 10 >= document.documentElement.offsetHeight) {
-                console.log("here")
-                setPage((prev) => prev + 1);
-
-                // loadItems();
-            }
-        };
-        return () => (window.onscroll = null);
-    }, [hasMore]);
-    useEffect(() => {
-
-        axios.get('/news/all').then((data)=>
-        console.log(data))
-        .catch((err)=>console.log(err))
-
         const currentyear = new Date().getFullYear();
         var select = yearRef.current?.firstChild?.firstChild;
-        while (select.firstChild) {
+        while (select?.firstChild) {
             select.removeChild(select.lastChild);
         }
 
@@ -45,9 +35,20 @@ const AllNews = (props) => {
             let option = document.createElement("option");
             option.text = i.toString();
             option.value = i;
+            option.key=i+1;
             select.appendChild(option)
         }
+
+
+        return () => window.onscroll()
     }, [])
+
+    window.onscroll = () => {
+        if (window.innerHeight + document.documentElement.scrollTop + 100 >= document.documentElement.offsetHeight && isLoading == true) {
+            setIsLoading(false)
+            setPage((prev) => prev + 1);
+        }
+    }
 
     const handleChange = (event) => {
         const name = event.target.name;
@@ -57,8 +58,23 @@ const AllNews = (props) => {
 
 
     useEffect(() => {
-        if (page == 3)
-            setHasMore(false)
+
+        
+        console.log("__PAFE" , page)
+        // setData([]);
+        // setBottom(false)
+        axios.get(`/events/all/?year=2022/${page}/`)
+            .then((res) => {
+                console.log(res?.data?.results)
+                if (res?.data?.results?.length === 0)
+                    setHasMore(false)
+
+                setIsLoading(true)
+                setData((prev) => {
+                    return (prev.concat(res?.data?.results))
+                })
+            })
+            .catch((e) => console.log(e));
 
     }, [page])
 
@@ -100,21 +116,23 @@ const AllNews = (props) => {
                     <section className='latest-news'>
                         <h4>Latest News</h4>
                         <div className='latest-news-container'>
-                            <ImageTitleDate />
-                            <ImageTitleDate />
-                            <ImageTitleDate />
-                            <ImageTitleDate />
-                            <ImageTitleDate />
-                            <ImageTitleDate />
-                            <ImageTitleDate />
-                            <ImageTitleDate />
+                            {
+                                data && data?.map((val, index) =>
+                                (
+                                        <ImageTitleDate key={index} data={val} />
+                                ))
+                            }
+
+                            {
+                                data?.length == 0 && hasMore == false && <div style={{ margin: "auto" }}><h3>Nothing Found...</h3></div>
+                            }
 
                         </div>
                     </section>
                 </section>
             </main>
             {
-                hasMore ? (<p>Loading</p>)
+                isLoading | hasMore ? (<div id="loader" style={{ width: "100%", textAlign: "center" }}> <CircularProgress /> </div>)
                     :
                     <Footer>
                     </Footer>

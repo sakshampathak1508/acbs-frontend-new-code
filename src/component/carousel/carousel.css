@@ -2,6 +2,10 @@
     height: auto;
 }
 
+.navbar-toggler:focus
+{
+    box-shadow: 0 0 0 1px  !important;
+}
 .carousel_caption {
     --width: 100%;
     --time: 0.7s;
@@ -125,14 +129,14 @@ input.MuiSelect-nativeInput :hover {
     color: white;
 } */
 
-.mainPage_carousel .carousel-inner {
-
-    height: 100%;
-}
-
 .carousel_caption .MuiOutlinedInput-notchedOutline.css-1d3z3hw-MuiOutlinedInput-notchedOutline {
     border: 0;
     outline: 0;
+}
+
+.carousel-caption .MuiInputBase-root{
+    height: 100%;
+
 }
 
 @media only screen and (max-width:900px) {

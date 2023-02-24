@@ -7,7 +7,13 @@ import Image from '../../assets/carouselEx.jpg'
 import Select from '@mui/material/Select';
 import OutlinedInput from '@mui/material/OutlinedInput';
 import FormControl from '@mui/material/FormControl';
+
+import NativeSelect from '@mui/material/NativeSelect';
 import { MenuItem } from '@mui/material';
+
+import { styled } from '@mui/material/styles';
+import InputLabel from '@mui/material/InputLabel';
+import InputBase from '@mui/material/InputBase';
 
 function ControlledCarousel() {
 
@@ -22,16 +28,6 @@ function ControlledCarousel() {
         setAge(event.target.value);
     };
 
-    const ITEM_HEIGHT = 48;
-    const ITEM_PADDING_TOP = 8;
-    const MenuProps = {
-        PaperProps: {
-            style: {
-                maxHeight: ITEM_HEIGHT * 4.5 + ITEM_PADDING_TOP,
-                width: 250,
-            },
-        },
-    };
 
     useEffect(() => {
         axios.get("https://ibsf.info/api/news/featured/")
@@ -44,8 +40,6 @@ function ControlledCarousel() {
 
             {
 
-                // navbar && navbar.map((data, index) =>
-                // (
                 <Carousel.Item key={1} style={{ height: "100%", overflow: "hidden" }}>
                     <img
                         loading='lazy'
@@ -63,15 +57,16 @@ function ControlledCarousel() {
                             <button className='info'>
                                 Tournament Info
                             </button>
+
                             <button className='groups dropbtn'>
-                                <FormControl variant='' sx={{ m: '0' , b:0, width:'100%',padding:0 }}>
+                                <FormControl variant='' sx={{ m: '0', b: 0, width: '100%', padding: 0 }}>
                                     <Select
                                         value={age}
                                         onChange={handleChange}
                                         displayEmpty
                                         inputProps={{ 'aria-label': 'Without label' }}
                                     >
-                                        <MenuItem value="">
+                                        <MenuItem disabled value="">
                                             <em>Links</em>
                                         </MenuItem>
                                         <MenuItem value={10}>Ten</MenuItem>
@@ -80,8 +75,6 @@ function ControlledCarousel() {
                                     </Select>
                                     {/* <FormHelperText>Without label</FormHelperText> */}
                                 </FormControl>
-
-                                {/* <label>+3</label> */}
                             </button>
 
                             <div className="dropdown-content">
