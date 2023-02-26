@@ -1,19 +1,44 @@
-.news-page .search-bar {
-    display: none;
-}
-
-.news-page>main>header {
-    margin-top: 2rem;
-}
-
-.news-page .latest-news {
+.newspage .main-news-page {
     /* display: flex; */
-    margin-top: 2rem;
+    margin-top: 1rem;
     margin-bottom: 3rem;
 }
 
+.newspage  .main-news-page > .header-title{
+    display: flex;
+    align-items: center;
+    text-align: center;
+    align-content: center;
+    gap: 6%;
+    margin-bottom: 2rem;
+}
 
-.news-page .latest-news .latest-news-container {
+
+.newspage  .main-news-page > .header-title > h4{
+    margin: auto 0;
+    text-transform: uppercase;
+    color: var(--black);
+    -webkit-text-decoration: underline var(--red) 2px;
+    text-decoration: underline var(--red) 2px;
+    text-underline-offset: 8px;
+}
+.newspage  .main-news-page > .header-title >.year {
+    /* display: flex;
+    justify-content: center; */
+    display: flex;
+    align-items: center;
+    text-align: center;
+}
+
+.newspage  .main-news-page > .header-title >.year > label{
+    /* background-color: red; */
+    font-size: 1.1rem;
+}
+.newspage  .main-news-page > .header-title >.year > .form-control{
+    margin-bottom: 2rem;
+} 
+
+.newspage .main-news-page > .news-cards-section {
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
@@ -25,32 +50,3 @@
     border: 0;
 }
 
-.news-page>main>header {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    flex-wrap: wrap;
-    margin-bottom: 1rem;
-}
-
-.news-page>main>header section {
-    display: flex;
-    align-items: center;
-    margin-right: 2rem;
-    margin-bottom: 1rem;
-}
-
-.news-page>main>header section.search #searchForm {
-    min-width: 20rem;
-    border-radius: 32px;
-    height: 48px;
-    margin: 0 0;
-    display: flex;
-    align-items: center;
-}
-
-.news-page>main>header section.search input {
-    width: 85%;
-    border: none;
-    outline: none;
-}

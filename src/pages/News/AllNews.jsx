@@ -15,11 +15,11 @@ const AllNews = (props) => {
     const [hasMore, setHasMore] = useState(true);
     const [isLoading, setIsLoading] = useState(true);
     // const { isLoading, setIsLoading } = useContext(StateContext);
-    const [page, setPage] = useState(1);
+    const [page, setPage] = useState({value:0});
     const [data, setData] = useState([])
     const yearRef = useRef();
     const [state, setState] = React.useState({
-        year: '', search: ''
+        year: 'all'
     });
 
 
@@ -31,41 +31,43 @@ const AllNews = (props) => {
             select.removeChild(select.lastChild);
         }
 
+        let option = document.createElement("option");
+            option.text = 'All';
+            option.value = 'all';
+            option.key = 1;
+            select.appendChild(option)
+
         for (let i = currentyear; i >= 2010; i--) {
             let option = document.createElement("option");
             option.text = i.toString();
             option.value = i;
-            option.key=i+1;
+            option.key = i + 1;
             select.appendChild(option)
         }
-
-
         return () => window.onscroll()
     }, [])
 
     window.onscroll = () => {
         if (window.innerHeight + document.documentElement.scrollTop + 100 >= document.documentElement.offsetHeight && isLoading == true) {
             setIsLoading(false)
-            setPage((prev) => prev + 1);
+            setPage((prev) => {return {value:prev.value + 1}});
         }
     }
 
     const handleChange = (event) => {
         const name = event.target.name;
         const value = event.target.value;
+        
+        setPage(()=>
+        {return {value:1};});
         setState((prev) => ({ ...prev, [name]: value }));
+        setData([])
     };
 
 
     useEffect(() => {
-
-        
-        console.log("__PAFE" , page)
-        // setData([]);
-        // setBottom(false)
-        axios.get(`/events/all/?year=2022/${page}/`)
+        axios.get(`/news/all/?year=${state?.year}/${page?.value}/`)
             .then((res) => {
-                console.log(res?.data?.results)
                 if (res?.data?.results?.length === 0)
                     setHasMore(false)
 
@@ -79,47 +81,34 @@ const AllNews = (props) => {
     }, [page])
 
     return (
-        <div className='news-page'>
+        <div className='newspage'>
             <Header />
 
-            <main className='container'>
-                <header>
-                    <section className="year">
-                        <label>Year</label>
-                        <FormControl variant="outlined" sx={{ m: 1, minWidth: 120, height: '2.7rem' }} ref={yearRef}>
-                            <Select
-                                native
-                                sx={{ height: '100%' }}
-                                value={state.year}
-                                className="input-label-select"
-                                onChange={handleChange}
-                                displayEmpty
-                                name='year'
-                            >
-                                <option className="input-label-option" value="2021" >2021</option>
-                            </Select>
-                        </FormControl>
-                    </section>
-                    <section className="search">
-                        <form id="searchForm" style={{ background: '#F5F5F5' }}>
-                            <IconButton
-                                onClick={handleChange}
-                                aria-label="search">
-                                <img src={SearchIcon} />
-                            </IconButton>
-                            <input onChange={handleChange} placeholder="Search" style={{ background: '#F5F5F5' }} value={state.search} name='search' />
-                        </form>
-                    </section>
-                </header>
-
-                <section>
-                    <section className='latest-news'>
-                        <h4>Latest News</h4>
-                        <div className='latest-news-container'>
+            <main className='container main-news-page'>
+                        <header className='header-title'>
+                            <h4>News</h4>
+                            <section className="year">
+                                <label>Year</label>
+                                <FormControl variant="outlined" sx={{ minWidth: 130 , m:'0rem 1rem 0rem 1rem', height: '2.7rem' }} ref={yearRef}>
+                                    <Select
+                                        native
+                                        sx={{ height: '100%' }}
+                                        value={state.year}
+                                        className="input-label-select"
+                                        onChange={handleChange}
+                                        displayEmpty
+                                        name='year'
+                                    >
+                                        <option className="input-label-option" value="2021" >all</option>
+                                    </Select>
+                                </FormControl>
+                            </section>
+                        </header>
+                        <div className='news-cards-section'>
                             {
                                 data && data?.map((val, index) =>
                                 (
-                                        <ImageTitleDate key={index} data={val} />
+                                    <ImageTitleDate key={index} data={val} />
                                 ))
                             }
 
@@ -128,8 +117,6 @@ const AllNews = (props) => {
                             }
 
                         </div>
-                    </section>
-                </section>
             </main>
             {
                 isLoading | hasMore ? (<div id="loader" style={{ width: "100%", textAlign: "center" }}> <CircularProgress /> </div>)

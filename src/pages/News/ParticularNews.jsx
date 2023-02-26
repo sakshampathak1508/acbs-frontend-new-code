@@ -113,11 +113,11 @@ const ParticularNews = (props) => {
 
                 <header>
                     <section className="back-btn">
-                        <p><span><KeyboardBackspaceIcon style={{ marginRight: '1rem' }} /></span> Back</p>
+                        <p><span><KeyboardBackspaceIcon /></span> Back</p>
                     </section>
                     <section className='title'>
                         <h4>{state?.event?.title}</h4>
-                        <p>{moment(state?.event?.timestamp).format(`MMMM d, YYYY`)} &nbsp;&nbsp;{moment(state?.event?.timestamp).format(`h:mma`)}</p>
+                        <p>{moment(state?.event?.timestamp).format(`MMMM d, YYYY`)}</p>
                     </section>
                 </header>
                 <main>
@@ -183,8 +183,8 @@ const ParticularNews = (props) => {
                     </section>
 
                     <section className='bottom-back-next-button'>
-                        <p><span><KeyboardBackspaceIcon style={{ marginRight: '1rem' }} /></span> <span>Back</span></p>
-                        <p> <span>Next </span><span><KeyboardBackspaceIcon style={{ marginRight: '1rem', transform: 'rotateY(180deg)' }} /></span></p>
+                        <p><span><KeyboardBackspaceIcon /></span> <span>Back</span></p>
+                        <p> <span>Next </span><span><KeyboardBackspaceIcon style={{ transform: 'rotateY(180deg)' }} /></span></p>
                     </section>
 
                 </main>

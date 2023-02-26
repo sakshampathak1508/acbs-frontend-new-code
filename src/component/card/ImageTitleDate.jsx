@@ -9,8 +9,7 @@ import moment from 'moment'
 function ImageTitleDate(props) {
     const history = useNavigate();
     const page= props.page;
-
-
+    const baseUrl = 'https://sakshampathak.pythonanywhere.com/'
     useMediaQuery(
         { maxWidth: 768 }, undefined,
     );
@@ -19,8 +18,6 @@ function ImageTitleDate(props) {
     useMediaQuery(
         { minWidth: 769 }, undefined,
     );
-
-
     props = props?.data
     return (
         <div onClick={()=>history.push(`/news/${props?.id}/${props?.slug}`)} className="imageTitleDate-card_body" style={page==="main" && window.innerWidth>768? { maxWidth:'30rem' , marginRight:"1.2rem" , overflow:"hidden"}:{ overflow:"hidden"}}>
@@ -34,7 +31,7 @@ function ImageTitleDate(props) {
             {props?.title?.length === 60 && <span>....</span>}
             </p>
             <div className='dateviews'>
-                    <p className='time'>{moment(props?.timestamp).fromNow()}</p>
+                    <p className='time'>{moment(props?.timestamp).format('MMMM d, YYYY')}</p>
                     <div className='views'>
                         <VisibilityIcon fontSize="20px" />
                         <p>{props?.views}</p>

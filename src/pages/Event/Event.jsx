@@ -17,7 +17,7 @@ const Event = (props) => {
     });
     const yearRef = useRef();
     const [hasMore, setHasMore] = useState(true);
-    const [page, setPage] = useState(1);
+    const [page, setPage] = useState({ value: 0 });
     const [isLoading, setIsLoading] = useState(true);
 
 
@@ -27,6 +27,12 @@ const Event = (props) => {
         while (select?.firstChild) {
             select.removeChild(select.lastChild);
         }
+
+        let option = document.createElement("option");
+        option.text = 'All';
+        option.value = 'all';
+        option.key = 1;
+        select.appendChild(option)
 
         for (let i = currentyear; i >= 2010; i--) {
             let option = document.createElement("option");
@@ -43,26 +49,27 @@ const Event = (props) => {
     window.onscroll = () => {
         if (window.innerHeight + document.documentElement.scrollTop + 100 >= document.documentElement.offsetHeight && isLoading == true) {
             setIsLoading(false)
-            setPage((prev) => prev + 1);
+            setPage((prev) => { return { 'value': prev.value + 1 } });
         }
     }
 
     const handleChange = (event) => {
-
         const name = event.target.name;
         const value = event.target.value;
         setState((prev) => ({ ...prev, [name]: value }));
+        setPage(() => { return { value: 1 } });
+
+        setState((prev) => ({ ...prev, ['event']: [] }));
     };
 
     useEffect(() => {
-
-        axios.get(`/events/all/?year=2022/${page}/`)
+        axios.get(`/events/all/?year=${state?.year}/${page?.value}/`)
             .then((res) => {
                 console.log(res?.data)
                 if (res?.data?.results?.length === 0)
                     setHasMore(false)
                 setIsLoading(true)
-                setState((prev) => ({ ...prev, ['event']: prev.event.concat(res?.data?.results) }))
+                setState((prev) => ({ ...prev, ['event']: prev?.event?.concat(res?.data?.results) }))
             })
             .catch((e) => console.log(e));
 
@@ -71,7 +78,6 @@ const Event = (props) => {
 
     return (
         <div className='event-page'>
-            {console.log(state?.event)}
             <Header />
             <main className='container'>
 
@@ -88,38 +94,9 @@ const Event = (props) => {
                                 displayEmpty
                                 name='year'
                             >
-                                <option className="input-label-option" value="2021" >2021</option>
                             </Select>
                         </FormControl>
 
-                    </section>
-
-                    <section className='event-name'>
-                        <label>Event</label>
-                        <FormControl sx={{ m: 1, minWidth: 550, height: '2.7rem' }}>
-                            <Select
-                                sx={{ height: '100%' }}
-                                value={state.eventName}
-                                onChange={handleChange}
-                                displayEmpty
-                                name='eventName'
-                            >
-                                <MenuItem value={10}>Ten</MenuItem>
-                                <MenuItem value={20}>Twenty</MenuItem>
-                                <MenuItem value={30}>Thirty</MenuItem>
-                            </Select>
-                        </FormControl>
-                    </section>
-
-                    <section className="search">
-                        <form id="searchForm" style={{ background: '#F5F5F5' }}>
-                            <IconButton
-                                onClick={handleChange}
-                                aria-label="search">
-                                <img src={SearchIcon} />
-                            </IconButton>
-                            <input onChange={handleChange} placeholder="Search" style={{ background: '#F5F5F5' }} value={state.search} name='search' />
-                        </form>
                     </section>
                 </header>
                 <main>

@@ -11,10 +11,14 @@ import './ParticularEvent.css'
 import axios from '../../axios';
 import { useParams } from 'react-router';
 import CircularProgress from '@mui/material/CircularProgress';
+import InsertPhotoIcon from '@mui/icons-material/InsertPhoto';
+import PlayCircleIcon from '@mui/icons-material/PlayCircle';
+import AttachmentIcon from '@mui/icons-material/Attachment';
+import LiveTvIcon from '@mui/icons-material/LiveTv';
 
 const ParticularEvent = (props) => {
     const [state, setState] = React.useState({
-        year: '', event: '', eventList: [], eventName: '', search: ''
+        year: '', event: '', eventList: [], eventName: ''
     });
     const yearRef = useRef();
     const { id } = useParams();
@@ -58,13 +62,14 @@ const ParticularEvent = (props) => {
 
     return (
         <div className='event-page'>
+            {console.log(state.event)}
             <Header />
 
             <main className='container'>
                 <header>
                     <section className="year">
                         <label>Year</label>
-                        <FormControl variant="outlined" sx={{ m: 1, minWidth: 80, height: '2.7rem' }} ref={yearRef}>
+                        <FormControl variant="outlined" sx={{ m: 1, minWidth: 100, height: '2.7rem' }} ref={yearRef}>
                             <Select
                                 native
                                 sx={{ height: '100%' }}
@@ -82,7 +87,7 @@ const ParticularEvent = (props) => {
 
                     <section className='event-name'>
                         <label>Event</label>
-                        <FormControl sx={{ m: 1, minWidth: 320, height: '2.7rem' }}>
+                        <FormControl className='event-select' sx={{ m: 1, height: '2.7rem' }}>
                             <Select
                                 sx={{ height: '100%' }}
                                 value={state.eventName}
@@ -100,17 +105,6 @@ const ParticularEvent = (props) => {
                             </Select>
                         </FormControl>
                     </section>
-
-                    <section className="search">
-                        <form id="searchForm" style={{ background: '#F5F5F5' }}>
-                            <IconButton
-                                onClick={handleChange}
-                                aria-label="search">
-                                <img src={SearchIcon} />
-                            </IconButton>
-                            <input onChange={handleChange} placeholder="Search" style={{ background: '#F5F5F5' }} value={state?.search} name='search' />
-                        </form>
-                    </section>
                 </header>
 
                 {state?.event != '' ? (
@@ -126,7 +120,6 @@ const ParticularEvent = (props) => {
                                     <div className='location'>
                                         <h4>Location</h4>
                                         <h5>{state?.event?.location}</h5>
-                                        <label>Resultksldm skd s kdksdj skdmsk dskdm skdmskom sdms</label>
                                     </div>
 
                                     <div className='venue'>
@@ -149,25 +142,12 @@ const ParticularEvent = (props) => {
                                 </section>
 
                                 <section className='bottom'>
-                                    <div className='about'>
-                                        <h4>Location</h4>
-                                        <h5>{state?.event?.location}</h5>
-                                        <label>Resultksldm skd s kdksdj skdmsk dskdm skdmskom sdms</label>
-                                    </div>
-
-                                    <div className='hotel-assoc'>
-                                        <h4>HOST ASSOCIATION CONTACT</h4>
-                                        <label>Antalya, Turkey msdkmd smdks dsmkd s, ds,mdskldsd s,mdk s, dsdmksmd ld</label>
-                                    </div>
-
-                                    <div className='hotel-assoc'>
-                                        <h4>Venue</h4>
-                                        <label>Antalya, Turkey msdkmd smdks dsmkd s, ds,mdskldsd s,mdk s, dsdmksmd ld</label>
-                                    </div>
-
-                                    <div className='hotel-assoc'>
-                                        <h4>Venue</h4>
-                                        <label>Antalya, Turkey msdkmd smdks dsmkd s, ds,mdskldsd s,mdk s, dsdmksmd ld</label>
+                                    <h4>Links</h4>
+                                    <div className='links-icon'>
+                                        {state?.event?.photographs?.length > 0 && <h5>Photographs <span>{<InsertPhotoIcon />}</span></h5>}
+                                        {state?.event?.video?.length > 0 && <h5>Video <span>{<PlayCircleIcon />}</span></h5>}
+                                        {state?.event?.results?.length > 0 && <h5>Results <span>{<AttachmentIcon />}</span></h5>}
+                                        {state?.event?.live?.length > 0 && <h5>Live <span>{<LiveTvIcon />}</span></h5>}
                                     </div>
                                 </section>
                             </section>
