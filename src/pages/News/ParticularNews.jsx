@@ -1,4 +1,4 @@
-import React , {useEffect, useRef} from 'react';
+import React, { useEffect,useState, useRef } from 'react';
 import { useParams } from "react-router-dom";
 import Header from '../../component/header/header';
 import ImageTitleDate from '../../component/card/ImageTitleDate';
@@ -17,38 +17,68 @@ import SearchIcon from '../../assets/searchIcon.png'
 import './ParticularNews.css'
 import IconButton from "@mui/material/IconButton";
 import { Visibility } from '@mui/icons-material';
+import Slider from "react-slick";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
+
 import axios from '../../axios';
 
 const ParticularNews = (props) => {
     const [state, setState] = React.useState({
         year: '', event: '', search: ''
     });
-    const {id } =useParams();
+    const { id } = useParams();
     const yearRef = useRef();
     const baseUrl = 'https://sakshampathak.pythonanywhere.com'
+    var totalSlides = 4;
 
+    const sliderRef = useRef(null);
+    const [currentIndex, setCurrentIndex] = useState(0);
+
+   
+    
+      const prevSlide = () => {
+        sliderRef.current.slickPrev();
+        setCurrentIndex(currentIndex === 0 ? totalSlides - 1 : currentIndex - 1);
+      };
+    
+      const nextSlide = () => {
+        sliderRef.current.slickNext();
+        setCurrentIndex(currentIndex === totalSlides - 1 ? 0 : currentIndex + 1);
+      };
+    var settings = {
+        // centerMode: true,
+        dots: true,
+        infinite: true,
+        speed: 500,
+        slidesToShow: 3,   
+        centerMode: true, // add this property
+        // centerPadding: "50px", // add this property
+    
+        slidesToScroll: 1,
+        afterChange: (index) => setCurrentIndex(index),
+
+    };
 
     useEffect(() => {
-        
+
         axios.get(`news/?id=${id}`)
-        .then((res)=>{
-            setState((prev) => ({ ...prev, ['event']: res?.data }));
-        })
+            .then((res) => {
+                setState((prev) => ({ ...prev, ['event']: res?.data }));
+            })
 
         const currentyear = new Date().getFullYear();
         var select = yearRef?.current?.firstChild?.firstChild;
 
-        while(select?.firstChild)
-        {
+        while (select?.firstChild) {
             select.removeChild(select?.lastChild);
         }
-        
-        for(let i = currentyear; i>=2010;i--)
-        {   
-        let option = document.createElement("option");
-        option.text = i.toString();
-        option.value = i;
-        select?.appendChild(option)
+
+        for (let i = currentyear; i >= 2010; i--) {
+            let option = document.createElement("option");
+            option.text = i.toString();
+            option.value = i;
+            select?.appendChild(option)
         }
     }, [])
 
@@ -56,12 +86,13 @@ const ParticularNews = (props) => {
 
         const name = event.target.name;
         const value = event.target.value;
-        
+
     };
 
     return (
         <div className='particular-news-page'>
             <Header />
+            {/* {console.log(currentSlide)} */}
             <main className='container'>
                 {/* <header>
                     <section className="year">
@@ -167,7 +198,7 @@ const ParticularNews = (props) => {
                             </div>
                         </section>
 
-                        <section className='right' dangerouslySetInnerHTML={{__html: state?.event?.content}}>
+                        <section className='right' dangerouslySetInnerHTML={{ __html: state?.event?.content }}>
                             {/* <p>kdfodkfmkls fmds f msflsml clk skckldmcmkslcldmf ls flcsl cf s m l f l s m f l s l;c ls clslfc lslfmdk fkls cl s l k m l k m s k lsk cksklm ck;lvs  csf sl fls lf ls fmls f</p> */}
                         </section>
                     </section>
@@ -182,9 +213,17 @@ const ParticularNews = (props) => {
                         </div>
                     </section>
 
+                    <Slider ref={sliderRef} {...settings}>
+                        <ImageTitleDate style={{ margin: "0px 0" }} />
+                        <ImageTitleDate style={{ margin: "0px 0" }}  />
+                        <ImageTitleDate style={{ margin: "0px 0" }} />
+                        <ImageTitleDate style={{ margin: "0px 0" }} />
+                        <ImageTitleDate style={{ margin: "0px 0" }} />
+                    </Slider>
+
                     <section className='bottom-back-next-button'>
-                        <p><span><KeyboardBackspaceIcon /></span> <span>Back</span></p>
-                        <p> <span>Next </span><span><KeyboardBackspaceIcon style={{ transform: 'rotateY(180deg)' }} /></span></p>
+                        <p onClick={prevSlide}><span><KeyboardBackspaceIcon /></span> <span>Back</span></p>
+                        <p onClick={nextSlide} > <span>Next </span><span><KeyboardBackspaceIcon style={{ transform: 'rotateY(180deg)' }} /></span></p>
                     </section>
 
                 </main>
