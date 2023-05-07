@@ -1,13 +1,14 @@
 import React from "react";
-import { TwitterTimelineEmbed } from "react-twitter-embed";
+import { Timeline } from "react-twitter-widgets";
 
-const Twitter = props => {
+const Twitter = () => {
   return (
-    <TwitterTimelineEmbed
-      sourceType="profile"
-      screenName="ibsf"
-      options={{ height: 400 }}
-    />
+    <>
+      <Timeline
+        dataSource={{ sourceType: "profile", screenName: "ibsf" }}
+        options={{ height: 400 }}
+      />
+    </>
   );
 };
 
