@@ -1,138 +1,170 @@
 .particular-news-page {
-    /* position: relative; */
+  /* position: relative; */
+  padding: 1rem 0;
 }
 
 .particular-news-page .search-bar {
-    display: none;
+  display: none;
 }
 
-.particular-news-page>main {
-    margin: 2rem auto;
+.particular-news-page > main {
+  /* margin: 2rem auto; */
 }
 
-.particular-news-page>main header {
-    display: flex;
-    width: 100%;
+.particular-news-page > main header {
+  /* display: flex;
+  align-items: center;
+  justify-content: center; */
+  width: 100%;
 }
 
-.particular-news-page>main header .back-btn {
-    color: var(--blue);
+.particular-news-page > main header .back-btn {
+  color: var(--blue);
 }
 
-.particular-news-page>main header .title {
-    margin-left: 3rem;
+.particular-news-page > main header .title {
+  /* align-items: center; */
 }
 
-
-.particular-news-page>main header .title>h4 {
-    font-size: 180%;
+.particular-news-page > main header .title > h4 {
+  font-size: 180%;
 }
 
-.particular-news-page>main>main section {
-    width: 100%;
-    margin-top: 2rem;
+.particular-news-page > main > main section {
+  width: 100%;
 }
 
-.particular-news-page>main>main .image-section img {
-    border-radius: 8px;
+.particular-news-page > main > main .image-section {
+  margin-bottom: 1.5rem;
+}
+.particular-news-page > main > main .image-section img {
+  border-radius: 8px;
 }
 
-.particular-news-page>main>main .event-section {
-    /* background-color: red; */
-    display: flex;
-    justify-content: space-between;
-
+.particular-news-page > main > main .event-section {
+  /* background-color: red; */
+  display: flex;
+  justify-content: space-between;
 }
 
-.particular-news-page>main>main .event-section section.left {
-    width: 28%;
+.particular-news-page > main > main .event-section section.left {
+  width: 28%;
 }
 
-.particular-news-page>main>main .event-section section.right {
-    width: 70%;
-    margin-left: auto;
+.particular-news-page > main > main .event-section section.right {
+  /* width: 100%;  */
+  margin-left: 2rem;
 }
 
-.particular-news-page>main>main .event-section section.right .right-inner {
-    display: flex;
+.particular-news-page > main > main .event-section section.right .right-inner {
+  display: flex;
+  flex-direction: column;
+  margin-left: auto;
+  width: 90%;
+}
+
+.particular-news-page
+  > main
+  > main
+  .event-section
+  section.right
+  .right-inner
+  .heading {
+  text-transform: uppercase;
+  color: var(--black);
+  margin-bottom: 1.5rem;
+  text-decoration: underline var(--red) 2px;
+  text-underline-offset: 8px;
+}
+
+.particular-news-page > main > main .you-might-like-news > h4 {
+  text-transform: uppercase;
+  color: var(--black);
+  margin-bottom: 1.5rem;
+  text-decoration: underline var(--red) 2px;
+  text-underline-offset: 8px;
+}
+
+.particular-news-page
+  > main
+  > main
+  .you-might-like-news
+  > .latest-news-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  gap: 0.5rem;
+  margin-bottom: 2rem;
+}
+
+.particular-news-page > main > main .bottom-back-next-button {
+  display: flex;
+  justify-content: space-between;
+}
+
+.particular-news-page > main > main .bottom-back-next-button span {
+  color: var(--blue);
+}
+
+.particular-news-page
+  > main
+  > main
+  .event-section
+  > section.left
+  > .newspage_share_links
+  > ul {
+  padding-left: 0;
+  margin-bottom: 0rem;
+}
+
+.particular-news-page .shareLinks button {
+  margin: 0;
+}
+.particular-news-page
+  > main
+  > main
+  .event-section
+  > section.left
+  > .newspage_share_links
+  > .author {
+  margin-top: 2rem;
+}
+
+.particular-news-page
+  > main
+  > main
+  .event-section
+  > section.left
+  > .newspage_share_links
+  > .author
+  > h4 {
+  text-decoration: underline var(--red) 2px;
+  text-underline-offset: 8px;
+  text-transform: uppercase;
+  margin-bottom: 1.5rem;
+}
+
+@media only screen and (max-width: 992px) {
+  .particular-news-page > main > main .event-section {
     flex-direction: column;
-    margin-left: auto;
-    width: 90%;
-}
+    justify-content: center;
+  }
 
-.particular-news-page>main>main .event-section section.right .right-inner .heading {
-    text-transform: uppercase;
-    color: var(--black);
-    margin-bottom: 1.5rem;
-    text-decoration: underline var(--red) 2px;
-    text-underline-offset: 8px;
-}
+  .particular-news-page > main > main .event-section section.left {
+    width: 100%;
+    order: 1;
+  }
 
-.particular-news-page>main>main .you-might-like-news>h4 {
-    text-transform: uppercase;
-    color: var(--black);
-    margin-bottom: 1.5rem;
-    text-decoration: underline var(--red) 2px;
-    text-underline-offset: 8px;
-}
-
-.particular-news-page>main>main .you-might-like-news>.latest-news-container {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    gap:0.5rem;
-    margin-bottom: 2rem;
-}
-
-.particular-news-page>main>main .bottom-back-next-button {
-    display: flex;
-    justify-content: space-between;
-}
-
-.particular-news-page>main>main .bottom-back-next-button span {
-    color: var(--blue);
-}
-
-.particular-news-page>main>main .event-section>section.left>.newspage_share_links>ul {
-    padding-left: 0;
-    margin-bottom: 0rem;
-}
-
-
-.particular-news-page>main>main .event-section>section.left>.newspage_share_links>ul>.shareLinks * {
-    font-size: 2rem;
-    margin-right: 0.5rem;
-}
-
-.particular-news-page>main>main .event-section>section.left>.newspage_share_links>.author {
-    margin-top: 2rem;
-    margin-bottom: 2rem;
-}
-
-.particular-news-page>main>main .event-section>section.left>.newspage_share_links>.author>h4 {
-    text-decoration: underline var(--red) 2px;
-    text-underline-offset: 8px;
-    text-transform: uppercase;
-    margin-bottom: 1.5rem;
-}
-
-@media only screen and (max-width:992px) {
-    .particular-news-page>main>main .event-section {
-        flex-direction: column;
-        justify-content: center;
-    }
-
-
-    .particular-news-page>main>main .event-section section.left {
-        width: 100%;
-        order: 1;
-    }
-
-    .particular-news-page>main>main .event-section section.right {
-        width: 100%;
-        order: 0;
-    }
-    .particular-news-page>main>main .you-might-like-news>.latest-news-container {
-        flex-direction: column;
-    }
+  .particular-news-page > main > main .event-section section.right {
+    width: 100%;
+    margin: 0;
+    order: 0;
+  }
+  .particular-news-page
+    > main
+    > main
+    .you-might-like-news
+    > .latest-news-container {
+    flex-direction: column;
+  }
 }

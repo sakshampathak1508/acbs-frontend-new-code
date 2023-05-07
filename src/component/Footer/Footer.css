@@ -1,137 +1,126 @@
 .all_footer {
-
-    background: #181f25;
-    margin-top: 5rem;
+  background: #181f25;
+  margin-top: 2rem;
 }
 
-.all_footer>.inner-footer {
-    margin: 0 auto;
-    display: flex;
-    flex-direction: column;
-    padding-top: 3rem;
-    padding-bottom: 3rem;
+.all_footer > .inner-footer {
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  padding-top: 3rem;
+  padding-bottom: 3rem;
 }
 
 .all_footer .inner-footer .doping_image {
-    display: flex;
-    width: 100%;
+  display: flex;
+  width: 100%;
 }
 
-
 .all_footer .inner-footer .doping_image .logo {
-    width: 35%;
+  width: 35%;
 }
 
 .all_footer .inner-footer .doping_image .doping {
-    width: 50%;
+  width: 50%;
 }
 
-
 .all_footer .inner-footer .home_footer {
-    position: relative;
-    display: flex;
-    flex-direction: row;
-    height: auto;
-    left: 0;
-    justify-content: space-between;
-    -ms-overflow-style: none;
-    /* IE and Edge */
-    scrollbar-width: none;
-    margin-top: 4rem;
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  height: auto;
+  left: 0;
+  justify-content: space-between;
+  -ms-overflow-style: none;
+  /* IE and Edge */
+  scrollbar-width: none;
+  margin-top: 4rem;
 }
 
 .all_footer .inner-footer .home_footer ul {
-    padding: 0;
+  padding: 0;
 }
 
 .all_footer .inner-footer .home_footer ul li {
-    color: var(--grey);
+  color: var(--grey);
 }
 
 .all_footer .inner-footer .home_footer h3 {
-    color: var(--white);
-    text-decoration: underline var(--grey) 2px;
-    text-underline-offset: 10px;
-    margin-bottom: 2rem;
+  color: var(--white);
+  text-decoration: underline var(--grey) 2px;
+  text-underline-offset: 10px;
+  margin-bottom: 2rem;
 }
 
+@media screen and (max-width: 900px) {
+  .home_footer {
+    display: flex;
+    flex-direction: column;
+    height: auto;
+  }
 
-
-@media screen and (max-width: 762px) {
-    .home_footer {
-        display: flex;
-        flex-direction: column;
-        height: auto;
-    }
-
-    /* .all_footer .doping_image img
+  /* .all_footer .doping_image img
     {
         width: 25rem;
     } */
 }
 
-.home_footer>div>h2 {
-    color: white;
-    /* margin-bottom: 0; */
-    margin-top: 0;
-    padding-bottom: 0;
-    text-align: left;
-    padding-left: 0;
-    font-size: 2.5rem;
+.home_footer > div > h2 {
+  color: white;
+  /* margin-bottom: 0; */
+  margin-top: 0;
+  padding-bottom: 0;
+  text-align: left;
+  padding-left: 0;
+  font-size: 2.5rem;
 }
 
-.home_footer>div>p {
-    color: white;
+.home_footer > div > p {
+  color: white;
 }
 
 .home_footer .quick_links {
-    list-style: none;
-
+  list-style: none;
 }
 
-.home_footer .quick_links>li {
-    color: white;
-    cursor: pointer;
-    margin-bottom: 0.5rem;
-
+.home_footer .quick_links > li {
+  color: white;
+  cursor: pointer;
+  margin-bottom: 0.5rem;
 }
 
-.home_footer .quick_links>li:hover {
-    color: rgb(13, 161, 255);
+.home_footer .quick_links > li:hover {
+  color: rgb(13, 161, 255);
 }
 
-.home_footer .social_links>* {
-
-    margin: 0.5rem;
-    padding-left: 0;
-    color: var(--white);
-    cursor: pointer;
-    font-size: 2rem;
-
+.home_footer .social_links > * {
+  margin: 0.5rem;
+  padding-left: 0;
+  color: var(--white);
+  cursor: pointer;
+  font-size: 2rem;
 }
-
 
 .home_footer .social_links *:hover {
-    cursor: pointer;
+  cursor: pointer;
 }
 
-
-@media only screen and (max-width:769px) {
-    .all_footer>.inner-footer {
-        /* padding: 1.5rem; */
-    }
-    .all_footer .inner-footer .doping_image img{
-        width: auto;
-        height:52% ;
-    }
-    .all_footer .inner-footer .home_footer {
-        display: flex;
-        flex-direction: column;
-        gap: 1rem;
-        margin-top: 2rem;
-    }
-    .home_footer .social_links>* {
-        margin-bottom: 0;
-        margin-top: 0;
-    }
+@media only screen and (max-width: 900px) {
+  .all_footer > .inner-footer {
+    /* padding: 1.5rem; */
+  }
+  .all_footer .inner-footer .doping_image img {
+    width: auto;
+    height: 52%;
+  }
+  .all_footer .inner-footer .home_footer {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    margin-top: 2rem;
+  }
+  .home_footer .social_links > * {
+    margin-bottom: 0;
+    margin-top: 0;
+  }
 }

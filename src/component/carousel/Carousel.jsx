@@ -1,102 +1,177 @@
-import React, { useState, useEffect } from 'react'
-import Carousel from 'react-bootstrap/Carousel'
-import axios from "../../axios"
-import { useNavigate } from 'react-router';
-import './carousel.css'
-import Image from '../../assets/carouselEx.jpg'
-import Select from '@mui/material/Select';
-import OutlinedInput from '@mui/material/OutlinedInput';
-import FormControl from '@mui/material/FormControl';
+import React from "react";
+import { useNavigate } from "react-router";
+import { Link as RouteLink } from "react-router-dom";
 
-import NativeSelect from '@mui/material/NativeSelect';
-import { MenuItem } from '@mui/material';
+import { Link, MenuItem, useMediaQuery } from "@mui/material";
+import FormControl from "@mui/material/FormControl";
+import Select from "@mui/material/Select";
+import { styled } from "@mui/material/styles";
 
-import { styled } from '@mui/material/styles';
-import InputLabel from '@mui/material/InputLabel';
-import InputBase from '@mui/material/InputBase';
+import Carousel from "react-bootstrap/Carousel";
 
-function ControlledCarousel() {
+import "./carousel.css";
 
-    const [navbar, setNavbar] = useState();
-    const history = useNavigate();
-    const [state, setState] = React.useState({
-        year: '', search: ''
-    });
-    const [age, setAge] = React.useState('');
+const StyledLink = styled(Link)(() => ({
+  color: "var(--black)",
+  all: "reset",
+  textDecoration: "none",
+  padding: 0,
+  background: "none",
+  margin: 0,
+  "&:hover": {
+    color: "var(--red)",
+  },
+  // "&:active": {
+  //   color: "var(--red)",
+  // },
+}));
 
-    const handleChange = (event) => {
-        setAge(event.target.value);
-    };
+const ControlledCarousel = ({ data }) => {
+  console.log(data);
+  const isMobile = useMediaQuery("(max-width:900px)");
 
+  const history = useNavigate();
 
-    useEffect(() => {
-        axios.get("https://ibsf.info/api/news/featured/")
-            .then((response) => setNavbar(response.data.data))
-    }, [])
+  return (
+    <Carousel
+      // style={{ height: "90vh" }}
+      className="mainPage_carousel"
+      interval={4000}
+      indicators={false}
+    >
+      {data &&
+        data.map((val, index) => (
+          <Carousel.Item
+            key={index}
+            style={{
+              height: isMobile ? "32vh" : "calc(100vh - 64px)",
+              overflow: "hidden",
+            }}
+          >
+            <img
+              loading="lazy"
+              className="d-block w-100"
+              src={`${import.meta.env.VITE_REACT_APP_API_ENDPOINT}${
+                val.news ? val.news.image : val.event.event_banner
+              }`}
+              style={{ height: "100%", filter: "brightness(85%)" }}
+              alt="Pre Slide"
+            />
 
+            <Carousel.Caption
+              onClick={() => history.push(`/news`)}
+              className="carousel_caption"
+            >
+              {/* <span></span> */}
+              <h3> {val.news ? val.news.title : val.event.name}</h3>
+              <div className="dropdown">
+                <button className="info">
+                  <RouteLink
+                    style={{
+                      all: "reset",
+                      textDecoration: "none",
+                      color: "inherit",
+                      width: "100%",
+                      height: "100%",
+                      display: "flex",
+                      justifyContent: "center",
+                      alignItems: "center",
+                    }}
+                    to={
+                      val.news
+                        ? `/news/${val.news.id}/${val.news.slug}`
+                        : `/event/${val.event.id}/${val.event.slug}`
+                    }
+                  >
+                    {val.news ? "Read More" : "Tournament Info"}
+                  </RouteLink>
+                </button>
 
-    return (
-        <Carousel className="mainPage_carousel" interval={4000} indicators={false}>
+                {val.event && (
+                  <button className="groups dropbtn">
+                    <FormControl
+                      variant=""
+                      sx={{
+                        m: 0,
+                        b: 0,
+                        width: "100%",
+                        height: "100%",
+                        padding: 0,
+                      }}
+                    >
+                      <Select
+                        value="Links"
+                        inputProps={{ "aria-label": "Without label" }}
+                      >
+                        <MenuItem disabled value="Links">
+                          <em>Links</em>
+                        </MenuItem>
+                        {val.event.groups && (
+                          <MenuItem
+                            component={StyledLink}
+                            href={val.event.groups}
+                            target="_blank"
+                          >
+                            Groups
+                          </MenuItem>
+                        )}
+                        {val.event.knockouts && (
+                          <MenuItem
+                            component={StyledLink}
+                            href={val.event.knockouts}
+                            target="_blank"
+                          >
+                            Knockouts
+                          </MenuItem>
+                        )}
 
-            {
-
-                <Carousel.Item key={1} style={{ height: "100%", overflow: "hidden" }}>
-                    <img
-                        loading='lazy'
-                        className="d-block w-100"
-                        src={Image}
-                        style={{ height: "100%", filter: "brightness(65%)" }}
-                        alt="Pre Slide"
-                    />
-
-
-                    <Carousel.Caption onClick={() => history.push(`/news`)} className="carousel_caption">
-                        {/* <span></span> */}
-                        <h3>{'Darren lifts his 6th World Masters claims Silver'}</h3>
-                        <div className="dropdown">
-                            <button className='info'>
-                                Tournament Info
-                            </button>
-
-                            <button className='groups dropbtn'>
-                                <FormControl variant='' sx={{ m: '0', b: 0, width: '100%', padding: 0 }}>
-                                    <Select
-                                        value={age}
-                                        onChange={handleChange}
-                                        displayEmpty
-                                        inputProps={{ 'aria-label': 'Without label' }}
-                                    >
-                                        <MenuItem disabled value="">
-                                            <em>Links</em>
-                                        </MenuItem>
-                                        <MenuItem value={10}>Ten</MenuItem>
-                                        <MenuItem value={20}>Twenty</MenuItem>
-                                        <MenuItem value={30}>Thirty</MenuItem>
-                                    </Select>
-                                    {/* <FormHelperText>Without label</FormHelperText> */}
-                                </FormControl>
-                            </button>
-
-                            <div className="dropdown-content">
-                                <a className="" onClick={() => history.push("/aboutus")}>The IBSF</a>
-                                <a className="" onClick={() => history.push("/executive_member")}>Executives</a>
-                                <a className="" onClick={() => history.push("/member_countries")}>Members</a>
-                                <a className="" onClick={() => history.push("/champion")}>Past Champions</a>
-
-                            </div>
-
-                        </div>
-
-                    </Carousel.Caption>
-                </Carousel.Item>
-
-
-                // ))
-            }
-
-
-        </Carousel>
-    );
-}
+                        {val.event.results && (
+                          <MenuItem
+                            component={StyledLink}
+                            href={val.event.results}
+                            target="_blank"
+                          >
+                            Results
+                          </MenuItem>
+                        )}
+                        {val.event.live && (
+                          <MenuItem
+                            component={StyledLink}
+                            href={val.event.live}
+                            target="_blank"
+                          >
+                            Live
+                          </MenuItem>
+                        )}
+                        {val.event.photographs && (
+                          <MenuItem
+                            component={StyledLink}
+                            href={val.event.photographs}
+                            target="_blank"
+                          >
+                            Photographs
+                          </MenuItem>
+                        )}
+                        {val.event.video && (
+                          <MenuItem
+                            component={StyledLink}
+                            href={val.event.video}
+                            target="_blank"
+                          >
+                            Video
+                          </MenuItem>
+                        )}
+                      </Select>
+                      {/* <FormHelperText>Without label</FormHelperText> */}
+                    </FormControl>
+                  </button>
+                )}
+              </div>
+            </Carousel.Caption>
+          </Carousel.Item>
+        ))}
+    </Carousel>
+  );
+};
 
 export default ControlledCarousel;

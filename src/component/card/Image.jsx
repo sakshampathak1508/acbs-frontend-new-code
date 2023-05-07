@@ -1,42 +1,45 @@
-import React, { useState } from 'react';
-import { useNavigate } from 'react-router';
-import { useMediaQuery } from 'react-responsive'
-import carouselEx from '../../assets/carouselEx.jpg'
-import "./Image.css"
+import React from "react";
+import { useNavigate } from "react-router";
 
-function ImageCard(props) {
-    const history = useNavigate();
-    const page= props.page;
+import { Box, useMediaQuery } from "@mui/material";
 
+import carouselEx from "../../assets/carouselEx.jpg";
 
-    useMediaQuery(
-        { maxWidth: 768 }, undefined,
-    );
-    
+import "./Image.css";
 
-    useMediaQuery(
-        { minWidth: 769 }, undefined,
-    );
+const ImageCard = props => {
+  const history = useNavigate();
+  const page = props.page;
 
+  useMediaQuery("(min-width:600px)");
 
-    props = props?.data
-    return (
-        <div onClick={()=>history.push(`/news/${props?.id}/${props?.slug}`)} className="imagecard" style={page==="main" && window.innerWidth>768? {backgroundImage:`url(${carouselEx})`, overflow:"hidden"}:{backgroundImage:`url(${carouselEx})`, overflow:"hidden"}}>
-
-            <div className="imagecardBg">
-
-            </div>
-            <h4 className = "title">
-                Title here
-            </h4>
-            <div className="Imagecard-container">
-            <h4> Officially ACBS is the Pool Governing body in Asia </h4>
-            <p style={{marginBottom:"0rem", overflow:"hidden", textOverflow:"ellipsis"}} >
-                Date: 25dec 2001
-            </p>
-            </div>
-        </div>
-    );
-}
+  props = props?.data;
+  return (
+    <Box
+      onClick={() => history.push(`/news/${props?.id}/${props?.slug}`)}
+      className="imagecard"
+      style={
+        page === "main" && window.innerWidth > 768
+          ? { backgroundImage: `url(${carouselEx})`, overflow: "hidden" }
+          : { backgroundImage: `url(${carouselEx})`, overflow: "hidden" }
+      }
+    >
+      <Box className="imagecardBg"></Box>
+      <h4 className="title">Title here</h4>
+      <Box className="Imagecard-container">
+        <h4> Officially ACBS is the Pool Governing body in Asia </h4>
+        <p
+          style={{
+            marginBottom: "0rem",
+            overflow: "hidden",
+            textOverflow: "ellipsis",
+          }}
+        >
+          Date: 25dec 2001
+        </p>
+      </Box>
+    </Box>
+  );
+};
 
 export default ImageCard;

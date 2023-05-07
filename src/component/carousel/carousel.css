@@ -1,127 +1,121 @@
 .mainPage_carousel {
-    height: auto;
+  height: auto;
 }
 
-.navbar-toggler:focus
-{
-    box-shadow: 0 0 0 1px  !important;
+.navbar-toggler:focus {
+  box-shadow: 0 0 0 1px !important;
 }
 .carousel_caption {
-    --width: 100%;
-    --time: 0.7s;
+  --width: 100%;
+  --time: 0.7s;
 
-    /* background-color: rgba(0, 0, 0, 0.6); */
-    color: white;
-    width: fit-content;
-    /* max-width: 40vw; */
-    /* max-height: 30vh; */
+  /* background-color: rgba(0, 0, 0, 0.6); */
+  color: white;
+  width: fit-content;
+  /* max-width: 40vw; */
+  /* max-height: 30vh; */
 
-    /* margin-left: auto; */
-    margin-right: auto;
+  /* margin-left: auto; */
+  margin-right: auto;
 
-    overflow: hidden;
-    text-align: start;
-    z-index: 1;
-
-
-
+  overflow: hidden;
+  text-align: start;
+  z-index: 1;
 }
 
 .mainPage_carousel .carousel-caption {
-    /* width: 70%; */
-    /* bottom:0; */
-    bottom: 20%;
-    left: 12%;
-    max-width: 60%;
-    text-align: start;
-    /* padding: 4rem 8rem 4rem 0rem; */
+  /* width: 70%; */
+  /* bottom:0; */
+  bottom: 30%;
+  left: 12%;
+  max-width: 60%;
+  text-align: start;
+  /* padding: 4rem 8rem 4rem 0rem; */
 }
 
 .mainPage_carousel .carousel_caption h3 {
-    font-size: 250%;
-    font-weight: 500;
-    line-height: 100%;
-    margin-bottom: 1rem;
+  font-size: 2.5rem;
+  font-weight: 500;
+  line-height: 100%;
+  margin-bottom: 1rem;
 }
 
 .carousel-caption button {
-    width: 14.2rem;
-    height: 3.1rem;
-    left: 112px;
-    top: 605px;
-    border-radius: 8px;
-    border: 0;
-    outline: none;
-    margin-right: 1rem;
+  width: 14.2rem;
+  height: 3.1rem;
+  left: 112px;
+  top: 605px;
+  border-radius: 8px;
+  border: 0;
+  outline: none;
+  margin-right: 1rem;
 }
 
 .carousel-caption .dropdown {
-    display: flex;
+  display: flex;
 }
 
 .carousel-caption .dropdown-content {
-    display: flex;
-    flex-direction: column;
-    display: none;
+  display: flex;
+  flex-direction: column;
+  display: none;
 }
 
 .carousel-caption .dropdown-content * {
-    background-color: var(--white);
-    width: 10rem;
-    display: flex;
-    flex-wrap: wrap;
+  background-color: var(--white);
+  width: 10rem;
+  display: flex;
+  flex-wrap: wrap;
 }
 
 .carousel-caption button.info {
-    background-color: var(--red);
-    color: var(--white);
+  background-color: var(--red);
+  color: var(--white);
 }
 
 .carousel-caption button.groups {
-    /* height: 45px;
+  /* height: 45px;
     width: 45px; */
-    /* border-radius: 50%; */
-    background-color: var(--white);
-    color: var(--red);
-    /* overflow: hidden; */
-    animation-delay: 3s;
+  /* border-radius: 50%; */
+  background-color: var(--white);
+  color: var(--red);
+  /* overflow: hidden; */
+  animation-delay: 3s;
 }
 
 .carousel-caption button.groups {
-    display: flex;
-    justify-content: space-evenly;
-    align-items: center;
-    padding: 0;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  padding: 0;
 }
 
 input.MuiSelect-nativeInput :hover {
-    background-color: var(--red);
-    border: 0;
-
+  background-color: var(--red);
+  border: 0;
 }
 
-.carousel-caption button.groups>label {
-    height: 30px;
-    width: 30px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border-radius: 50%;
-    color: var(--white);
-    background-color: var(--red);
-
+.carousel-caption button.groups > label {
+  height: 30px;
+  width: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+  color: var(--white);
+  background-color: var(--red);
 }
 
 .carousel-caption button.groups .dropdown-content {
-    display: block;
-    background-color: var(--red);
-    position: absolute;
-    /* transform: translate(-50%, -50%); */
-    left: 0%;
-    top: 0%;
-    height: auto;
-    z-index: 100;
-    /* top:10px; */
+  display: block;
+  background-color: var(--red);
+  position: absolute;
+  /* transform: translate(-50%, -50%); */
+  left: 0%;
+  top: 0%;
+  height: auto;
+  z-index: 100;
+  /* top:10px; */
 }
 
 /* 
@@ -129,64 +123,58 @@ input.MuiSelect-nativeInput :hover {
     color: white;
 } */
 
-.carousel_caption .MuiOutlinedInput-notchedOutline.css-1d3z3hw-MuiOutlinedInput-notchedOutline {
+.carousel_caption
+  .MuiOutlinedInput-notchedOutline.css-1d3z3hw-MuiOutlinedInput-notchedOutline {
+  border: 0;
+  outline: 0;
+}
+.carousel-caption .css-igs3ac {
+  outline: 0;
+  border: 0;
+}
+.carousel-caption .MuiInputBase-root {
+  height: 100%;
+}
+
+@media only screen and (max-width: 900px) {
+  .mainPage_carousel .carousel-caption {
+    bottom: 20%;
+    left: 13%;
+    max-width: 100%;
+    padding: 0rem 0rem;
+  }
+
+  .mainPage_carousel .carousel_caption h3 {
+    font-size: 4.2vw;
+    margin: 0 0 1vw 0;
+    font-weight: 500;
+    line-height: 100%;
+  }
+
+  .carousel_caption
+    .MuiSelect-select.MuiSelect-outlined.MuiInputBase-input.MuiOutlinedInput-input.css-11u53oe-MuiSelect-select-MuiInputBase-input-MuiOutlinedInput-input {
+    padding: 0;
+  }
+
+  .mainPage_carousel .carousel-caption button {
+    width: 30.3vw;
+    height: 7vw;
+    font-size: 3vw;
+    /* font-family: 'Arial, Helvetica, sans-serif'; */
+    font-weight: 500 !important;
+    border-radius: 8px;
     border: 0;
-    outline: 0;
-}
-.carousel-caption .css-igs3ac{
-    outline: 0;
-    border: 0;
-}
-.carousel-caption .MuiInputBase-root{
-    height: 100%;
+    outline: none;
+    margin-right: 0.5rem;
+    padding: 0.1rem;
+  }
 
-}
+  .mainPage_carousel .carousel-caption p {
+    font-size: 1rem;
+    margin-bottom: 0;
+  }
 
-@media only screen and (max-width:900px) {
-
-    .mainPage_carousel {
-        height: 52vw;
-        /* position: relative; */
-    }
-
-    .mainPage_carousel .carousel-caption {
-
-        bottom: 10%;
-        left: 13%;
-        max-width: 100%;
-        padding: 0rem 0rem;
-    }
-
-    .mainPage_carousel .carousel_caption h3 {
-        font-size: 4.2vw;
-        margin: 0 0 1vw 0;
-        font-weight: 500;
-        line-height: 100%;
-    }
-
-    .carousel_caption .MuiSelect-select.MuiSelect-outlined.MuiInputBase-input.MuiOutlinedInput-input.css-11u53oe-MuiSelect-select-MuiInputBase-input-MuiOutlinedInput-input {
-        padding: 0;
-    }
-
-    .mainPage_carousel .carousel-caption button {
-        width: 30.3vw;
-        height: 7vw;
-        font-size: 3vw;
-        /* font-family: 'Arial, Helvetica, sans-serif'; */
-        font-weight: 500 !important;
-        border-radius: 8px;
-        border: 0;
-        outline: none;
-        margin-right: 0.5rem;
-        padding: 0.1rem;
-    }
-
-    .mainPage_carousel .carousel-caption p {
-        font-size: 1rem;
-        margin-bottom: 0;
-    }
-
-    .mainPage_carousel .mainPage_carousel {
-        height: 32vh;
-    }
+  .mainPage_carousel .mainPage_carousel {
+    height: 32vh;
+  }
 }

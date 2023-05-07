@@ -1,70 +1,154 @@
-import React from 'react';
-import InstagramIcon from '@mui/icons-material/Instagram';
-import FacebookIcon from '@mui/icons-material/Facebook'
-import TwitterIcon from '@mui/icons-material/Twitter';
-import MailOutlineIcon from '@mui/icons-material/MailOutline';
-import { useNavigate } from 'react-router';
-import Sayno from "../../assets/saynotodoping.png"
-import Acbs from '../../assets/acbs.png'
-import "./Footer.css"
+import React from "react";
 
-function Footer(props) {
-    const history = useNavigate();
-    return (
-        <footer className="all_footer">
-            <section className='inner-footer container'>
+// import { useNavigate } from "react-router";
 
-                <div className="doping_image">
-                    <div className='logo'>
-                        <img loading="lazy" src={Acbs} width="23%" />
-                    </div>
+import FacebookIcon from "@mui/icons-material/Facebook";
+import InstagramIcon from "@mui/icons-material/Instagram";
+import MailOutlineIcon from "@mui/icons-material/MailOutline";
+import TwitterIcon from "@mui/icons-material/Twitter";
+import { Link, Box, List, ListItem, styled } from "@mui/material";
 
-                    <div className='doping'>
-                        <img loading="lazy" src={Sayno} width="68%" />
-                    </div>
-                </div>
+import Acbs from "../../assets/acbs.png";
+import Sayno from "../../assets/saynotodoping.png";
+import "./Footer.css";
 
+const Footer = () => {
+  // const history = useNavigate();
 
-                <div className="home_footer" >
+  const StyledLink = styled(Link)(() => ({
+    color: "var(--white)",
+    whiteSpace: "nowrap",
+    marginRight: "1rem",
+    padding: 0,
+    margin: 0,
+    "&:hover": {
+      color: "#337ab7",
+    },
+    "&:active": {
+      color: "var(--red)",
+    },
+  }));
 
-                    <div>
+  return (
+    <footer className="all_footer">
+      <section className="inner-footer container">
+        <Box className="doping_image">
+          <Box className="logo">
+            <img loading="lazy" src={Acbs} width="23%" alt="logo" />
+          </Box>
 
+          <Box className="doping">
+            <img loading="lazy" src={Sayno} width="68%" alt="logo" />
+          </Box>
+        </Box>
 
-                        <h3>Contact Us</h3>
-                        <ul className="quick_links">
-                            <li onClick={() => window.open('https://www.africabsc.com/', '_blank')}><a>PO Box 8996 Rawdat AI-Khayl St, Mansoura, Doha, Qatar</a></li>
-                            <li onClick={() => window.open('http://www.acbs.qa/', '_blank')}><a>ACBS</a></li>
-                            <li onClick={() => window.open('http://www.ebsa.tv/', '_blank')}><a>EBSA </a></li>
-                            <li onClick={() => window.open('https://obsf.info/', '_blank')}><a>OBSF </a></li>
-                            <li onClick={() => window.open('https://www.pabsa.org/', '_blank')}><a>PABSA</a></li>
-                        </ul>
-                    </div>
+        <Box className="home_footer">
+          <Box>
+            <h3>Contact Us</h3>
+            <List className="quick_links">
+              <ListItem disableGutters>
+                <StyledLink href="https://www.africabsc.com/" target="_blank">
+                  PO Box 8996 Rawdat AI-Khayl St, Mansoura, Doha, Qatar
+                </StyledLink>
+              </ListItem>
+              <ListItem disableGutters>
+                <StyledLink href="http://www.acbs.qa/" target="_blank">
+                  ACBS
+                </StyledLink>
+              </ListItem>
+              <ListItem disableGutters>
+                <StyledLink href="http://www.ebsa.tv/" target="_blank">
+                  EBSA
+                </StyledLink>
+              </ListItem>
+              <ListItem disableGutters>
+                <StyledLink href="https://obsf.info/" target="_blank">
+                  OBSF
+                </StyledLink>
+              </ListItem>
+              <ListItem disableGutters>
+                <StyledLink href="https://www.pabsa.org" target="_blank">
+                  PABSA
+                </StyledLink>
+              </ListItem>
+            </List>
+          </Box>
 
-                    <div>
-                        <h3> Other Links</h3>
-                        <ul className="quick_links">
-                            <li onClick={() => window.open('https://olympics.com/en/', '_blank')}><a>Olympic Movement</a></li>
-                            <li onClick={() => window.open('https://www.wcbs.sport/', '_blank')}><a>World Confederation of Billiards Sports</a></li>
-                            <li onClick={() => window.open('https://wpapool.com/', '_blank')}><a>World Pool Association</a></li>
-                            <li onClick={() => window.open('https://www.umb-carom.org/', '_blank')}><a>Union Mondiale De Billiard</a></li>
-                            <li onClick={() => window.open('http://www.wada-ama.org/', '_blank')}><a>World Anti-Doping Agency</a></li>
-                        </ul>
+          <Box>
+            <h3> Other Links</h3>
+            <ul className="quick_links">
+              <ListItem disableGutters>
+                <StyledLink href="https://olympics.com/en/" target="_blank">
+                  Olympic Movement
+                </StyledLink>
+              </ListItem>
+              <ListItem
+                disableGutters
+                onClick={() => window.open("https://www.wcbs.sport/", "_blank")}
+              >
+                <StyledLink>World Confederation of Billiards Sports</StyledLink>
+              </ListItem>
+              <ListItem
+                disableGutters
+                onClick={() => window.open("https://wpapool.com/", "_blank")}
+              >
+                <StyledLink>World Pool Association</StyledLink>
+              </ListItem>
+              <ListItem
+                disableGutters
+                onClick={() =>
+                  window.open("https://www.umb-carom.org/", "_blank")
+                }
+              >
+                <StyledLink>Union Mondiale De Billiard</StyledLink>
+              </ListItem>
+              <ListItem
+                disableGutters
+                onClick={() =>
+                  window.open("http://www.wada-ama.org/", "_blank")
+                }
+              >
+                <StyledLink>World Anti-Doping Agency</StyledLink>
+              </ListItem>
+            </ul>
+          </Box>
 
-                    </div>
-
-                    <div>
-                        <h3>Social links</h3>
-                        <div className="social_links">
-                            <MailOutlineIcon onClick={() => { window.location.href = "mailto: ibsfinfo@gmail.com " }} />
-                            <FacebookIcon onClick={() => { window.open('https://www.facebook.com/groups/ibsf.media/?ref=share', '_blank') }} />
-                            <InstagramIcon onClick={() => { window.open('https://www.instagram.com/ibsf.media/?utm_medium=copy_link', '_blank') }} />
-                            <TwitterIcon onClick={() => { window.open('https://twitter.com/ibsf', '_blank') }} />
-                        </div>
-                    </div>
-                </div>
-            </section>
-        </footer>
-    );
-}
+          <Box>
+            <h3>Social links</h3>
+            <Box className="social_links">
+              <MailOutlineIcon
+                style={{ marginLeft: 0 }}
+                onClick={() => {
+                  window.location.href = "mailto: ibsfinfo@gmail.com ";
+                }}
+              />
+              <FacebookIcon
+                onClick={() => {
+                  window.open(
+                    "https://www.facebook.com/groups/ibsf.media/?ref=share",
+                    "_blank"
+                  );
+                }}
+              />
+              <InstagramIcon
+                onClick={() => {
+                  window.open(
+                    "https://www.instagram.com/ibsf.media/?utm_medium=copy_link",
+                    "_blank"
+                  );
+                }}
+              />
+              <TwitterIcon
+                onClick={() => {
+                  window.open("https://twitter.com/ibsf", "_blank");
+                }}
+              />
+            </Box>
+          </Box>
+        </Box>
+      </section>
+    </footer>
+  );
+};
 
 export default Footer;

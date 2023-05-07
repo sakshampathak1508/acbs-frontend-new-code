@@ -1,122 +1,121 @@
 main .attractive-news {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    height: auto;
-    margin: auto;
-    padding-top: 3rem;
-    background-color: rgba(0, 0, 0, 0);
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  height: auto;
+  margin: auto;
+  padding-top: 3rem;
+  background-color: rgba(0, 0, 0, 0);
 }
 
 main .attractive-news .left-outer,
 .middle,
 .right-outer {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    width: 33.33%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 33.33%;
 }
 
 main .attractive-news .left-outer {
-    align-items: flex-start;
+  align-items: flex-start;
 }
 
 main .attractive-news .right-outer {
-    align-items: flex-end;
+  align-items: flex-end;
 }
 
 main .attractive-news .left {
-    align-items: flex-start;
+  align-items: flex-start;
 }
 
 main .attractive-news .right {
-    align-items: flex-end;
+  align-items: flex-end;
 }
 
 main .attractive-news .left-outer .left-inner {
-    width: 100%;
+  width: 100%;
 }
 
 main .attractive-news .left-outer .left-inner .heading {
-    text-transform: uppercase;
-    color: var(--black);
-    margin-bottom: 1.5rem;
+  text-transform: uppercase;
+  color: var(--black);
+  margin-bottom: 1.5rem;
 }
 
 main .attractive-news .right-outer .right-inner {
-    width: 95%;
+  width: 95%;
 }
 
 main .attractive-news .right-outer .right-inner .heading {
-    text-transform: uppercase;
-    color: var(--black);
-    margin-bottom: 1.5rem;
-    text-decoration: underline var(--red) 2px;
-    text-underline-offset: 8px;
-    /* margin-bottom: 5px; */
+  text-transform: uppercase;
+  color: var(--black);
+  margin-bottom: 1.5rem;
+  text-decoration: underline var(--red) 2px;
+  text-underline-offset: 8px;
+  /* margin-bottom: 5px; */
 }
 
 main .attractive-news .left-outer .left-inner .heading span {
-    display: inline-block;
-    height: 12px;
-    width: 12px;
-    border-radius: 50%;
-    background-color: var(--red);
-    margin-right: 1rem;
-    margin-bottom: 0.2rem;
+  display: inline-block;
+  height: 12px;
+  width: 12px;
+  border-radius: 50%;
+  background-color: var(--red);
+  margin-right: 1rem;
+  margin-bottom: 0.2rem;
 }
 
 main .latest-news {
-    margin: auto;
+  margin: auto;
 }
 
 main .latest-news h4 {
-    color: var(--black);
-    line-height: 24px;
-    margin-bottom: 2.5rem;
-    text-decoration: underline var(--red) 2px;
-    text-underline-offset: 8px;
-    text-transform: uppercase;
+  color: var(--black);
+  line-height: 24px;
+  margin-bottom: 2.5rem;
+  text-decoration: underline var(--red) 2px;
+  text-underline-offset: 8px;
+  text-transform: uppercase;
 }
 
 main .latest-news .latest-news-container {
-    display: flex;
-    gap:1rem;
-    /* justify-content: space-between; */
+  display: flex;
+  gap: 1rem;
+  /* justify-content: space-between; */
 }
 
-@media only screen and (max-width:992px) {
-    main>.attractive-news {
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        height: auto;
-        margin: 0 0 1.5rem 0;
-        padding-top: 3rem;
-        max-width: var(--maxWidth);
-        gap: 2rem;
-    }
+@media only screen and (max-width: 992px) {
+  main > .attractive-news {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    height: auto;
+    margin: 0 0 1.5rem 0;
+    padding-top: 3rem;
+    max-width: var(--maxWidth);
+    gap: 2rem;
+  }
 
-    main .attractive-news .left-outer,
-    .middle,
-    .right-outer {
-        width: 100%;
-        margin: 0 auto;
-    }
+  main .attractive-news .left-outer,
+  .middle,
+  .right-outer {
+    width: 100%;
+    margin: 0 auto;
+  }
 
-    main .attractive-news .right-outer .right-inner {
-        width: 100%;
-    }
+  main .attractive-news .right-outer .right-inner {
+    width: 100%;
+  }
 
-    main .attractive-news .middle {
-        order: -1;
-    }
-    main .latest-news{
-        width: 100%;
-    }
-    main .latest-news .latest-news-container {
-        display: flex;
-        flex-direction: column;
-    }
-
+  main .attractive-news .middle {
+    order: -1;
+  }
+  main .latest-news {
+    width: 100%;
+  }
+  main .latest-news .latest-news-container {
+    display: flex;
+    flex-direction: column;
+  }
 }

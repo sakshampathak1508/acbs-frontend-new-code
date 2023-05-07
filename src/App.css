@@ -1,16 +1,16 @@
-@import url('https://fonts.googleapis.com/css2?family=Lato:wght@700;900&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Lato:wght@700;900&display=swap");
 
-:root{
-  --red : #ED1C24 !important;
+:root {
+  --red: #ed1c24 !important;
   --black: #222222 !important;
-  --blue: #479BFF !important;
-  --grey: #ACACAC !important;
-  --white: #FFFFFF !important;
+  --blue: #479bff !important;
+  --grey: #acacac !important;
+  --white: #ffffff !important;
   --maxWidth: 1300px !important;
   --mobileMaxWidth: 769px !important;
-  --font:'Lato', sans-serif;
+  --font: "Lato", sans-serif;
 }
 
-*{
-    font-family: var(--font);
+* {
+  font-family: var(--font);
 }

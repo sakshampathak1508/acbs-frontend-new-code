@@ -1,46 +1,41 @@
-
-.carouselwrapper_container{
-    padding: 2rem 30vw;
-    width: 100%;
-    /* max-height: 200px; */
+.carouselwrapper_container {
+  padding: 2rem 30vw;
+  width: 100%;
+  /* max-height: 200px; */
 }
-.carouselwrapper_container h3
-{
-    background-color: red;
-    width: 90%;
+.carouselwrapper_container h3 {
+  background-color: red;
+  width: 90%;
 }
-h2{
-    text-align: center;
-    padding: 20px;
+h2 {
+  text-align: center;
+  padding: 20px;
 }
-.slick-list .slick-track
-{
-    width: auto;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    align-content: center;
-    text-align: center;
-    margin: 0;
-    padding: 0;
-    border: none;
+.slick-list .slick-track {
+  width: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+  text-align: center;
+  margin: 0;
+  padding: 0;
+  border: none;
 }
-.slide_image img{
-    /* width: 50%;
+.slide_image img {
+  /* width: 50%;
     min-width: 120px; */
-    /* height: 150px; */
-    max-width: 150px;
-    margin: auto;
-    /* height:  100%; */
-    /* object-fit: contain; */
+  /* height: 150px; */
+  max-width: 150px;
+  margin: auto;
+  /* height:  100%; */
+  /* object-fit: contain; */
 }
 
-@media only screen and (max-width:769px) {
-    
-    .carouselwrapper_container{
-    
-        padding:1rem 0rem;
-    }
+@media only screen and (max-width: 769px) {
+  .carouselwrapper_container {
+    padding: 1rem 0rem;
+  }
 }
 /*
 .slick-slide{

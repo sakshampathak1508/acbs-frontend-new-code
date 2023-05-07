@@ -1,45 +1,42 @@
 .imageTitleDate-card_body {
-    height: 22rem;
-    width: 24rem;
-    margin-right: 0;
-    outline: 0;
-    cursor: pointer;
-    box-shadow: 0px 0px 25px rgba(182, 182, 182, 0.22);
-    border-radius: 4px;
-    background-color: white;
+  height: 22rem;
+  margin-right: 20px;
+  outline: 0;
+  cursor: pointer;
+  box-shadow: 0px 0px 25px rgba(182, 182, 182, 0.22);
+  border-radius: 4px;
+  background-color: white;
 }
 
 .imageTitleDate-card_body .card_image {
-    height: 65%;
-    border-radius: 6px;
+  height: 65%;
+  border-radius: 6px;
 }
 
 .imageTitleDate-card_body .card_container {
-
-    height: 35%;
-    padding: 0.8rem;
-    overflow: hidden;
-    position: relative;
+  height: 35%;
+  padding: 0.8rem;
+  overflow: hidden;
+  position: relative;
 }
 
 .imageTitleDate-card_body .card_container .views {
-    display: flex;
-    margin-right: 0.2rem;
-    /* float: right; */
+  display: flex;
+  margin-right: 0.2rem;
+  /* float: right; */
 }
 
 .imageTitleDate-card_body .card_container h4 {
-    font-weight: 600 !important;
-    color: #000000d9;
-    margin-top: 0;
+  font-weight: 600 !important;
+  color: #000000d9;
+  margin-top: 0;
 }
 
-.imageTitleDate-card_body .card_container>p {
-
-    font-size: 1.2rem;
-    line-height: 128%;
-    color: #222222;
-    margin-bottom: 0rem;
+.imageTitleDate-card_body .card_container > p {
+  font-size: 1.2rem;
+  line-height: 128%;
+  color: #222222;
+  margin-bottom: 0rem;
 }
 
 /* .imageTitleDate-card_body:hover
@@ -49,38 +46,36 @@
     transition: all 0.5s linear;
 } */
 .imageTitleDate-card_body .card_container h4:hover {
-    color: #0da1ff;
-    transition: color 500ms;
+  color: #0da1ff;
+  transition: color 500ms;
 }
 
 .imageTitleDate-card_body .card_container .dateviews {
-    position: absolute;
-    bottom: 0;
-    display: flex;
-    justify-content: space-between;
-    height: auto;
-    width: 95%;
+  position: absolute;
+  bottom: 0;
+  display: flex;
+  justify-content: space-between;
+  height: auto;
+  width: 95%;
 }
 
 .imageTitleDate-card_body .card_container .dateviews * {
-    color: #ACACAC;
-    margin-bottom: 0.3rem;
+  color: #acacac;
+  margin-bottom: 0.3rem;
 }
 
 .imageTitleDate-card_body .card_container .dateviews .views p {
-    margin-top: -0.2rem;
-    margin-left: 0.2rem;
+  margin-top: -0.2rem;
+  margin-left: 0.2rem;
 }
 
-@media only screen and (max-width:769px) {
-
-    .imageTitleDate-card_body {
-        height: 22rem;
-        max-width: 100%;
-        width: 100%;
-        margin-right: 0;
-        margin: auto;
-        margin-bottom: 1.5rem;
-    }
-
+@media only screen and (max-width: 769px) {
+  .imageTitleDate-card_body {
+    height: 22rem;
+    max-width: 100%;
+    width: 100%;
+    margin-right: 0;
+    margin: auto;
+    margin-bottom: 1.5rem;
+  }
 }

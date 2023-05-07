@@ -1,132 +1,195 @@
-import React, { useState, useEffect, useRef } from 'react';
-import Header from '../../component/header/header';
-import FormControl from '@mui/material/FormControl';
-import Select from '@mui/material/Select';
-import EventImageTitle from '../../component/card/EventImageTitle';
-import Footer from '../../component/Footer/Footer';
-import MenuItem from '@mui/material/MenuItem';
-import SearchIcon from '../../assets/searchIcon.png'
+import React, { useState, useEffect, useRef } from "react";
+
+import { Box, MenuItem } from "@mui/material";
+import CircularProgress from "@mui/material/CircularProgress";
+import FormControl from "@mui/material/FormControl";
 import IconButton from "@mui/material/IconButton";
-import axios from '../../axios';
-import CircularProgress from '@mui/material/CircularProgress';
-import './Event.css'
+import Select from "@mui/material/Select";
 
-const Event = (props) => {
-    const [state, setState] = React.useState({
-        year: '', event: [], search: ''
-    });
-    const yearRef = useRef();
-    const [hasMore, setHasMore] = useState(true);
-    const [page, setPage] = useState({ value: 0 });
-    const [isLoading, setIsLoading] = useState(true);
+import SearchIcon from "../../assets/searchIcon.png";
+import axios from "../../axios";
+import EventImageTitle from "../../component/card/EventImageTitle";
+import Footer from "../../component/Footer/Footer";
+import Header from "../../component/header/header";
 
+import "./Event.css";
 
-    useEffect(() => {
-        const currentyear = new Date().getFullYear();
-        var select = yearRef.current?.firstChild?.firstChild;
-        while (select?.firstChild) {
-            select.removeChild(select.lastChild);
-        }
+const Event = props => {
+  const [state, setState] = React.useState({
+    year: "all",
+    category: "all",
+    event: [],
+    search: "",
+  });
+  const limitPerPage = 30;
+  const yearRef = useRef();
+  const [hasMore, setHasMore] = useState(true);
+  const [page, setPage] = useState({ value: 1 });
+  const [isLoading, setIsLoading] = useState(false);
 
-        let option = document.createElement("option");
-        option.text = 'All';
-        option.value = 'all';
-        option.key = 1;
-        select.appendChild(option)
-
-        for (let i = currentyear; i >= 2010; i--) {
-            let option = document.createElement("option");
-            option.text = i.toString();
-            option.value = i;
-            option.key = i + 1;
-            select.appendChild(option)
-        }
-
-
-        return () => window.onscroll()
-    }, [])
-
-    window.onscroll = () => {
-        if (window.innerHeight + document.documentElement.scrollTop + 100 >= document.documentElement.offsetHeight && isLoading == true) {
-            setIsLoading(false)
-            setPage((prev) => { return { 'value': prev.value + 1 } });
-        }
+  useEffect(() => {
+    const currentyear = new Date().getFullYear();
+    var select = yearRef.current?.firstChild?.firstChild;
+    while (select?.firstChild) {
+      select.removeChild(select.lastChild);
     }
 
-    const handleChange = (event) => {
-        const name = event.target.name;
-        const value = event.target.value;
-        setState((prev) => ({ ...prev, [name]: value }));
-        setPage(() => { return { value: 1 } });
+    let option = document.createElement("option");
+    option.text = "All";
+    option.value = "all";
+    option.key = 1;
+    select.appendChild(option);
 
-        setState((prev) => ({ ...prev, ['event']: [] }));
-    };
+    for (let i = currentyear; i >= 2010; i--) {
+      let option = document.createElement("option");
+      option.text = i.toString();
+      option.value = i;
+      option.key = i + 1;
+      select.appendChild(option);
+    }
 
-    useEffect(() => {
-        axios.get(`/events/all/?year=${state?.year}/${page?.value}/`)
-            .then((res) => {
-                console.log(res?.data)
-                if (res?.data?.results?.length === 0)
-                    setHasMore(false)
-                setIsLoading(true)
-                setState((prev) => ({ ...prev, ['event']: prev?.event?.concat(res?.data?.results) }))
-            })
-            .catch((e) => console.log(e));
+    return () => window.onscroll();
+  }, []);
 
-    }, [page])
+  window.onscroll = () => {
+    if (
+      window.innerHeight + document.documentElement.scrollTop + 0 >=
+        document.documentElement.offsetHeight &&
+      hasMore === true &&
+      isLoading === false
+    ) {
+      // setIsLoading(true);
+      setPage(prev => {
+        return { value: prev.value + 1 };
+      });
+    }
+  };
 
+  const handleChange = event => {
+    const name = event.target.name;
+    const value = event.target.value;
+    setState(prev => ({ ...prev, [name]: value }));
+    setPage(() => {
+      return { value: 1 };
+    });
 
-    return (
-        <div className='event-page'>
-            <Header />
-            <main className='container'>
+    setState(prev => ({ ...prev, ["event"]: [] }));
+  };
 
-                <header>
-                    <section className="year">
-                        <label>Year</label>
-                        <FormControl variant="outlined" sx={{ m: 1, minWidth: 120, height: '2.7rem' }} ref={yearRef}>
-                            <Select
-                                native
-                                sx={{ height: '100%' }}
-                                value={state.year}
-                                className="input-label-select"
-                                onChange={handleChange}
-                                displayEmpty
-                                name='year'
-                            >
-                            </Select>
-                        </FormControl>
+  useEffect(() => {
+    console.log(state);
+    setIsLoading(true);
 
-                    </section>
-                </header>
-                <main>
-                    <section className='events'>
-                        <h4>Events</h4>
-                        <div className='events-container'>
-                            {
-                                state?.event?.map((val, index) =>
-                                (
-                                    <EventImageTitle data={val} key={index} />
-                                ))
-                            }
-                            {
-                                state?.event?.length == 0 && hasMore == false && <div style={{ margin: "auto" }}><h3>Nothing Found...</h3></div>
-                            }
+    let api_url = `/events/all/?p=${page.value}`;
 
-                        </div>
-                    </section>
-                </main>
+    if (state?.year != "all" && state?.category == "all")
+      api_url = `/events/year/?year=${state?.year}`;
+    else if (state?.year == "all" && state?.category != "all")
+      api_url = `/events/year/?cat=${state?.category}`;
+    else if (state?.year != "all" && state?.category != "all")
+      api_url = `/events/year/?year=${state?.year}&cat=${state?.category}`;
 
-            </main>
+    const regex_pattern = /\/events\/all/;
 
-            {
-                isLoading | hasMore ? (<div id="loader" style={{ width: "100%", textAlign: "center" }}> <CircularProgress /> </div>)
-                    :
-                    <Footer>
-                    </Footer>
-            }
+    axios
+      .get(api_url)
+      .then(res => {
+        // console.log(res?.data);
+
+        setIsLoading(false);
+
+        if (regex_pattern.test(api_url)) {
+          console.log(res.data?.results);
+          if (res?.data?.results?.length < limitPerPage) setHasMore(false);
+
+          setState(prev => ({
+            ...prev,
+            ["event"]: prev?.event?.concat(res?.data?.results),
+          }));
+        } else {
+          setState(prev => ({
+            ...prev,
+            ["event"]: res?.data,
+          }));
+        }
+      })
+      .catch(e => console.log(e));
+  }, [page]);
+
+  return (
+    <Box>
+      <div className="container event-page">
+        <header style={{ display: "flex", gap: "2rem", paddingTop: "24px" }}>
+          <Box className="year">
+            <span>Year</span>
+            <FormControl
+              variant="outlined"
+              sx={{ m: 1, minWidth: 120, height: "2.7rem" }}
+              ref={yearRef}
+            >
+              <Select
+                native
+                sx={{ height: "100%" }}
+                value={state.year}
+                className="input-label-select"
+                onChange={handleChange}
+                displayEmpty
+                name="year"
+              ></Select>
+            </FormControl>
+          </Box>
+          <Box className="category">
+            <span>Category</span>
+            <FormControl
+              variant="outlined"
+              sx={{ m: 1, minWidth: 200, height: "2.7rem" }}
+            >
+              <Select
+                native
+                sx={{ height: "100%" }}
+                value={state.category}
+                className="input-label-select"
+                onChange={handleChange}
+                // displayEmpty
+                name="category"
+              >
+                <option value={"all"}>All</option>
+                <option value={1}>Snokker / Billiards</option>
+                <option value={2}>Pool</option>
+              </Select>
+            </FormControl>
+          </Box>
+        </header>
+        <main>
+          <section className="events">
+            <h4>Events</h4>
+            <div className="events-container">
+              {state?.event?.map((val, index) => (
+                <EventImageTitle data={val} endPoint="event" key={index} />
+              ))}
+              {state?.event?.length == 0 &&
+                hasMore === false &&
+                isLoading === false && (
+                  <div style={{ margin: "auto" }}>
+                    <h3>Nothing Found...</h3>
+                  </div>
+                )}
+            </div>
+          </section>
+        </main>
+      </div>
+      {isLoading ? (
+        <div
+          id="loader"
+          style={{ width: "100%", textAlign: "center", marginTop: "2rem" }}
+        >
+          <CircularProgress />
         </div>
-    );
+      ) : (
+        <Footer></Footer>
+      )}
+    </Box>
+  );
 };
 
 export default Event;

@@ -1,55 +1,53 @@
 .executive-outer {
-    background: var(--white);
-    box-shadow: 0px 0px 25px rgba(182, 182, 182, 0.22);
-    border-radius: 4px;
-    height: 24rem;
-    width: 24rem;
-    display: flex;
-    flex-direction: column;
+  background: var(--white);
+  box-shadow: 0px 0px 25px rgba(182, 182, 182, 0.22);
+  border-radius: 4px;
+  height: 24rem;
+  width: 24rem;
+  display: flex;
+  flex-direction: column;
 }
 
-.executive-outer>.executive-image {
-    height: 60%;
-    width: 100%;
-    border-radius: 4px;
-    background-position: center;
-    background-size: cover;
-    background-repeat: no-repeat;
-    /* width: 100px; */
+.executive-outer > .executive-image {
+  height: 60%;
+  width: 100%;
+  border-radius: 4px;
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  /* width: 100px; */
 }
 
-.executive-outer>.executive-content {
-    /* height: 0%; */
-    display: flex;
-    flex-direction: column;
-    height: 40%;
-    box-sizing: border-box;
-    padding: 1rem;
+.executive-outer > .executive-content {
+  /* height: 0%; */
+  display: flex;
+  flex-direction: column;
+  height: 40%;
+  box-sizing: border-box;
+  padding: 1rem;
 }
 
-.executive-outer>.executive-content>h6 {
-    /* font-size: 1.1rem; */
-    text-decoration: underline var(--red) 2px;
-    text-underline-offset: 8px;
-    text-transform: uppercase;
-    margin-bottom: 1rem;
+.executive-outer > .executive-content > h6 {
+  /* font-size: 1.1rem; */
+  text-decoration: underline var(--red) 2px;
+  text-underline-offset: 8px;
+  text-transform: uppercase;
+  margin-bottom: 1rem;
 }
 /*  */
 
-.executive-outer>.executive-content>p>strong {
-    color: rgba(0, 0, 0, 1);
+.executive-outer > .executive-content > p > strong {
+  color: rgba(0, 0, 0, 1);
 }
 
-.executive-outer>.executive-content>.icons {
-    display: flex;
-    flex-direction: row;
-    margin-top: auto;
-    gap: 0.2rem;
+.executive-outer > .executive-content > .icons {
+  display: flex;
+  flex-direction: row;
+  margin-top: auto;
+  gap: 0.2rem;
 }
 
-
-.executive-outer>.executive-content>.icons * {
-
-    font-size: 1.8rem;
-    cursor: pointer;
+.executive-outer > .executive-content > .icons * {
+  font-size: 1.8rem;
+  cursor: pointer;
 }
