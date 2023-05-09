@@ -16,8 +16,8 @@ import "./AllNews.css";
 const AllNews = props => {
   const [hasMore, setHasMore] = useState(true);
   const limitPerPage = 30;
-  const [isLoading, setIsLoading] = useState(false);
-  // const { isLoading, setIsLoading } = useContext(StateContext);
+  // const [isLoading, setIsLoading] = useState(false);
+  const { isLoading, setIsLoading } = useContext(StateContext);
   const [page, setPage] = useState({ value: 1 });
   const [data, setData] = useState([]);
   const yearRef = useRef();

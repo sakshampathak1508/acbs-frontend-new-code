@@ -106,7 +106,7 @@ const Header = ({ active }) => {
 
   return (
     <>
-      <AppBar sx={{ height: "64px", background: "white" }}>
+      <AppBar sx={{ minHeight: "64px", background: "white" }}>
         <Box sx={{ maxWidth: "1350px", width: "100%", margin: "0 auto" }}>
           <Toolbar
             sx={{
@@ -116,7 +116,11 @@ const Header = ({ active }) => {
             }}
           >
             <Box sx={{ display: "flex", alignItems: "center" }}>
-              <Styles.Link className="navbar-brand" to="/" sx={{ mr: "2rem" }}>
+              <Styles.Link
+                className="navbar-brand"
+                to="/"
+                sx={{ mr: { md: "2rem", sm: 0 } }}
+              >
                 <img src={LOGO} height="35px" alt="logo" />
               </Styles.Link>
               {/* <button
@@ -140,6 +144,9 @@ const Header = ({ active }) => {
                 </ListItem>
                 <ListItem>
                   <Styles.Link to="/news">News</Styles.Link>
+                </ListItem>
+                <ListItem>
+                  <Styles.Link to="/event">Event</Styles.Link>
                 </ListItem>
                 <ListItem>
                   <Styles.Link to="/news">About</Styles.Link>

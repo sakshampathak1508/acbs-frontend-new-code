@@ -89,10 +89,6 @@
   margin-bottom: 0.5rem;
 }
 
-.home_footer .quick_links > li:hover {
-  color: rgb(13, 161, 255);
-}
-
 .home_footer .social_links > * {
   margin: 0.5rem;
   padding-left: 0;

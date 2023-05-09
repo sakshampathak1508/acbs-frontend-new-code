@@ -5,7 +5,8 @@ export const MainContent = styled(Box)(({ theme }) => ({
   background: theme.palette.grey.main,
   marginTop: "65px",
   // padding: "17px 16px 30px",
-  // height: "calc(100vh - 71px)",
+  height: "calc(100vh - 65px)",
+  overflow: "auto",
   // transition: theme.transitions.create(["margin"], {
   //   duration: theme.transitions.duration.shortest,
   // }),

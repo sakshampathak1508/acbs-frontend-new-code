@@ -23,14 +23,13 @@ import Footer from "../../component/Footer/Footer";
 import { StateContext } from "../../StateProvider";
 import "./ParticularEvent.css";
 
-const ParticularEvent = props => {
+const ParticularEvent = () => {
   const [state, setState] = React.useState({
     year: "",
     event: "",
     eventList: [],
     eventName: "",
   });
-  const yearRef = useRef();
   const { id } = useParams();
   const { isLoading = true, setIsLoading } = useContext(StateContext);
 
@@ -44,7 +43,6 @@ const ParticularEvent = props => {
     cursor: "pointer",
     margin: 0,
     "&:hover": {
-      // all: "unset",
       color: "var(--blue)",
       border: "1px solid var(--black)",
     },
@@ -52,137 +50,128 @@ const ParticularEvent = props => {
 
   useEffect(() => {
     setIsLoading(true);
-    axios
-      .get(`events/?id=${id}`)
-      .then(res => setState(prev => ({ ...prev, ["event"]: res?.data })))
-      .then(() => setIsLoading(false));
+    axios.get(`events/?id=${id}`).then(res => {
+      setIsLoading(false);
+      setState(prev => ({ ...prev, ["event"]: res?.data }));
+    });
   }, []);
 
-  useEffect(() => {
-    axios
-      .get(`events/year/?year=${state.year}/`)
-      .then(res => {
-        setState(prev => ({ ...prev, ["eventList"]: res?.data }));
-      })
-      .catch(error => console.log(error));
-  }, [state.year]);
-  const handleChange = event => {
-    const name = event.target.name;
-    const value = event.target.value;
-    setState(prev => ({ ...prev, [name]: value }));
-  };
-
   return (
-    <div className="event-page" style={{ paddingTop: "24px" }}>
-      {console.log(state.event)}
-      {/* <Header /> */}
+    <>
+      <div className="event-page">
+        <main className="container">
+          {!isLoading && (
+            <main style={{ paddingTop: "2rem" }}>
+              <h2>{state?.event?.name}</h2>
+              <section className="event-content">
+                <section
+                  className="left-container"
+                  dangerouslySetInnerHTML={{ __html: state?.event?.content1 }}
+                ></section>
 
-      <main className="container">
-        {state?.event != "" && (
-          <main>
-            <h2>{state?.event?.name}</h2>
-            <section className="event-content">
-              <section
-                className="left-container"
-                dangerouslySetInnerHTML={{ __html: state?.event?.content1 }}
-              >
-                {/* <p>a,mds</p> */}
-              </section>
-
-              <section className="right-container">
-                <section className="top">
-                  <div className="location">
-                    <h4>Location</h4>
-                    <h5>{state?.event?.location}</h5>
-                  </div>
-
-                  <div className="venue">
-                    <h4>Venue</h4>
-                    <h5>{state?.event?.venue}</h5>
-                    {/* <label>Photographs</label> */}
-                  </div>
-
-                  <div className="date">
-                    <div className="start-date">
-                      <h4>Start Date</h4>
-                      <h5>
-                        {moment(state?.event?.start_date).format(
-                          "MMMM DD, YYYY"
-                        )}
-                      </h5>
+                <section className="right-container">
+                  <section className="top">
+                    <div className="location">
+                      <h4>Location</h4>
+                      <h5>{state?.event?.location}</h5>
                     </div>
 
-                    <div className="end-date">
-                      <h4>End Date</h4>
-                      <h5>
-                        {moment(state?.event?.end).format("MMMM DD, YYYY")}
-                      </h5>
+                    <div className="venue">
+                      <h4>Venue</h4>
+                      <h5>{state?.event?.venue}</h5>
+                      {/* <label>Photographs</label> */}
                     </div>
-                  </div>
-                </section>
 
-                <section className="bottom">
-                  <h4>Links</h4>
-                  <div className="links-icon">
-                    {state?.event?.groups && (
-                      <StyledLink href={state?.event?.groups} target="_blank">
-                        Groups &nbsp; <span>{<SportsIcon />}</span>
-                      </StyledLink>
-                    )}
+                    <div className="date">
+                      <div className="start-date">
+                        <h4>Start Date</h4>
+                        <h5>
+                          {moment(state?.event?.start_date).format(
+                            "MMMM DD, YYYY"
+                          )}
+                        </h5>
+                      </div>
 
-                    {state?.event?.knockouts && (
-                      <StyledLink
-                        href={state?.event?.knockouts}
-                        target="_blank"
-                      >
-                        Knockouts &nbsp; <span>{<SportsKabaddiIcon />}</span>
-                      </StyledLink>
-                    )}
-                    {state?.event?.results && (
-                      // <h5>
-                      <StyledLink href={state?.event?.results} target="_blank">
-                        Results &nbsp;<span>{<AttachmentIcon />}</span>
-                      </StyledLink>
-                      // </h5>
-                    )}
-                    {state?.event?.live && (
-                      <StyledLink href={state?.event?.live} target="_blank">
-                        Live&nbsp; <span>{<LiveTvIcon />}</span>
-                      </StyledLink>
-                    )}
+                      <div className="end-date">
+                        <h4>End Date</h4>
+                        <h5>
+                          {moment(state?.event?.end).format("MMMM DD, YYYY")}
+                        </h5>
+                      </div>
+                    </div>
+                  </section>
 
-                    {state?.event?.photographs && (
-                      <StyledLink
-                        href={state.event.photographs}
-                        target="_blank"
-                      >
-                        Photographs &nbsp; <span>{<InsertPhotoIcon />}</span>
-                      </StyledLink>
-                    )}
-                    {state?.event?.video && (
-                      <StyledLink href={state.event.video} target="_blank">
-                        Video &nbsp;<span>{<PlayCircleIcon />}</span>
-                      </StyledLink>
-                    )}
-                  </div>
+                  <section className="bottom">
+                    <h4>Links</h4>
+                    <div className="links-icon">
+                      {state?.event?.groups && (
+                        <StyledLink href={state?.event?.groups} target="_blank">
+                          Groups &nbsp; <span>{<SportsIcon />}</span>
+                        </StyledLink>
+                      )}
+
+                      {state?.event?.knockouts && (
+                        <StyledLink
+                          href={state?.event?.knockouts}
+                          target="_blank"
+                        >
+                          Knockouts &nbsp; <span>{<SportsKabaddiIcon />}</span>
+                        </StyledLink>
+                      )}
+                      {state?.event?.results && (
+                        // <h5>
+                        <StyledLink
+                          href={state?.event?.results}
+                          target="_blank"
+                        >
+                          Results &nbsp;<span>{<AttachmentIcon />}</span>
+                        </StyledLink>
+                        // </h5>
+                      )}
+                      {state?.event?.live && (
+                        <StyledLink href={state?.event?.live} target="_blank">
+                          Live&nbsp; <span>{<LiveTvIcon />}</span>
+                        </StyledLink>
+                      )}
+
+                      {state?.event?.photographs && (
+                        <StyledLink
+                          href={state.event.photographs}
+                          target="_blank"
+                        >
+                          Photographs &nbsp; <span>{<InsertPhotoIcon />}</span>
+                        </StyledLink>
+                      )}
+                      {state?.event?.video && (
+                        <StyledLink href={state.event.video} target="_blank">
+                          Video &nbsp;<span>{<PlayCircleIcon />}</span>
+                        </StyledLink>
+                      )}
+                    </div>
+                  </section>
                 </section>
               </section>
-            </section>
-          </main>
-        )}
-      </main>
-
+            </main>
+          )}
+        </main>
+      </div>
       {isLoading ? (
         <div
           id="loader"
-          style={{ width: "100%", textAlign: "center", marginTop: "2rem" }}
+          style={{
+            width: "100%",
+            height: "100%",
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+          }}
         >
           <CircularProgress />
         </div>
       ) : (
         <Footer></Footer>
       )}
-    </div>
+    </>
   );
 };
 

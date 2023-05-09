@@ -17,15 +17,15 @@ const Footer = () => {
 
   const StyledLink = styled(Link)(() => ({
     color: "var(--white)",
-    whiteSpace: "nowrap",
+    whiteSpace: "wrap",
     marginRight: "1rem",
     padding: 0,
     margin: 0,
     "&:hover": {
-      color: "#337ab7",
+      color: "var(--red)",
     },
     "&:active": {
-      color: "var(--red)",
+      color: "#337ab7",
     },
   }));
 
