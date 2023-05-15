@@ -1,15 +1,5 @@
 .carouselwrapper_container {
   padding: 2rem 30vw;
-  width: 100%;
-  /* max-height: 200px; */
-}
-.carouselwrapper_container h3 {
-  background-color: red;
-  width: 90%;
-}
-h2 {
-  text-align: center;
-  padding: 20px;
 }
 .slick-list .slick-track {
   width: auto;
@@ -22,17 +12,16 @@ h2 {
   padding: 0;
   border: none;
 }
-.slide_image img {
-  /* width: 50%;
-    min-width: 120px; */
-  /* height: 150px; */
+.slide_image {
   max-width: 150px;
   margin: auto;
-  /* height:  100%; */
-  /* object-fit: contain; */
+}
+.slide_image img {
+  max-width: 150px;
+  margin: auto;
 }
 
-@media only screen and (max-width: 769px) {
+@media only screen and (max-width: 900px) {
   .carouselwrapper_container {
     padding: 1rem 0rem;
   }

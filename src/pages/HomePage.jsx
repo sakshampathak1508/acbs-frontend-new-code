@@ -26,6 +26,7 @@ import Twitter from "../component/Twitter/Twitter";
 const HomePage = props => {
   const [latestNews, setLatestNews] = useState([]);
   const [frontEvents, setFronEvents] = useState();
+  const [sponsors, setSponsors] = useState([]);
   const [carouselData, setCarouselData] = useState();
   const isMobile = useMediaQuery("(max-width:900px)");
   const [loading, setloading] = useState({
@@ -71,12 +72,11 @@ const HomePage = props => {
       })
       .catch(err => console.log(err));
 
-    axios.get("api//featured").then(response => {
+    axios.get("api/featured").then(response => {
       setloading(prev => ({
         ...prev,
         loading3: false,
       }));
-
       const arr1 = response.data.events;
       const arr2 = response.data.news;
       const mergedArray = arr1.reduce((acc, curr, index) => {
@@ -91,6 +91,14 @@ const HomePage = props => {
       }
       setCarouselData(mergedArray);
     });
+
+    axios
+      .get("api/sponsers")
+      .then(response => {
+        console.log(response.data);
+        setSponsors(response.data);
+      })
+      .catch(err => console.log(err));
   }, []);
   return (
     <>
@@ -142,8 +150,8 @@ const HomePage = props => {
               </Slider>
             </section>
           </main>
-          <section style={{ background: "#EBEBEB", marginTop: "2rem" }}>
-            <CarouselWrapper />
+          <section style={{ background: "#F4f4f4", marginTop: "2rem" }}>
+            <CarouselWrapper data={sponsors} />
           </section>
           <Footer></Footer>
         </section>

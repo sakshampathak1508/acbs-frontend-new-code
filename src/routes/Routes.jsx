@@ -6,6 +6,7 @@ import {
 } from "react-router-dom";
 
 import BaseLayout from "../layout/BaseLayout";
+import Category from "../pages/Category/Category";
 import Error from "../pages/Error";
 import Event from "../pages/Event/Event";
 import ParticularEvent from "../pages/Event/ParticularEvent";
@@ -25,6 +26,7 @@ const AllRoute = createBrowserRouter(
       <Route path="/event/:id/:slug?" exact element={<ParticularEvent />} />
       <Route path="/executives" exact element={<Executive />} />
       <Route path="/members" exact element={<Members />} />
+      <Route path="/category" exact element={<Category />} />
       <Route path="*" element={<Error />} />
     </Route>
   )

@@ -47,8 +47,8 @@
 
 .all_footer .inner-footer .home_footer h3 {
   color: var(--white);
-  text-decoration: underline var(--grey) 2px;
-  text-underline-offset: 10px;
+  text-decoration: underline var(--grey) 1.5px;
+  text-underline-offset: 8px;
   margin-bottom: 2rem;
 }
 
@@ -99,6 +99,7 @@
 
 .home_footer .social_links *:hover {
   cursor: pointer;
+  color: var(--red);
 }
 
 @media only screen and (max-width: 900px) {

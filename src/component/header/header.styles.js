@@ -48,7 +48,7 @@ export const InputBase = styled(MuiInputBase)(({ theme }) => ({
     paddingLeft: `calc(1em + ${theme.spacing(4)})`,
     width: "40vw",
     [theme.breakpoints.up("md")]: {
-      width: "15vw",
+      width: "13vw",
     },
   },
 }));
@@ -64,5 +64,25 @@ export const Login = styled(Button)(() => ({
   "&:hover": {
     color: "var(--black)",
     background: "white",
+  },
+}));
+
+export const Dropdown = styled(Box)(() => ({
+  // display: "none",
+  position: "absolute",
+  background: "rgba(0, 0, 0, 1)",
+  "-webkit-backdrop-filter": "blur(10px)",
+  "backdrop-filter": "blur(10px)",
+  minWidth: "220px",
+  boxShadow: "0px 8px 16px 0px rgba(0, 0, 0, 0.2)",
+  zIndex: 200,
+  "&:hover": {
+    display: "block",
+  },
+}));
+
+export const DropdownContent = styled(Box)(() => ({
+  "&:hover": {
+    display: "block",
   },
 }));

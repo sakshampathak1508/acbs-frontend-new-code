@@ -120,7 +120,7 @@ const AllNews = props => {
                 displayEmpty
                 name="year"
               >
-                <option className="input-label-option" value="2021">
+                <option className="input-label-option" value="all">
                   all
                 </option>
               </Select>

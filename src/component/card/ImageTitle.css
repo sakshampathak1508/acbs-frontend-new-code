@@ -32,7 +32,7 @@
     transition: all 0.5s linear;
 } */
 .imageTitle-card_body .card_container h4:hover {
-  color: #0da1ff;
+  color: var(--red);
   transition: color 500ms;
 }
 

@@ -65,8 +65,8 @@
   transition: all 0.5s linear;
 }
 .card_container h4:hover {
-  color: #0da1ff;
-  transition: color 500ms;
+  color: var(--red);
+  transition: color 250ms;
 }
 
 @media only screen and (max-width: 769px) {

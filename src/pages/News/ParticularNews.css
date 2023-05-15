@@ -117,6 +117,9 @@
   margin-bottom: 0rem;
 }
 
+ul.shareLinks li:hover {
+  color: var(--red);
+}
 .particular-news-page .shareLinks button {
   margin: 0;
 }

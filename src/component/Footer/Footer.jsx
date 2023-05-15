@@ -21,8 +21,10 @@ const Footer = () => {
     marginRight: "1rem",
     padding: 0,
     margin: 0,
+    textDecoration: "none",
     "&:hover": {
       color: "var(--red)",
+      textDecoration: "underline",
     },
     "&:active": {
       color: "#337ab7",

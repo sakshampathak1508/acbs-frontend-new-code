@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
+import { KeyboardArrowDown } from "@mui/icons-material";
 import CloseIcon from "@mui/icons-material/Close";
 import MenuIcon from "@mui/icons-material/Menu";
 import SearchIcon from "@mui/icons-material/Search";
@@ -16,6 +17,7 @@ import {
 } from "@mui/material";
 import IconButton from "@mui/material/IconButton";
 
+import "./header.css";
 // import InputBase from "@mui/material/InputBase";
 // import Paper from "@mui/material/Paper";
 
@@ -81,8 +83,33 @@ const Header = ({ active }) => {
         <ListItem>
           <Styles.Link to="/news">News</Styles.Link>
         </ListItem>
-        <ListItem>
-          <Styles.Link to="/news">About</Styles.Link>
+        <ListItem className="dropdown">
+          <Box>
+            <Styles.Link to="/news">Aboutt ed</Styles.Link>
+            <Box className="dropdown-content">
+              <Styles.Link to="/about" onClick={() => history.push("/aboutus")}>
+                The IBSF
+              </Styles.Link>
+              <Styles.Link
+                to="/execute"
+                onClick={() => history.push("/executive_member")}
+              >
+                Executives
+              </Styles.Link>
+              <Styles.Link
+                to="/execute"
+                onClick={() => history.push("/executive_member")}
+              >
+                Executives
+              </Styles.Link>
+              <Styles.Link
+                to="/execute"
+                onClick={() => history.push("/executive_member")}
+              >
+                Executives
+              </Styles.Link>
+            </Box>
+          </Box>
         </ListItem>
         <ListItem>
           <Styles.Link to="/news">Tournaments</Styles.Link>
@@ -148,8 +175,18 @@ const Header = ({ active }) => {
                 <ListItem>
                   <Styles.Link to="/event">Event</Styles.Link>
                 </ListItem>
-                <ListItem>
-                  <Styles.Link to="/news">About</Styles.Link>
+                <ListItem className="dropdown">
+                  <Styles.Link to="/news">
+                    About <KeyboardArrowDown />
+                  </Styles.Link>
+                  <Box className="dropdown-content">
+                    <Styles.Link to="/about">The ACBS</Styles.Link>
+                    <Styles.Link to="/executives">Executives</Styles.Link>
+                    <Styles.Link to="/members">Members</Styles.Link>
+                    <Styles.Link to="/past-champions">
+                      Past Champions
+                    </Styles.Link>
+                  </Box>
                 </ListItem>
                 {/* <ListItem>
                   <Styles.Link to="/news">Tournaments</Styles.Link>
@@ -158,21 +195,35 @@ const Header = ({ active }) => {
               <Styles.Link to="/news">Members</Styles.Link>
             </ListItem> */}
                 <ListItem>
-                  <Styles.Link to="/news">Videos</Styles.Link>
+                  <Styles.Link to="/news">Rules</Styles.Link>
                 </ListItem>
                 <ListItem>
-                  <Styles.Link to="/news">Contact Us</Styles.Link>
+                  <Styles.Link to="/news">Documents</Styles.Link>
+                </ListItem>
+                <ListItem className="dropdown">
+                  <Styles.Link to="/news">
+                    Gallery&apos;s <KeyboardArrowDown />
+                  </Styles.Link>
+                  <Box className="dropdown-content">
+                    <Styles.Link to="/about">Photographs</Styles.Link>
+                    <Styles.Link to="/executives">Videos</Styles.Link>
+                  </Box>
                 </ListItem>
                 {/* <ListItem>
-              <Box>
-                <Styles.Link to="/news">Login</Styles.Link>
-              </Box>
-            </ListItem> */}
+                  <Styles.Link to="/news">Contact Us</Styles.Link>
+                </ListItem> */}
               </List>
             </Box>
             {/* </div> */}
 
-            <Box sx={{ display: "flex" }}>
+            <Box
+              sx={{
+                display: "flex",
+                gap: "5px",
+                flexWrap: "wrap",
+                m: "10px 0",
+              }}
+            >
               <form onSubmit={handleSearch}>
                 <Styles.Search>
                   <Styles.SearchIconWrapper
