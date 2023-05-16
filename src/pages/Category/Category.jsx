@@ -1,4 +1,5 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
+import { Helmet } from "react-helmet";
 
 import { Box, FormControl, MenuItem, Select } from "@mui/material";
 import CircularProgress from "@mui/material/CircularProgress";
@@ -8,12 +9,14 @@ import image2 from "../../assets/sponsor1.png";
 import axios from "../../axios";
 import ExecutiveCard from "../../component/card/Executive";
 import Header from "../../component/header/header";
+import { StateContext } from "../../StateProvider";
 
 // import "./Executive.css";
 
 const Category = props => {
   const [data, setData] = useState([]);
-  const [loading, setloading] = useState(true);
+  const { isLoading, setIsLoading } = useContext(StateContext);
+
   const [type, setTypes] = useState("all");
 
   const handleChange = event => {
@@ -22,23 +25,23 @@ const Category = props => {
   };
 
   useEffect(() => {
+    setIsLoading(true);
     axios
       .get("api/executives")
       .then(res => {
         console.log(res.data);
         setData(res.data);
-        setloading(false);
+        setIsLoading(false);
       })
       .catch(e => console.log(e));
   }, [type]);
 
   return (
     <>
-      {/* <Helmet>
-                <meta charSet="utf-8" />
-                <title>Executives</title>
-                
-            </Helmet> */}
+      <Helmet>
+        <meta charSet="utf-8" />
+        <title>Category | {type}</title>
+      </Helmet>
 
       <div className="ui container" style={{ paddingTop: "1rem" }}>
         <Box
@@ -69,8 +72,8 @@ const Category = props => {
                 // displayEmpty
                 // name="year"
               >
-                <MenuItem value={"all"}>all</MenuItem>
-                <MenuItem value={"snooke"}>Snooker</MenuItem>
+                <MenuItem value={"all"}>All</MenuItem>
+                <MenuItem value={"snooker"}>Snooker</MenuItem>
               </Select>
             </FormControl>
           </Box>
@@ -79,14 +82,12 @@ const Category = props => {
         {data.length != 0 ? (
           <div style={{ display: "flex", flexWrap: "wrap", gap: "1rem" }}>
             {data.map((data, index) => (
-              <>
-                <ExecutiveCard data={data} />
-              </>
+              <ExecutiveCard key={index} data={data} />
             ))}
           </div>
         ) : (
           <>
-            {loading ? (
+            {isLoading ? (
               <div id="loader" style={{ width: "100%", textAlign: "center" }}>
                 {" "}
                 <p>

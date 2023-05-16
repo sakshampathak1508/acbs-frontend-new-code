@@ -1,5 +1,6 @@
 import React, { useState, useContext, useEffect, useRef } from "react";
 
+import { MenuItem } from "@mui/material";
 import CircularProgress from "@mui/material/CircularProgress";
 import FormControl from "@mui/material/FormControl";
 import IconButton from "@mui/material/IconButton";
@@ -11,10 +12,13 @@ import ImageTitleDate from "../../component/card/ImageTitleDate";
 import Footer from "../../component/Footer/Footer";
 import Header from "../../component/header/header";
 import { StateContext } from "../../StateProvider";
+
 import "./AllNews.css";
 
-const AllNews = props => {
+const AllNews = () => {
   const [hasMore, setHasMore] = useState(true);
+  const currentYear = new Date().getFullYear();
+
   const limitPerPage = 30;
   // const [isLoading, setIsLoading] = useState(false);
   const { isLoading, setIsLoading } = useContext(StateContext);
@@ -25,29 +29,6 @@ const AllNews = props => {
     year: "all",
   });
 
-  useEffect(() => {
-    const currentyear = new Date().getFullYear();
-    var select = yearRef.current?.firstChild?.firstChild;
-    while (select?.firstChild) {
-      select.removeChild(select.lastChild);
-    }
-
-    let option = document.createElement("option");
-    option.text = "All";
-    option.value = "all";
-    option.key = 1;
-    select.appendChild(option);
-
-    for (let i = currentyear; i >= 2010; i--) {
-      let option = document.createElement("option");
-      option.text = i.toString();
-      option.value = i;
-      option.key = i + 1;
-      select.appendChild(option);
-    }
-    return () => window.onscroll();
-  }, []);
-
   window.onscroll = () => {
     if (
       window.innerHeight + document.documentElement.scrollTop + 0 >=
@@ -55,7 +36,6 @@ const AllNews = props => {
       hasMore === true &&
       isLoading === false
     ) {
-      // setIsLoading(true);
       setPage(prev => {
         return { value: prev.value + 1 };
       });
@@ -112,17 +92,24 @@ const AllNews = props => {
               ref={yearRef}
             >
               <Select
-                native
-                sx={{ height: "100%" }}
+                sx={{ height: "100%", textAlign: "left" }}
                 value={state.year}
                 className="input-label-select"
                 onChange={handleChange}
                 displayEmpty
                 name="year"
               >
-                <option className="input-label-option" value="all">
-                  all
-                </option>
+                <MenuItem className="input-label-option" value="all">
+                  All
+                </MenuItem>
+                {[...Array(currentYear - 2009)].map((_, index) => {
+                  const year = currentYear - index;
+                  return (
+                    <MenuItem key={year} value={year}>
+                      {year}
+                    </MenuItem>
+                  );
+                })}
               </Select>
             </FormControl>
           </section>

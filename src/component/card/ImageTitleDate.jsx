@@ -42,18 +42,7 @@ const ImageTitleDate = ({
         }}
       ></Box>
       <Box className="card_container">
-        <p
-          style={{
-            marginBottom: "0rem",
-            textAlign: "start",
-            overflow: "hidden",
-            textOverflow: "ellipsis",
-          }}
-        >
-          {/* {"props?.cf dkm dmkwedmw wmdkmwd kwk wm d lsmd msw d"} */}
-          {title}
-          {title?.length === 60 && <span>....</span>}
-        </p>
+        <p className="title">{title}</p>
         <Box className="dateviews">
           <p className="time">{moment(timestamp).format("MMMM d, YYYY")}</p>
           <Box className="views">

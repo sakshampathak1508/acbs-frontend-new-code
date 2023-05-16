@@ -49,6 +49,7 @@
 
 .members-outer > .members-content > .icons * {
   font-size: 1.8rem;
+  transition: color 100ms;
 }
 .members-outer > .members-content > .icons *:hover {
   color: var(--red);

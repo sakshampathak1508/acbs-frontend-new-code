@@ -35,10 +35,7 @@ const EventImageTitle = props => {
         }}
       ></Box>
       <Box className="card_container">
-        <h4 style={{ marginBottom: "0rem", overflow: "hidden" }}>
-          {props?.name}
-          {props?.name?.length >= 40 && <span>....</span>}
-        </h4>
+        <h4>{props?.name}</h4>
 
         <Box className="location-date">
           <section className="location">
@@ -47,12 +44,36 @@ const EventImageTitle = props => {
           </section>
           <section className="start-end-date">
             <Box className="start-date-fields">
-              <Typography variant="label">Start Date</Typography>
-              <span>{moment(props?.start_date).format("MMMM DD, YYYY")}</span>
+              <Typography
+                variant="label"
+                sx={{
+                  textDecoration: "underline",
+                  textUnderlineOffset: "2px",
+                  marginBottom: "0.2rem",
+                  textDecorationColor: "var(--red)",
+                }}
+              >
+                Start Date
+              </Typography>
+              <span style={{ fontSize: "0.9rem" }}>
+                {moment(props?.start_date).format("MMMM DD, YYYY")}
+              </span>
             </Box>
             <Box className="end-date-fields">
-              <Typography variant="label">End Date</Typography>
-              <span>{moment(props?.end_date).format("MMMM DD, YYYY")}</span>
+              <Typography
+                sx={{
+                  textDecoration: "underline",
+                  textUnderlineOffset: "2px",
+                  marginBottom: "0.2rem",
+                  textDecorationColor: "var(--red)",
+                }}
+                variant="label"
+              >
+                End Date
+              </Typography>
+              <span style={{ fontSize: "0.9rem" }}>
+                {moment(props?.end_date).format("MMMM DD, YYYY")}
+              </span>
             </Box>
           </section>
         </Box>

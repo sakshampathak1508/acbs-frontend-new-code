@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 
+import { Box } from "@mui/material";
 import CircularProgress from "@mui/material/CircularProgress";
 
 import image1 from "../../assets/cardEx.png";
@@ -9,7 +10,6 @@ import ExecutiveCard from "../../component/card/Executive";
 import Header from "../../component/header/header";
 
 import "./Executive.css";
-import { Box } from "@mui/material";
 
 const Executive = props => {
   const [data, setData] = useState([]);
@@ -19,7 +19,6 @@ const Executive = props => {
     axios
       .get("api/executives")
       .then(res => {
-        console.log(res.data);
         setData(res.data);
         setloading(false);
       })
@@ -41,9 +40,7 @@ const Executive = props => {
         {data.length != 0 ? (
           <div style={{ display: "flex", flexWrap: "wrap", gap: "1rem" }}>
             {data.map((data, index) => (
-              <>
-                <ExecutiveCard data={data} />
-              </>
+              <ExecutiveCard data={data} key={index} />
             ))}
           </div>
         ) : (

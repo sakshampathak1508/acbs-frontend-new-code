@@ -39,7 +39,6 @@ const Card = props => {
           }}
         >
           {"props?.cf ldpd dsd d,d skdmam dlakmd saml dka da dakd slad "}
-          {props?.cf.length === 60 && <span>....</span>}
         </p>
       </Box>
     </Box>

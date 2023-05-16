@@ -26,7 +26,7 @@ const AllRoute = createBrowserRouter(
       <Route path="/event/:id/:slug?" exact element={<ParticularEvent />} />
       <Route path="/executives" exact element={<Executive />} />
       <Route path="/members" exact element={<Members />} />
-      <Route path="/category" exact element={<Category />} />
+      <Route path="/category" exact element={<Category />} title="skd" />
       <Route path="*" element={<Error />} />
     </Route>
   )

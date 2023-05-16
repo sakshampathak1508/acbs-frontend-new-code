@@ -32,13 +32,22 @@
   margin-top: 0;
 }
 
-.imageTitleDate-card_body .card_container > p {
+.imageTitleDate-card_body .card_container > .title {
   font-size: 1.2rem;
   line-height: 128%;
+  text-align: left;
   color: #222222;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  overflow: hidden;
   margin-bottom: 0rem;
+  transition: color 250ms;
 }
 
+.imageTitleDate-card_body .card_container > .title:hover {
+  color: var(--red);
+}
 /* .imageTitleDate-card_body:hover
 {
     border: 1px solid black;

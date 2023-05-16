@@ -22,6 +22,7 @@ const Footer = () => {
     padding: 0,
     margin: 0,
     textDecoration: "none",
+    transition: "all 250ms",
     "&:hover": {
       color: "var(--red)",
       textDecoration: "underline",

@@ -9,18 +9,15 @@ import LanguageOutlinedIcon from "@mui/icons-material/LanguageOutlined";
 import MailOutlineIcon from "@mui/icons-material/MailOutline";
 import { Box } from "@mui/material";
 
-import carouselEx from "../../assets/carouselEx.jpg";
-
 import "./Members.css";
 // import { Box } from "@mui/material";
 
 const Card = props => {
   const history = useNavigate();
-  // const page = props.page;
-
   props = props?.data;
   return (
     <Box
+      key={props.id}
       onClick={() => history.push(`/news/${props?.id}/${props?.slug}`)}
       className="members-outer"
     >

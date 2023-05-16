@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 
 import CircularProgress from "@mui/material/CircularProgress";
 
@@ -35,9 +35,7 @@ const Members = props => {
         {data.length != 0 ? (
           <div style={{ display: "flex", flexWrap: "wrap", gap: "1rem" }}>
             {data.map((data, index) => (
-              <>
-                <MemberCard data={data} />
-              </>
+              <MemberCard key={index} data={data} />
             ))}
           </div>
         ) : (

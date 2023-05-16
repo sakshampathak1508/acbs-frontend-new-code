@@ -52,4 +52,11 @@
 .executive-outer > .executive-content > .icons * {
   font-size: 1.8rem;
   cursor: pointer;
+  transition: color 100ms;
+}
+
+.executive-outer > .executive-content > .icons *:hover {
+  font-size: 1.8rem;
+  cursor: pointer;
+  color: var(--red);
 }

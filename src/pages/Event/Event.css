@@ -20,7 +20,7 @@
 .event-page .events > h4 {
   text-transform: uppercase;
   color: var(--black);
-  margin-bottom: 1.5rem;
+  margin-bottom: 2rem;
   text-decoration: underline var(--red) 2px;
   text-underline-offset: 8px;
 }

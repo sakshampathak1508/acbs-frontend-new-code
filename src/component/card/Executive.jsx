@@ -13,11 +13,11 @@ import "./Executive.css";
 
 const Card = props => {
   const history = useNavigate();
-  // const page = props.page;
-
+  // const page = props.page
   props = props?.data;
   return (
     <Box
+      key={props.id}
       onClick={() => history.push(`/news/${props?.id}/${props?.slug}`)}
       className="executive-outer"
     >

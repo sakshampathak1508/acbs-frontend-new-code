@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect, useRef, useContext } from "react";
 
 import { Box, MenuItem } from "@mui/material";
 import CircularProgress from "@mui/material/CircularProgress";
@@ -13,6 +13,7 @@ import Footer from "../../component/Footer/Footer";
 import Header from "../../component/header/header";
 
 import "./Event.css";
+import { StateContext } from "../../StateProvider";
 
 const Event = props => {
   const [state, setState] = React.useState({
@@ -25,31 +26,9 @@ const Event = props => {
   const yearRef = useRef();
   const [hasMore, setHasMore] = useState(true);
   const [page, setPage] = useState({ value: 1 });
-  const [isLoading, setIsLoading] = useState(false);
+  const { isLoading, setIsLoading } = useContext(StateContext);
 
-  useEffect(() => {
-    const currentyear = new Date().getFullYear();
-    var select = yearRef.current?.firstChild?.firstChild;
-    while (select?.firstChild) {
-      select.removeChild(select.lastChild);
-    }
-
-    let option = document.createElement("option");
-    option.text = "All";
-    option.value = "all";
-    option.key = 1;
-    select.appendChild(option);
-
-    for (let i = currentyear; i >= 2010; i--) {
-      let option = document.createElement("option");
-      option.text = i.toString();
-      option.value = i;
-      option.key = i + 1;
-      select.appendChild(option);
-    }
-
-    return () => window.onscroll();
-  }, []);
+  const currentYear = new Date().getFullYear();
 
   window.onscroll = () => {
     if (
@@ -119,7 +98,14 @@ const Event = props => {
   return (
     <Box>
       <div className="container event-page">
-        <header style={{ display: "flex", gap: "2rem", paddingTop: "24px" }}>
+        <header
+          style={{
+            display: "flex",
+            gap: "2rem",
+            paddingTop: "24px",
+            flexWrap: "wrap",
+          }}
+        >
           <Box className="year">
             <span>Year</span>
             <FormControl
@@ -128,24 +114,32 @@ const Event = props => {
               ref={yearRef}
             >
               <Select
-                native
                 sx={{ height: "100%" }}
                 value={state.year}
                 className="input-label-select"
                 onChange={handleChange}
                 displayEmpty
                 name="year"
-              ></Select>
+              >
+                <MenuItem value={"all"}>All</MenuItem>
+                {[...Array(currentYear - 2009)].map((_, index) => {
+                  const year = currentYear - index;
+                  return (
+                    <MenuItem key={year} value={year}>
+                      {year}
+                    </MenuItem>
+                  );
+                })}
+              </Select>
             </FormControl>
           </Box>
           <Box className="category">
             <span>Category</span>
             <FormControl
               variant="outlined"
-              sx={{ m: 1, minWidth: 200, height: "2.7rem" }}
+              sx={{ m: 1, minWidth: 190, height: "2.7rem" }}
             >
               <Select
-                native
                 sx={{ height: "100%" }}
                 value={state.category}
                 className="input-label-select"
@@ -153,9 +147,9 @@ const Event = props => {
                 // displayEmpty
                 name="category"
               >
-                <option value={"all"}>All</option>
-                <option value={1}>Snokker / Billiards</option>
-                <option value={2}>Pool</option>
+                <MenuItem value={"all"}>All</MenuItem>
+                <MenuItem value={1}>Snokker / Billiards</MenuItem>
+                <MenuItem value={2}>Pool</MenuItem>
               </Select>
             </FormControl>
           </Box>

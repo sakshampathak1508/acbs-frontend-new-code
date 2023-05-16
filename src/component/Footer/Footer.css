@@ -95,6 +95,7 @@
   color: var(--white);
   cursor: pointer;
   font-size: 2rem;
+  transition: color 250ms;
 }
 
 .home_footer .social_links *:hover {

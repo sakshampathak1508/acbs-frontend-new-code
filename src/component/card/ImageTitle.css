@@ -23,6 +23,12 @@
   font-size: 1.1rem;
   line-height: 1.1rem;
   color: #222222;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  overflow: hidden;
+  margin-bottom: 0rem;
+  transition: color 250ms;
 }
 
 /* .imageTitle-card_body:hover
