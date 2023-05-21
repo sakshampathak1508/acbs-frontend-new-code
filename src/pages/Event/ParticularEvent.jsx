@@ -14,8 +14,10 @@ import CircularProgress from "@mui/material/CircularProgress";
 // import MenuItem from "@mui/material/MenuItem";
 // import Select from "@mui/material/Select";
 
+import Lottie from "lottie-react";
 import moment from "moment";
 
+import searchAnimation from "../../assets/search.json";
 // import SearchIcon from "../../assets/searchIcon.png";
 import axios from "../../axios";
 import Footer from "../../component/Footer/Footer";
@@ -166,7 +168,12 @@ const ParticularEvent = () => {
             alignItems: "center",
           }}
         >
-          <CircularProgress />
+          <Lottie
+            style={{ maxWidth: "650px" }}
+            animationData={searchAnimation}
+            loop={true}
+          />
+          ;
         </div>
       ) : (
         <Footer></Footer>

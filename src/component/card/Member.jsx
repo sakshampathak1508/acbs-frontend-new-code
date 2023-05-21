@@ -10,6 +10,7 @@ import MailOutlineIcon from "@mui/icons-material/MailOutline";
 import { Box } from "@mui/material";
 
 import "./Members.css";
+import { API_URL } from "../../constant/api";
 // import { Box } from "@mui/material";
 
 const Card = props => {
@@ -24,9 +25,7 @@ const Card = props => {
       <section
         className="members-image"
         style={{
-          backgroundImage: `url(${import.meta.env.VITE_REACT_APP_API_ENDPOINT}${
-            props.flag
-          })`,
+          backgroundImage: `url(${API_URL}${props.flag})`,
         }}
       ></section>
       <section className="members-content">

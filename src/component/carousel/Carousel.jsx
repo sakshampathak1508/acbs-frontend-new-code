@@ -10,6 +10,7 @@ import { styled } from "@mui/material/styles";
 import Carousel from "react-bootstrap/Carousel";
 
 import "./carousel.css";
+import { API_URL } from "../../constant/api";
 
 const StyledLink = styled(Link)(() => ({
   color: "var(--black)",
@@ -51,7 +52,7 @@ const ControlledCarousel = ({ data }) => {
             <img
               loading="lazy"
               className="d-block w-100"
-              src={`${import.meta.env.VITE_REACT_APP_API_ENDPOINT}${
+              src={`${API_URL}${
                 val.news ? val.news.image : val.event.event_banner
               }`}
               style={{ height: "100%", filter: "brightness(85%)" }}

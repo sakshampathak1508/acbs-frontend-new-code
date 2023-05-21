@@ -1,0 +1,9 @@
+.latest-news .heading {
+  margin: auto 0;
+  text-transform: uppercase;
+  color: var(--black);
+  -webkit-text-decoration: underline var(--red) 2px;
+  text-decoration: underline var(--red) 2px;
+  text-underline-offset: 8px;
+  margin-bottom: 1rem;
+}

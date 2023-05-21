@@ -7,6 +7,7 @@ import { Box, Typography, useMediaQuery } from "@mui/material";
 import moment from "moment";
 
 import "./EventImageTitle.css";
+import { API_URL } from "../../constant/api";
 const EventImageTitle = props => {
   const navigate = useNavigate();
   const page = props.page;
@@ -27,9 +28,7 @@ const EventImageTitle = props => {
       <Box
         className="card_image"
         style={{
-          backgroundImage: `url(${import.meta.env.VITE_REACT_APP_API_ENDPOINT}${
-            props?.event_banner
-          })`,
+          backgroundImage: `url(${API_URL}${props?.event_banner})`,
           backgroundSize: "cover",
           backgroundRepeat: "no-repeat",
         }}

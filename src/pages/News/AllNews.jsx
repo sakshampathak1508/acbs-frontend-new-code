@@ -1,6 +1,6 @@
 import React, { useState, useContext, useEffect, useRef } from "react";
 
-import { MenuItem } from "@mui/material";
+import { Box, MenuItem } from "@mui/material";
 import CircularProgress from "@mui/material/CircularProgress";
 import FormControl from "@mui/material/FormControl";
 import IconButton from "@mui/material/IconButton";
@@ -14,6 +14,11 @@ import Header from "../../component/header/header";
 import { StateContext } from "../../StateProvider";
 
 import "./AllNews.css";
+import { API_URL } from "../../constant/api";
+
+import { Helmet } from "react-helmet";
+
+import { Toolbar } from "../../layout/BaseLayout.styles";
 
 const AllNews = () => {
   const [hasMore, setHasMore] = useState(true);
@@ -81,74 +86,89 @@ const AllNews = () => {
 
   return (
     <div className="newspage">
-      <main className="container main-news-page">
-        <header className="header-title">
-          <h4>News</h4>
-          <section className="year">
-            <label>Year</label>
-            <FormControl
-              variant="outlined"
-              sx={{ minWidth: 130, m: "0rem 1rem 0rem 1rem", height: "2.7rem" }}
-              ref={yearRef}
-            >
-              <Select
-                sx={{ height: "100%", textAlign: "left" }}
-                value={state.year}
-                className="input-label-select"
-                onChange={handleChange}
-                displayEmpty
-                name="year"
-              >
-                <MenuItem className="input-label-option" value="all">
-                  All
-                </MenuItem>
-                {[...Array(currentYear - 2009)].map((_, index) => {
-                  const year = currentYear - index;
-                  return (
-                    <MenuItem key={year} value={year}>
-                      {year}
+      <Helmet>
+        <title>News</title>
+      </Helmet>
+      <Toolbar>
+        <Box sx={{ width: "100%" }}>
+          <main className="main-news-page">
+            <header className="header-title">
+              <h4>News</h4>
+              <section className="year">
+                <label>Year</label>
+                <FormControl
+                  variant="outlined"
+                  sx={{
+                    minWidth: 130,
+                    m: "0rem 1rem 0rem 1rem",
+                    height: "2.7rem",
+                  }}
+                  ref={yearRef}
+                >
+                  <Select
+                    sx={{ height: "100%", textAlign: "left" }}
+                    value={state.year}
+                    className="input-label-select"
+                    onChange={handleChange}
+                    displayEmpty
+                    name="year"
+                  >
+                    <MenuItem className="input-label-option" value="all">
+                      All
                     </MenuItem>
-                  );
-                })}
-              </Select>
-            </FormControl>
-          </section>
-        </header>
-        <div className="news-cards-section">
-          {data &&
-            data?.map((val, index) => (
-              <ImageTitleDate
-                id={val.id}
-                slug={val.slug}
-                maxWidth={"25rem"}
-                image={`${import.meta.env.VITE_REACT_APP_API_ENDPOINT}/${
-                  val.image
-                }`}
-                title={val.title}
-                timestamp={val.timestamp}
-                views={val.views}
-                key={index}
-                data={val}
-              />
-            ))}
+                    {[...Array(currentYear - 2009)].map((_, index) => {
+                      const year = currentYear - index;
+                      return (
+                        <MenuItem key={year} value={year}>
+                          {year}
+                        </MenuItem>
+                      );
+                    })}
+                  </Select>
+                </FormControl>
+              </section>
+            </header>
+            <div className="news-cards-section">
+              {data &&
+                data?.map((val, index) => (
+                  <ImageTitleDate
+                    id={val.id}
+                    slug={val.slug}
+                    maxWidth={"25rem"}
+                    image={`${API_URL}/${val.image}`}
+                    title={val.title}
+                    timestamp={val.timestamp}
+                    views={val.views}
+                    key={index}
+                    data={val}
+                  />
+                ))}
 
-          {data?.length == 0 && hasMore === false && isLoading === false && (
-            <div style={{ margin: "auto" }}>
-              <h3>Nothing Found...</h3>
+              {isLoading ? (
+                <div
+                  id="loader"
+                  style={{
+                    width: "100%",
+                    textAlign: "center",
+                    marginTop: "2rem",
+                  }}
+                >
+                  <CircularProgress />
+                </div>
+              ) : (
+                data?.length == 0 &&
+                hasMore === false &&
+                isLoading === false && (
+                  <div style={{ margin: "auto" }}>
+                    <h3>Nothing Found...</h3>
+                  </div>
+                )
+              )}
             </div>
-          )}
-        </div>
-      </main>
-      {isLoading ? (
-        <div
-          id="loader"
-          style={{ width: "100%", textAlign: "center", marginTop: "2rem" }}
-        >
-          <CircularProgress />
-        </div>
-      ) : (
-        <Footer></Footer>
-      )}
+          </main>
+        </Box>
+      </Toolbar>
+      {!isLoading && <Footer></Footer>}
     </div>
   );
 };

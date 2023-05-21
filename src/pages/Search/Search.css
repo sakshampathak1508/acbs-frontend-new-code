@@ -1,0 +1,10 @@
+.search {
+  padding-top: 1rem;
+}
+
+.search .heading {
+  text-transform: uppercase;
+  color: var(--black);
+  text-decoration: underline var(--red) 2px;
+  text-underline-offset: 8px;
+}

@@ -10,6 +10,7 @@ import { Box } from "@mui/material";
 import carouselEx from "../../assets/carouselEx.jpg";
 
 import "./Executive.css";
+import { API_URL } from "../../constant/api";
 
 const Card = props => {
   const history = useNavigate();
@@ -24,9 +25,7 @@ const Card = props => {
       <section
         className="executive-image"
         style={{
-          backgroundImage: `url(${import.meta.env.VITE_REACT_APP_API_ENDPOINT}${
-            props.image
-          })`,
+          backgroundImage: `url(${API_URL}${props.image})`,
         }}
       ></section>
       <section className="executive-content">

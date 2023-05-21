@@ -7,6 +7,7 @@ import "./CarouselWrapper.css";
 
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+import { API_URL } from "../../constant/api";
 
 const CarouselWrapper = ({ data }) => {
   const setting = {
@@ -29,12 +30,7 @@ const CarouselWrapper = ({ data }) => {
               sx={{ maxWidth: "150px", cursor: "pointer", margin: "auto" }}
               onClick={() => window.open(val.url, "_blank")}
             >
-              <img
-                src={`${import.meta.env.VITE_REACT_APP_API_ENDPOINT}/${
-                  val.image
-                }`}
-                alt="sponsor"
-              />
+              <img src={`${API_URL}/${val.image}`} alt="sponsor" />
             </Box>
           ))}
       </Slider>

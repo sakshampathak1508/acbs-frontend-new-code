@@ -22,17 +22,20 @@ import IconButton from "@mui/material/IconButton";
 import MenuItem from "@mui/material/MenuItem";
 import Select from "@mui/material/Select";
 
+import Lottie from "lottie-react";
 import moment from "moment";
 
 import Partnews from "../../assets/partnews.png";
+import searchAnimation from "../../assets/search.json";
 import SearchIcon from "../../assets/searchIcon.png";
 import axios from "../../axios";
 import ImageTitleDate from "../../component/card/ImageTitleDate";
 import Footer from "../../component/Footer/Footer";
 import Header from "../../component/header/header";
+import { API_URL } from "../../constant/api";
+import { StateContext } from "../../StateProvider";
 
 import "./ParticularNews.css";
-import { StateContext } from "../../StateProvider";
 
 const ParticularNews = props => {
   const [state, setState] = React.useState({
@@ -46,7 +49,7 @@ const ParticularNews = props => {
   const instaUrl = "http://www.instagram.com";
   const { id } = useParams();
   const yearRef = useRef();
-  const baseUrl = import.meta.env.VITE_REACT_APP_API_ENDPOINT;
+  const baseUrl = API_URL;
 
   useEffect(() => {
     setIsLoading(true);
@@ -212,7 +215,11 @@ const ParticularNews = props => {
             alignItems: "center",
           }}
         >
-          <CircularProgress />
+          <Lottie
+            style={{ maxWidth: "650px" }}
+            animationData={searchAnimation}
+            loop={true}
+          />
         </div>
       )}
     </>

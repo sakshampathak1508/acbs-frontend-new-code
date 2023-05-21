@@ -81,7 +81,6 @@
 @media only screen and (max-width: 769px) {
   .imageTitleDate-card_body {
     height: 22rem;
-    max-width: 100%;
     width: 100%;
     margin-right: 0;
     margin: auto;

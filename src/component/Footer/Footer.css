@@ -1,14 +1,7 @@
 .all_footer {
   background: #181f25;
   margin-top: 2rem;
-}
-
-.all_footer > .inner-footer {
-  margin: 0 auto;
-  display: flex;
-  flex-direction: column;
-  padding-top: 3rem;
-  padding-bottom: 3rem;
+  padding-top: 2rem;
 }
 
 .all_footer .inner-footer .doping_image {
@@ -35,8 +28,12 @@
   /* IE and Edge */
   scrollbar-width: none;
   margin-top: 4rem;
+  gap: 2rem;
 }
 
+.all_footer .inner-footer .home_footer > * {
+  flex: 1;
+}
 .all_footer .inner-footer .home_footer ul {
   padding: 0;
 }

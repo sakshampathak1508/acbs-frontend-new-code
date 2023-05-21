@@ -3,25 +3,27 @@ import Slider from "react-slick";
 
 import EventIcon from "@mui/icons-material/Event";
 import TwitterIcon from "@mui/icons-material/Twitter";
-import { CircularProgress, useMediaQuery } from "@mui/material";
+import { Box, CircularProgress, useMediaQuery } from "@mui/material";
 
-import axios from "../axios";
-import ImageCard from "../component/card/Image";
-import ImageTitle from "../component/card/ImageTitle";
-import ImageTitleDate from "../component/card/ImageTitleDate";
-import TitleCard from "../component/card/Title";
-import Title from "../component/card/Title";
-import Carousel from "../component/carousel/Carousel";
-import CarouselWrapper from "../component/carousel/CarouselWrapper";
-import EventList from "../component/EventList/EventList";
-import Footer from "../component/Footer/Footer";
-import Header from "../component/header/header";
-import Widget from "../component/widget/widget";
+import axios from "../../axios";
+import ImageCard from "../../component/card/Image";
+import ImageTitle from "../../component/card/ImageTitle";
+import ImageTitleDate from "../../component/card/ImageTitleDate";
+import TitleCard from "../../component/card/Title";
+import Title from "../../component/card/Title";
+import Carousel from "../../component/carousel/Carousel";
+import CarouselWrapper from "../../component/carousel/CarouselWrapper";
+import EventList from "../../component/EventList/EventList";
+import Footer from "../../component/Footer/Footer";
+import Header from "../../component/header/header";
+import Twitter from "../../component/Twitter/Twitter";
+import Widget from "../../component/widget/widget";
+import { API_URL } from "../../constant/api";
 
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import "./Homepage.css";
-import Twitter from "../component/Twitter/Twitter";
+import { Toolbar } from "../../layout/BaseLayout.styles";
 
 const HomePage = props => {
   const [latestNews, setLatestNews] = useState([]);
@@ -36,16 +38,10 @@ const HomePage = props => {
   });
 
   const settings = {
-    // centerMode: true,
     dots: true,
     infinite: true,
     speed: 500,
     slidesToShow: isMobile ? 1 : latestNews.length >= 3 ? 3 : 2,
-    slidesGap: 50,
-    // centerMode: true, // add this property
-    // centerPadding: "50px", // add this property
-
-    // slidesToScroll: 1,
   };
 
   useEffect(() => {
@@ -56,8 +52,8 @@ const HomePage = props => {
           ...prev,
           loading1: false,
         }));
-
         setLatestNews(res.data);
+        setLatestNews(prev => [...prev, ...res.data]);
       })
       .catch(err => console.log(err));
 
@@ -95,7 +91,6 @@ const HomePage = props => {
     axios
       .get("api/sponsers")
       .then(response => {
-        console.log(response.data);
         setSponsors(response.data);
       })
       .catch(err => console.log(err));
@@ -105,55 +100,51 @@ const HomePage = props => {
       {!loading.loading1 && !loading.loading2 && !loading.loading3 ? (
         <section>
           <Carousel data={carouselData} />
-          <main className="container">
-            <div>
-              <div className="middle_widgets">
-                <div>
-                  <Widget
-                    Icon={EventIcon}
-                    link="champion"
-                    text="snooker - Billiards"
-                  />
-                  <EventList
-                    data={frontEvents && frontEvents["snooker-billiards"]}
-                  />
-                </div>
-                <div>
-                  <Widget Icon={EventIcon} link="champion" text="Pool" />
-                  <EventList data={frontEvents?.pool} />
-                </div>
-                <div>
-                  <Widget Icon={TwitterIcon} link="champion" text="Tweets" />
-                  <Twitter />
+          <Toolbar>
+            <Box sx={{ width: "100%" }}>
+              <div>
+                <div className="middle_widgets">
+                  <div>
+                    <Widget
+                      Icon={EventIcon}
+                      link="champion"
+                      text="snooker - Billiards"
+                    />
+                    <EventList
+                      data={frontEvents && frontEvents["snooker-billiards"]}
+                    />
+                  </div>
+                  <div>
+                    <Widget Icon={EventIcon} link="champion" text="Pool" />
+                    <EventList data={frontEvents?.pool} />
+                  </div>
+                  <div>
+                    <Widget Icon={TwitterIcon} link="champion" text="Tweets" />
+                    <Twitter />
+                  </div>
                 </div>
               </div>
-            </div>
-            <section className="latest-news">
-              <h4>Latest News</h4>
-              <Slider {...settings}>
-                {/* <ImageTitleDate />
-              <ImageTitleDate /> */}
-                {latestNews.map(data => (
-                  <>
+              <section className="latest-news">
+                <h4 className="heading">Latest News</h4>
+                <Slider arrows={false} {...settings}>
+                  {latestNews.map(data => (
                     <ImageTitleDate
                       key={data.id}
                       id={data.id}
                       slug={data.slug}
                       title={data.title}
                       timestamp={data.timestamp}
-                      image={`${import.meta.env.VITE_REACT_APP_API_ENDPOINT}${
-                        data.image
-                      }`}
+                      image={`${API_URL}${data.image}`}
                     />
-                  </>
-                ))}
-              </Slider>
-            </section>
-          </main>
+                  ))}
+                </Slider>
+              </section>
+            </Box>
+          </Toolbar>
           <section style={{ background: "#F4f4f4", marginTop: "2rem" }}>
             <CarouselWrapper data={sponsors} />
           </section>
-          <Footer></Footer>
+          <Footer />
         </section>
       ) : (
         <div

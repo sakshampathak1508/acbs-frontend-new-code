@@ -48,7 +48,7 @@ export const InputBase = styled(MuiInputBase)(({ theme }) => ({
     paddingLeft: `calc(1em + ${theme.spacing(4)})`,
     width: "40vw",
     [theme.breakpoints.up("md")]: {
-      width: "13vw",
+      width: "12vw",
     },
   },
 }));

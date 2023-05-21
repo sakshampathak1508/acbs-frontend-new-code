@@ -39,7 +39,6 @@ import "bootstrap/dist/css/bootstrap.css";
 // eslint-disable-next-line no-unused-vars
 const Header = ({ active }) => {
   const navigate = useNavigate();
-  // eslint-disable-next-line no-unused-vars
   const [value, setValue] = useState("");
   const [searched, setSearched] = useState();
   const isMobile = useMediaQuery("(min-width:900px)");
@@ -54,6 +53,7 @@ const Header = ({ active }) => {
   const handleSearch = event => {
     console.log("value", searched);
     event.preventDefault();
+    if (searched != "") navigate(`search/?query=${searched}`);
   };
 
   const drawer = (
@@ -85,9 +85,14 @@ const Header = ({ active }) => {
         </ListItem>
         <ListItem className="dropdown">
           <Box>
-            <Styles.Link to="/news">Aboutt ed</Styles.Link>
+            <Styles.Link to="/about-us">
+              About <KeyboardArrowDown />
+            </Styles.Link>
             <Box className="dropdown-content">
-              <Styles.Link to="/about" onClick={() => history.push("/aboutus")}>
+              <Styles.Link
+                to="/about-us"
+                onClick={() => history.push("/aboutus")}
+              >
                 The IBSF
               </Styles.Link>
               <Styles.Link
@@ -121,7 +126,7 @@ const Header = ({ active }) => {
           <Styles.Link to="/news">Videos</Styles.Link>
         </ListItem>
         <ListItem>
-          <Styles.Link to="/news">Contact Us</Styles.Link>
+          <Styles.Link to="/contact-us">Contact Us</Styles.Link>
         </ListItem>
         <ListItem>
           {/* <Styles.Link to="/news">Login</Styles.Link> */}
@@ -133,7 +138,9 @@ const Header = ({ active }) => {
 
   return (
     <>
-      <AppBar sx={{ minHeight: "64px", background: "white" }}>
+      <AppBar
+        sx={{ position: "sticky", minHeight: "64px", background: "white" }}
+      >
         <Box sx={{ maxWidth: "1350px", width: "100%", margin: "0 auto" }}>
           <Toolbar
             sx={{
@@ -146,7 +153,9 @@ const Header = ({ active }) => {
               <Styles.Link
                 className="navbar-brand"
                 to="/"
-                sx={{ mr: { md: "2rem", sm: 0 } }}
+                sx={theme => ({
+                  [theme.breakpoints.up(950)]: { mr: "2rem" },
+                })}
               >
                 <img src={LOGO} height="35px" alt="logo" />
               </Styles.Link>
@@ -176,16 +185,17 @@ const Header = ({ active }) => {
                   <Styles.Link to="/event">Event</Styles.Link>
                 </ListItem>
                 <ListItem className="dropdown">
-                  <Styles.Link to="/news">
+                  <Styles.Link to="/about-us">
                     About <KeyboardArrowDown />
                   </Styles.Link>
                   <Box className="dropdown-content">
-                    <Styles.Link to="/about">The ACBS</Styles.Link>
+                    <Styles.Link to="/about-us">The ACBS</Styles.Link>
                     <Styles.Link to="/executives">Executives</Styles.Link>
                     <Styles.Link to="/members">Members</Styles.Link>
                     <Styles.Link to="/past-champions">
                       Past Champions
                     </Styles.Link>
+                    <Styles.Link to="/rules">Rules</Styles.Link>
                   </Box>
                 </ListItem>
                 {/* <ListItem>
@@ -195,10 +205,7 @@ const Header = ({ active }) => {
               <Styles.Link to="/news">Members</Styles.Link>
             </ListItem> */}
                 <ListItem>
-                  <Styles.Link to="/news">Rules</Styles.Link>
-                </ListItem>
-                <ListItem>
-                  <Styles.Link to="/news">Documents</Styles.Link>
+                  <Styles.Link to="/documents">Documents</Styles.Link>
                 </ListItem>
                 <ListItem className="dropdown">
                   <Styles.Link to="/news">
@@ -209,9 +216,9 @@ const Header = ({ active }) => {
                     <Styles.Link to="/executives">Videos</Styles.Link>
                   </Box>
                 </ListItem>
-                {/* <ListItem>
-                  <Styles.Link to="/news">Contact Us</Styles.Link>
-                </ListItem> */}
+                <ListItem>
+                  <Styles.Link to="/contact-us">Contact Us</Styles.Link>
+                </ListItem>
               </List>
             </Box>
             {/* </div> */}

@@ -1,0 +1,12 @@
+.download {
+  padding-top: 1rem;
+  width: 100%;
+}
+
+.download .headline {
+  text-transform: uppercase;
+  color: var(--black);
+  margin-bottom: 2rem;
+  text-decoration: underline var(--red) 2px;
+  text-underline-offset: 8px;
+}
