@@ -1,36 +1,29 @@
 import React, { useEffect, useState } from "react";
+// import { Helmet } from "react-helmet";
 
 import { Box } from "@mui/material";
 import CircularProgress from "@mui/material/CircularProgress";
 
-import image1 from "../../assets/cardEx.png";
-import image2 from "../../assets/sponsor1.png";
 import axios from "../../axios";
 import ExecutiveCard from "../../component/card/Executive";
-import Header from "../../component/header/header";
 
 import "./Executive.css";
 
-const Executive = props => {
+const Executive = () => {
   const [data, setData] = useState([]);
   const [loading, setloading] = useState(true);
 
   useEffect(() => {
-    axios
-      .get("api/executives")
-      .then(res => {
-        setData(res.data);
-        setloading(false);
-      })
-      .catch(e => console.log(e));
+    axios.get("api/executives").then(res => {
+      setData(res.data);
+      setloading(false);
+    }).catch;
   }, []);
   return (
     <>
       {/* <Helmet>
-                <meta charSet="utf-8" />
-                <title>Executives</title>
-                
-            </Helmet> */}
+        <title>Executives</title>
+      </Helmet> */}
 
       <div className="ui container" style={{ paddingTop: "1rem" }}>
         <Box sx={{ mb: "2rem" }}>

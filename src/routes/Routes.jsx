@@ -39,7 +39,7 @@ const AllRoute = createBrowserRouter(
         exact
         element={<PastParticularChampion />}
       />
-      <Route path="/category/:id" exact element={<Category />} />
+      <Route path="/category/:category" exact element={<Category />} />
       <Route path="/contact-us" exact element={<Contact />} />
       <Route path="/about-us" exact element={<AboutAcbs />} />
       <Route path="/documents" exact element={<Documents />} />

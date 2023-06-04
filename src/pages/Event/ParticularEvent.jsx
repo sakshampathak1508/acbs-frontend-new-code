@@ -1,4 +1,4 @@
-import React, { useEffect, useContext, useRef } from "react";
+import React, { useEffect, useContext } from "react";
 import { useParams } from "react-router";
 
 import AttachmentIcon from "@mui/icons-material/Attachment";
@@ -8,20 +8,13 @@ import PlayCircleIcon from "@mui/icons-material/PlayCircle";
 import SportsIcon from "@mui/icons-material/Sports";
 import SportsKabaddiIcon from "@mui/icons-material/SportsKabaddi";
 import { styled, Link } from "@mui/material";
-import CircularProgress from "@mui/material/CircularProgress";
-// import FormControl from "@mui/material/FormControl";
-// import IconButton from "@mui/material/IconButton";
-// import MenuItem from "@mui/material/MenuItem";
-// import Select from "@mui/material/Select";
 
 import Lottie from "lottie-react";
 import moment from "moment";
 
 import searchAnimation from "../../assets/search.json";
-// import SearchIcon from "../../assets/searchIcon.png";
 import axios from "../../axios";
 import Footer from "../../component/Footer/Footer";
-// import Header from "../../component/header/header";
 import { StateContext } from "../../StateProvider";
 import "./ParticularEvent.css";
 
@@ -56,7 +49,7 @@ const ParticularEvent = () => {
       setIsLoading(false);
       setState(prev => ({ ...prev, ["event"]: res?.data }));
     });
-  }, []);
+  }, [id]);
 
   return (
     <>

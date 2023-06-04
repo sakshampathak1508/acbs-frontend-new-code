@@ -13,33 +13,20 @@ import {
   List,
   ListItem,
   Toolbar,
+  Typography,
   useMediaQuery,
 } from "@mui/material";
 import IconButton from "@mui/material/IconButton";
 
 import "./header.css";
-// import InputBase from "@mui/material/InputBase";
-// import Paper from "@mui/material/Paper";
 
 import * as Styles from "./header.styles.js";
 import LOGO from "../../assets/acbs.png";
 import "./header.styles.js";
-// import Back from "../../assets/back.png";
 
-import "bootstrap/dist/css/bootstrap.css";
-
-// function myFunction() {
-//   var x = document.getElementsByClassName("ui")[0];
-//   if (x.className === "topnav") {
-//     x.className += " responsive";
-//   } else {
-//     x.className = "topnav";
-//   }
-// }
-// eslint-disable-next-line no-unused-vars
-const Header = ({ active }) => {
+const Header = () => {
   const navigate = useNavigate();
-  const [value, setValue] = useState("");
+
   const [searched, setSearched] = useState();
   const isMobile = useMediaQuery("(min-width:900px)");
 
@@ -51,93 +38,95 @@ const Header = ({ active }) => {
   };
 
   const handleSearch = event => {
-    console.log("value", searched);
     event.preventDefault();
     if (searched != "") navigate(`search/?query=${searched}`);
   };
 
   const drawer = (
-    <Toolbar
-      onClick={handleDrawerToggle}
-      sx={{ display: "flex", flexDirection: "column" }}
-    >
-      {/* <Styles.Link className="navbar-brand" href="#"> */}
-      {/* <img src={LOGO} height="35px" alt="logo" /> */}
+    <Toolbar sx={{ display: "flex", flexDirection: "column" }}>
       <IconButton
         color="inherit"
         aria-label="open drawer"
         edge="end"
         sx={{ ml: "auto" }}
+        onClick={handleDrawerToggle}
       >
-        {/* <li className="nav-item"> */}
-        {/* <img src={Back} /> */}
-        {/* </li> */}
         <CloseIcon sx={{ fontSize: "25px" }} />
       </IconButton>
-      {/* </Styles.Link> */}
-      {/* <Divider size="sm" color="black" /> */}
       <List sx={{ width: "100%", p: 0 }}>
         <ListItem>
-          <Styles.Link to="/">Home</Styles.Link>
+          <Styles.Link onClick={handleDrawerToggle} to="/">
+            Home
+          </Styles.Link>
         </ListItem>
         <ListItem>
-          <Styles.Link to="/news">News</Styles.Link>
+          <Styles.Link onClick={handleDrawerToggle} to="/news">
+            News
+          </Styles.Link>
+        </ListItem>
+        <ListItem>
+          <Styles.Link onClick={handleDrawerToggle} to="/event">
+            Event
+          </Styles.Link>
         </ListItem>
         <ListItem className="dropdown">
           <Box>
-            <Styles.Link to="/about-us">
+            <Typography variant="span">
               About <KeyboardArrowDown />
-            </Styles.Link>
+            </Typography>
             <Box className="dropdown-content">
-              <Styles.Link
-                to="/about-us"
-                onClick={() => history.push("/aboutus")}
-              >
-                The IBSF
+              <Styles.Link onClick={handleDrawerToggle} to="/about-us">
+                The ACBS
               </Styles.Link>
-              <Styles.Link
-                to="/execute"
-                onClick={() => history.push("/executive_member")}
-              >
+              <Styles.Link onClick={handleDrawerToggle} to="/executives">
                 Executives
               </Styles.Link>
-              <Styles.Link
-                to="/execute"
-                onClick={() => history.push("/executive_member")}
-              >
-                Executives
+              <Styles.Link onClick={handleDrawerToggle} to="/members">
+                Members
               </Styles.Link>
-              <Styles.Link
-                to="/execute"
-                onClick={() => history.push("/executive_member")}
-              >
-                Executives
+              <Styles.Link onClick={handleDrawerToggle} to="/past-champions">
+                Past Champions
+              </Styles.Link>
+              <Styles.Link onClick={handleDrawerToggle} to="/rules">
+                Rules
               </Styles.Link>
             </Box>
           </Box>
         </ListItem>
         <ListItem>
-          <Styles.Link to="/news">Tournaments</Styles.Link>
+          <Styles.Link to="/news">Documents</Styles.Link>
+        </ListItem>
+        <ListItem className="dropdown">
+          <Box sx={{ overflowX: "hidden" }}>
+            <Typography variant="span">
+              Gallery&apos;s <KeyboardArrowDown />
+            </Typography>
+            <Box className="dropdown-content">
+              <Styles.Link to="/photographs">Photographs</Styles.Link>
+              <Styles.Link to="/executives">Videos</Styles.Link>
+            </Box>
+          </Box>
         </ListItem>
         <ListItem>
-          <Styles.Link to="/news">Members</Styles.Link>
+          <Styles.Link onClick={handleDrawerToggle} to="/contact-us">
+            Contact Us
+          </Styles.Link>
         </ListItem>
         <ListItem>
-          <Styles.Link to="/news">Videos</Styles.Link>
-        </ListItem>
-        <ListItem>
-          <Styles.Link to="/contact-us">Contact Us</Styles.Link>
-        </ListItem>
-        <ListItem>
-          {/* <Styles.Link to="/news">Login</Styles.Link> */}
-          <Styles.Login>Login</Styles.Login>
+          <Styles.Login
+            href="https://acbsbackend.pythonanywhere.com/admin/login/?next=/admin/"
+            target="_blank"
+          >
+            Login
+          </Styles.Login>
         </ListItem>
       </List>
     </Toolbar>
   );
 
   return (
-    <>
+    // Do i need this?
+    <header>
       <AppBar
         sx={{ position: "sticky", minHeight: "64px", background: "white" }}
       >
@@ -157,24 +146,10 @@ const Header = ({ active }) => {
                   [theme.breakpoints.up(950)]: { mr: "2rem" },
                 })}
               >
-                <img src={LOGO} height="35px" alt="logo" />
+                <img src={LOGO} height="35px" width="35px" alt="logo" />
               </Styles.Link>
-              {/* <button
-                  className="navbar-toggler"
-                  type="button"
-                  data-toggle="collapse"
-                  data-target="#navbarNav"
-                  aria-controls="navbarNav"
-                  aria-expanded="false"
-                  aria-label="Toggle navigation"
-                >
-                  <span className="navbar-toggler-icon"></span>
-                </button> */}
-              {/* <div className="collapse navbar-collapse" id="navbarNav"> */}
-              <List
-                sx={{ display: { xs: "none", md: "flex" } }}
-                // className="navbar-nav"
-              >
+
+              <List sx={{ display: { xs: "none", md: "flex" } }}>
                 <ListItem>
                   <Styles.Link to="/">Home</Styles.Link>
                 </ListItem>
@@ -198,22 +173,26 @@ const Header = ({ active }) => {
                     <Styles.Link to="/rules">Rules</Styles.Link>
                   </Box>
                 </ListItem>
-                {/* <ListItem>
-                  <Styles.Link to="/news">Tournaments</Styles.Link>
-                </ListItem> */}
-                {/* <ListItem>
-              <Styles.Link to="/news">Members</Styles.Link>
-            </ListItem> */}
                 <ListItem>
                   <Styles.Link to="/documents">Documents</Styles.Link>
                 </ListItem>
                 <ListItem className="dropdown">
-                  <Styles.Link to="/news">
+                  <Styles.Link to="/photographs">
                     Gallery&apos;s <KeyboardArrowDown />
                   </Styles.Link>
                   <Box className="dropdown-content">
-                    <Styles.Link to="/about">Photographs</Styles.Link>
-                    <Styles.Link to="/executives">Videos</Styles.Link>
+                    <Styles.Anchor
+                      target="_blank"
+                      href="https://www.facebook.com/acbsport/photos_albums"
+                    >
+                      Photographs
+                    </Styles.Anchor>
+                    <Styles.Anchor
+                      href="https://www.youtube.com/@acbstv/videos"
+                      target="_blank"
+                    >
+                      Videos
+                    </Styles.Anchor>
                   </Box>
                 </ListItem>
                 <ListItem>
@@ -257,6 +236,8 @@ const Header = ({ active }) => {
                 </Styles.Search>
               </form>
               <Styles.Login
+                href="https://acbsbackend.pythonanywhere.com/admin/login/?next=/admin/"
+                target="_blank"
                 sx={{
                   marginLeft: "0.8rem",
                   display: { xs: "none", md: "block" },
@@ -270,12 +251,9 @@ const Header = ({ active }) => {
               color="inherit"
               aria-label="open drawer"
               edge="start"
-              onClick={handleDrawerToggle}
               sx={{ color: "black", display: { md: "none" } }}
+              onClick={handleDrawerToggle}
             >
-              {/* <li className="nav-item"> */}
-              {/* <img src={Back} /> */}
-              {/* </li> */}
               <MenuIcon />
             </IconButton>
           </Toolbar>
@@ -301,7 +279,7 @@ const Header = ({ active }) => {
           {drawer}
         </Drawer>
       </Box>
-    </>
+    </header>
   );
 };
 

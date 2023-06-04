@@ -55,39 +55,37 @@ const EventList = ({ data }) => {
         <TableBody>
           {data &&
             data.map((row, index) => (
-              <>
-                <StyledTableRow key={row?.id}>
-                  <StyledTableCell
-                    // className={classes.style_key}
-                    style={
-                      index % 2
-                        ? { background: "#ed1c24b3" }
-                        : { background: "var(--red)" }
-                    }
-                    align="left"
-                  >
-                    {index + 1}
-                  </StyledTableCell>
-                  <StyledTableCell
-                    component={Link}
-                    sx={{
-                      all: "reset",
-                      textDecoration: "none",
-                      "&:hover": { color: "var(--red)" },
-                    }}
-                    to={`/event/${row.id}/${row.slug}`}
-                    align="left"
-                  >
-                    {row.name}
-                  </StyledTableCell>
+              <StyledTableRow key={row?.id}>
+                <StyledTableCell
+                  // className={classes.style_key}
+                  style={
+                    index % 2
+                      ? { background: "#ed1c24b3" }
+                      : { background: "var(--red)" }
+                  }
+                  align="left"
+                >
+                  {index + 1}
+                </StyledTableCell>
+                <StyledTableCell
+                  component={Link}
+                  sx={{
+                    all: "reset",
+                    textDecoration: "none",
+                    "&:hover": { color: "var(--red)" },
+                  }}
+                  to={`/event/${row.id}/${row.slug}`}
+                  align="left"
+                >
+                  {row.name}
+                </StyledTableCell>
 
-                  <StyledTableCell align="right">
-                    {moment(row?.start_date).format("MMMM DD, YYYY")}
-                    {" - "}
-                    {moment(row?.end_date).format("MMMM DD, YYYY")}
-                  </StyledTableCell>
-                </StyledTableRow>
-              </>
+                <StyledTableCell align="right">
+                  {moment(row?.start_date).format("MMMM DD, YYYY")}
+                  {" - "}
+                  {moment(row?.end_date).format("MMMM DD, YYYY")}
+                </StyledTableCell>
+              </StyledTableRow>
             ))}
         </TableBody>
       </Table>

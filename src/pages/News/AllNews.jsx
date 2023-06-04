@@ -1,31 +1,25 @@
 import React, { useState, useContext, useEffect, useRef } from "react";
+// import { Helmet } from "react-helmet";
 
 import { Box, MenuItem } from "@mui/material";
 import CircularProgress from "@mui/material/CircularProgress";
 import FormControl from "@mui/material/FormControl";
-import IconButton from "@mui/material/IconButton";
 import Select from "@mui/material/Select";
 
-import SearchIcon from "../../assets/searchIcon.png";
 import axios from "../../axios";
 import ImageTitleDate from "../../component/card/ImageTitleDate";
 import Footer from "../../component/Footer/Footer";
-import Header from "../../component/header/header";
+import { API_URL } from "../../constant/api";
+import { Toolbar } from "../../layout/BaseLayout.styles";
 import { StateContext } from "../../StateProvider";
 
 import "./AllNews.css";
-import { API_URL } from "../../constant/api";
-
-import { Helmet } from "react-helmet";
-
-import { Toolbar } from "../../layout/BaseLayout.styles";
 
 const AllNews = () => {
   const [hasMore, setHasMore] = useState(true);
   const currentYear = new Date().getFullYear();
 
   const limitPerPage = 30;
-  // const [isLoading, setIsLoading] = useState(false);
   const { isLoading, setIsLoading } = useContext(StateContext);
   const [page, setPage] = useState({ value: 1 });
   const [data, setData] = useState([]);
@@ -35,6 +29,7 @@ const AllNews = () => {
   });
 
   window.onscroll = () => {
+    console.log("ds");
     if (
       window.innerHeight + document.documentElement.scrollTop + 0 >=
         document.documentElement.offsetHeight &&
@@ -66,36 +61,32 @@ const AllNews = () => {
 
     const regex_pattern = /\/news\/all/;
 
-    axios
-      .get(api_url)
-      .then(res => {
-        console.log(res.data);
-        setIsLoading(false);
+    axios.get(api_url).then(res => {
+      setIsLoading(false);
 
-        if (regex_pattern.test(api_url)) {
-          if (res?.data?.results?.length < limitPerPage) setHasMore(false);
-          setData(prev => {
-            return prev.concat(res?.data?.results);
-          });
-        } else {
-          setData(res?.data);
-        }
-      })
-      .catch(e => console.log(e));
-  }, [page]);
+      if (regex_pattern.test(api_url)) {
+        if (res?.data?.results?.length < limitPerPage) setHasMore(false);
+        setData(prev => {
+          return prev.concat(res?.data?.results);
+        });
+      } else {
+        setData(res?.data);
+      }
+    }).catch;
+  }, [page, state]);
 
   return (
     <div className="newspage">
-      <Helmet>
+      {/* <Helmet>
         <title>News</title>
-      </Helmet>
+      </Helmet> */}
       <Toolbar>
         <Box sx={{ width: "100%" }}>
           <main className="main-news-page">
             <header className="header-title">
               <h4>News</h4>
               <section className="year">
-                <label>Year</label>
+                <span>Year</span>
                 <FormControl
                   variant="outlined"
                   sx={{

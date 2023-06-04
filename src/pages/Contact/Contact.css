@@ -26,9 +26,6 @@
   margin: 0;
 }
 
-.contact-us .name-email-person .item2 {
-  cursor: pointer;
-}
 
 .contact-us .name-email-person .item2 .text {
   color: var(--red);

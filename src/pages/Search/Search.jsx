@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Helmet } from "react-helmet";
-import { useLocation, useNavigate, useParams } from "react-router";
+import { useLocation } from "react-router";
 
 import {
   Box,
@@ -10,47 +9,37 @@ import {
   FormControl,
 } from "@mui/material";
 
-import axios from "../../axios";
-import { Toolbar } from "../../layout/BaseLayout.styles";
-
-import "./Search.css";
-import Footer from "../../component/Footer/Footer";
-import NewsTable from "./NewsTable";
 import EventTable from "./EventTable";
+import NewsTable from "./NewsTable";
+import axios from "../../axios";
+import Footer from "../../component/Footer/Footer";
+import { SEO } from "../../helper/Seo";
+import { Toolbar } from "../../layout/BaseLayout.styles";
+import "./Search.css";
 
-const Search = props => {
+const Search = () => {
   const location = useLocation();
-const searchParams = new URLSearchParams(location.search);
-const query = searchParams.get("query");
+  const searchParams = new URLSearchParams(location.search);
+  const query = searchParams.get("query");
 
   const [searchdata, setSearchdata] = useState(null);
-  const [loading, setloading] = useState(true);
+
   const [type, setTypes] = useState("news");
-  const navigate = useNavigate();
 
   const handleChange = event => {
     setTypes(event.target.value);
   };
 
   useEffect(() => {
-    setloading(true);
     setSearchdata(null);
-    axios
-      .get(`api/search/?query=${query}`)
-      .then(res => {
-        console.log(res.data);
-        setSearchdata(res.data);
-        setloading(false);
-      })
-      .catch(e => console.log(e));
+    axios.get(`api/search/?query=${query}`).then(res => {
+      setSearchdata(res.data);
+    }).catch;
   }, [query]);
 
   return (
     <Box className="search">
-      <Helmet>
-        <meta charSet="utf-8" />
-        {/* <>Search | {query}</ title> */}
-      </Helmet>
+      <SEO title="Search" description={`Search Results for ${query}`} />
       <Toolbar>
         <div
           style={{
@@ -73,7 +62,7 @@ const query = searchParams.get("query");
                 alignItems: "center",
               }}
             >
-              <label>Type</label>
+              <span>Type</span>
               <FormControl
                 variant="outlined"
                 sx={{

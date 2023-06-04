@@ -1,47 +1,32 @@
-import React, { useContext, useEffect, useState } from "react";
-import { Helmet } from "react-helmet";
-
-import { Box, FormControl, MenuItem, Select, Toolbar } from "@mui/material";
-import CircularProgress from "@mui/material/CircularProgress";
+import React, { useEffect, useState } from "react";
 
 import Lottie from "lottie-react";
 
-import image1 from "../../assets/cardEx.png";
 import searchAnimation from "../../assets/search.json";
-import image2 from "../../assets/sponsor1.png";
 import axios from "../../axios";
-import ExecutiveCard from "../../component/card/Executive";
 import Footer from "../../component/Footer/Footer";
-import Header from "../../component/header/header";
+import { SEO } from "../../helper/Seo";
 import * as Styled from "../../layout/BaseLayout.styles";
-import { StateContext } from "../../StateProvider";
 
 import "./About.css";
 
-const AboutAcbs = props => {
+const AboutAcbs = () => {
   const [data, setData] = useState(null);
-  const [type, setTypes] = useState("news");
-
-  const handleChange = event => {
-    setTypes(event.target.value);
-    setData([]);
-  };
 
   useEffect(() => {
-    axios
-      .get("api/about-us")
-      .then(res => {
-        setData(res.data);
-      })
-      .catch(e => console.log(e));
+    axios.get("api/about-us").then(res => {
+      setData(res.data);
+    }).catch;
   }, []);
 
   return (
     <>
-      <Helmet>
-        <meta charSet="utf-8" />
-        <title>Category | {type}</title>
-      </Helmet>
+      <SEO
+        title="ACBS | About"
+        description="The Asian Confederation of Billiard Sports (ACBS) is an organization that governs non-professional snooker and English billiards in the asian region.
+                The Asian Billiards & Snooker Federation (ABSF), now renamed the Asian Confederation of Billiards Sports (ACBS), was officially inaugurated in 1984 with eight founding member countries, of which Malaysia was one."
+      />
+
       <Styled.Toolbar>
         <div
           className=" about-us"

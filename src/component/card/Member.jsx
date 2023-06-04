@@ -1,21 +1,19 @@
 import React from "react";
 import { useNavigate } from "react-router";
 
-import AddIcCallOutlinedIcon from "@mui/icons-material/AddIcCallOutlined";
 import CallOutlinedIcon from "@mui/icons-material/CallOutlined";
-import FacebookIcon from "@mui/icons-material/Facebook";
-import InstagramIcon from "@mui/icons-material/Instagram";
 import LanguageOutlinedIcon from "@mui/icons-material/LanguageOutlined";
 import MailOutlineIcon from "@mui/icons-material/MailOutline";
 import { Box } from "@mui/material";
 
-import "./Members.css";
 import { API_URL } from "../../constant/api";
-// import { Box } from "@mui/material";
+import { StyledLink } from "../styles/Styles";
+import "./Members.css";
 
 const Card = props => {
   const history = useNavigate();
   props = props?.data;
+
   return (
     <Box
       key={props.id}
@@ -35,25 +33,19 @@ const Card = props => {
         </p>
         <div className="icons">
           {props.email && (
-            <MailOutlineIcon
-              onClick={() => {
-                window.open(props.email, "blank");
-              }}
-            />
+            <StyledLink href={"mailto:" + props.email} target="_blank">
+              <MailOutlineIcon />
+            </StyledLink>
           )}
           {props.contact_number && (
-            <CallOutlinedIcon
-              onClick={() => {
-                window.open(props.contact_number, "blank");
-              }}
-            />
+            <StyledLink href={"tel:" + props.contact_number} target="_blank">
+              <CallOutlinedIcon />
+            </StyledLink>
           )}
           {props.site && (
-            <LanguageOutlinedIcon
-              onClick={() => {
-                window.open(props.site, "blank");
-              }}
-            />
+            <StyledLink href={props.site} target="_blank">
+              <LanguageOutlinedIcon />
+            </StyledLink>
           )}
         </div>
       </section>

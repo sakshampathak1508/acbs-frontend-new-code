@@ -1,12 +1,11 @@
 import React from "react";
-// import { useMediaQuery } from "@mui/material/useMediaQuery";
 import { useNavigate } from "react-router";
 
 import { Box } from "@mui/material";
 
-import carouselEx from "../../assets/carouselEx.jpg";
-import "./ImageTitle.css";
 import { API_URL } from "../../constant/api";
+
+import "./ImageTitle.css";
 
 const ImageTitle = props => {
   const navigate = useNavigate();

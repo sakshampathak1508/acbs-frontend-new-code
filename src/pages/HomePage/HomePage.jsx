@@ -3,29 +3,25 @@ import Slider from "react-slick";
 
 import EventIcon from "@mui/icons-material/Event";
 import TwitterIcon from "@mui/icons-material/Twitter";
-import { Box, CircularProgress, useMediaQuery } from "@mui/material";
+import { Box, useMediaQuery } from "@mui/material";
 
+import logo from "../../assets/acbs.png";
 import axios from "../../axios";
-import ImageCard from "../../component/card/Image";
-import ImageTitle from "../../component/card/ImageTitle";
 import ImageTitleDate from "../../component/card/ImageTitleDate";
-import TitleCard from "../../component/card/Title";
-import Title from "../../component/card/Title";
 import Carousel from "../../component/carousel/Carousel";
 import CarouselWrapper from "../../component/carousel/CarouselWrapper";
 import EventList from "../../component/EventList/EventList";
 import Footer from "../../component/Footer/Footer";
-import Header from "../../component/header/header";
 import Twitter from "../../component/Twitter/Twitter";
 import Widget from "../../component/widget/widget";
 import { API_URL } from "../../constant/api";
+import { Toolbar } from "../../layout/BaseLayout.styles";
 
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import "./Homepage.css";
-import { Toolbar } from "../../layout/BaseLayout.styles";
 
-const HomePage = props => {
+const HomePage = () => {
   const [latestNews, setLatestNews] = useState([]);
   const [frontEvents, setFronEvents] = useState();
   const [sponsors, setSponsors] = useState([]);
@@ -45,28 +41,22 @@ const HomePage = props => {
   };
 
   useEffect(() => {
-    axios
-      .get("news/latest/")
-      .then(res => {
-        setloading(prev => ({
-          ...prev,
-          loading1: false,
-        }));
-        setLatestNews(res.data);
-        setLatestNews(prev => [...prev, ...res.data]);
-      })
-      .catch(err => console.log(err));
+    axios.get("news/latest/").then(res => {
+      setloading(prev => ({
+        ...prev,
+        loading1: false,
+      }));
+      setLatestNews(res.data);
+      setLatestNews(prev => [...prev, ...res.data]);
+    }).catch;
 
-    axios
-      .get("events/front/")
-      .then(res => {
-        setloading(prev => ({
-          ...prev,
-          loading2: false,
-        }));
-        setFronEvents(res?.data);
-      })
-      .catch(err => console.log(err));
+    axios.get("events/front/").then(res => {
+      setloading(prev => ({
+        ...prev,
+        loading2: false,
+      }));
+      setFronEvents(res?.data);
+    }).catch;
 
     axios.get("api/featured").then(response => {
       setloading(prev => ({
@@ -88,12 +78,9 @@ const HomePage = props => {
       setCarouselData(mergedArray);
     });
 
-    axios
-      .get("api/sponsers")
-      .then(response => {
-        setSponsors(response.data);
-      })
-      .catch(err => console.log(err));
+    axios.get("api/sponsers").then(response => {
+      setSponsors(response.data);
+    }).catch;
   }, []);
   return (
     <>
@@ -130,6 +117,7 @@ const HomePage = props => {
                   {latestNews.map(data => (
                     <ImageTitleDate
                       key={data.id}
+                      views={data.views}
                       id={data.id}
                       slug={data.slug}
                       title={data.title}
@@ -141,7 +129,7 @@ const HomePage = props => {
               </section>
             </Box>
           </Toolbar>
-          <section style={{ background: "#F4f4f4", marginTop: "2rem" }}>
+          <section style={{ background: "#F4f4f4", marginTop: "3rem" }}>
             <CarouselWrapper data={sponsors} />
           </section>
           <Footer />
@@ -153,11 +141,13 @@ const HomePage = props => {
             width: "100%",
             height: "100%",
             display: "flex",
+            flexDirection: "column",
+            gap: "2rem",
             justifyContent: "center",
             alignItems: "center",
           }}
         >
-          <CircularProgress />
+          <img src={logo} alt="ACBS" width={70} height={70} />
         </div>
       )}
     </>

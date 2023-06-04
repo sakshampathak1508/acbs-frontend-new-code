@@ -1,8 +1,6 @@
-// import React from "react";
+import { NavLink as RouterLink } from "react-router-dom";
 
-import { NavLink as MuiLink } from "react-router-dom";
-
-import { Box, InputBase as MuiInputBase, Button } from "@mui/material";
+import { Link as MuiLink, Box, InputBase as MuiInputBase } from "@mui/material";
 import { styled, alpha } from "@mui/material/styles";
 
 export const Search = styled("div")(() => ({
@@ -15,16 +13,33 @@ export const Search = styled("div")(() => ({
   },
 }));
 
-export const Link = styled(MuiLink)(() => ({
+export const Link = styled(RouterLink)(() => ({
   color: "black",
+  width: "fit-content",
   whiteSpace: "nowrap",
   margin: "0",
-  // marginRight: "1rem",
-  // margin: "0 auto",
   textDecoration: "none",
+
   "&.active": {
     color: "var(--red)",
   },
+
+  "&:hover": {
+    color: "var(--red)",
+  },
+}));
+
+export const Anchor = styled(MuiLink)(() => ({
+  color: "black",
+  width: "fit-content",
+  whiteSpace: "nowrap",
+  margin: "0",
+  textDecoration: "none",
+
+  "&.active": {
+    color: "var(--red)",
+  },
+
   "&:hover": {
     color: "var(--red)",
   },
@@ -53,12 +68,14 @@ export const InputBase = styled(MuiInputBase)(({ theme }) => ({
   },
 }));
 
-export const Login = styled(Button)(() => ({
+export const Login = styled(MuiLink)(() => ({
   minHeight: 0,
   backgroundColor: "var(--red)",
+  textDecoration: "none",
   color: "white",
   borderRadius: "8px",
-  padding: "0.2rem 1.8rem",
+  padding: "0.3rem 1.8rem",
+  cursor: "pointer",
   border: "1px solid var(--red)",
   fontWeight: 700,
   "&:hover": {

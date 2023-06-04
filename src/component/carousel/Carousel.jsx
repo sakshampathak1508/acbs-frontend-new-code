@@ -9,37 +9,18 @@ import { styled } from "@mui/material/styles";
 
 import Carousel from "react-bootstrap/Carousel";
 
-import "./carousel.css";
 import { API_URL } from "../../constant/api";
-
-const StyledLink = styled(Link)(() => ({
-  color: "var(--black)",
-  all: "reset",
-  textDecoration: "none",
-  padding: 0,
-  background: "none",
-  margin: 0,
-  "&:hover": {
-    color: "var(--red)",
-  },
-  // "&:active": {
-  //   color: "var(--red)",
-  // },
-}));
+import { StyledLink } from "../styles/Styles";
+import "./carousel.css";
+import "bootstrap/dist/css/bootstrap.css";
 
 const ControlledCarousel = ({ data }) => {
-  console.log(data);
   const isMobile = useMediaQuery("(max-width:900px)");
 
   const history = useNavigate();
 
   return (
-    <Carousel
-      // style={{ height: "90vh" }}
-      className="mainPage_carousel"
-      interval={4000}
-      indicators={false}
-    >
+    <Carousel className="mainPage_carousel" interval={4000} indicators={false}>
       {data &&
         data.map((val, index) => (
           <Carousel.Item
@@ -91,7 +72,6 @@ const ControlledCarousel = ({ data }) => {
                 {val.event && (
                   <button className="groups dropbtn">
                     <FormControl
-                      variant=""
                       sx={{
                         m: 0,
                         b: 0,
@@ -109,6 +89,7 @@ const ControlledCarousel = ({ data }) => {
                         </MenuItem>
                         {val.event.groups && (
                           <MenuItem
+                            sx={{ fontWeight: 700 }}
                             component={StyledLink}
                             href={val.event.groups}
                             target="_blank"

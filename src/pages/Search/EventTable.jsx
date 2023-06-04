@@ -1,9 +1,8 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 
 import { TableHead, styled } from "@mui/material";
 import Paper from "@mui/material/Paper";
-// import { withStyles, makeStyles } from "@mui/material/styles";
 import Table from "@mui/material/Table";
 import TableBody from "@mui/material/TableBody";
 import TableCell from "@mui/material/TableCell";
@@ -33,8 +32,13 @@ const StyledTableCell = styled(TableCell)(() => ({
   },
 }));
 
+const StyledLink = styled(NavLink)(() => ({
+  all: "reset",
+  textDecoration: "none",
+  "&:hover": { color: "var(--red)" },
+}));
+
 const EventTable = ({ data }) => {
-  console.log("NEWS", data);
   return (
     <TableContainer style={{ borderRadius: "5px" }} component={Paper}>
       <Table sx={{ minWidth: 650 }} aria-label="customized table">
@@ -53,39 +57,30 @@ const EventTable = ({ data }) => {
         <TableBody>
           {data &&
             data.map((row, index) => (
-              <>
-                <StyledTableRow key={row?.id}>
-                  <StyledTableCell
-                    align="center"
-                    style={
-                      index % 2
-                        ? { background: "#ed1c24b3" }
-                        : { background: "var(--red)" }
-                    }
-                  >
-                    {index + 1}
-                  </StyledTableCell>
-                  <StyledTableCell
-                    component={Link}
-                    sx={{
-                      all: "reset",
-                      textDecoration: "none",
-                      "&:hover": { color: "var(--red)" },
-                    }}
-                    to={`/event/${row.id}/${row.slug}`}
-                    align="left"
-                  >
+              <StyledTableRow key={row?.id}>
+                <StyledTableCell
+                  align="center"
+                  style={
+                    index % 2
+                      ? { background: "#ed1c24b3" }
+                      : { background: "var(--red)" }
+                  }
+                >
+                  {index + 1}
+                </StyledTableCell>
+                <StyledTableCell align="left">
+                  <StyledLink to={`/event/${row.id}/${row.slug}`}>
                     {row.name}
-                  </StyledTableCell>
-                  <StyledTableCell>
-                    {moment(row?.start_date).format("MMMM DD, YYYY")}
-                  </StyledTableCell>
-                  <StyledTableCell>
-                    {moment(row?.end_date).format("MMMM DD, YYYY")}
-                  </StyledTableCell>
-                  <StyledTableCell>{row?.location}</StyledTableCell>
-                </StyledTableRow>
-              </>
+                  </StyledLink>
+                </StyledTableCell>
+                <StyledTableCell>
+                  {moment(row?.start_date).format("MMMM DD, YYYY")}
+                </StyledTableCell>
+                <StyledTableCell>
+                  {moment(row?.end_date).format("MMMM DD, YYYY")}
+                </StyledTableCell>
+                <StyledTableCell>{row?.location}</StyledTableCell>
+              </StyledTableRow>
             ))}
         </TableBody>
       </Table>

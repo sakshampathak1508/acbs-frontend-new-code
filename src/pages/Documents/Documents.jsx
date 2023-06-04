@@ -1,9 +1,8 @@
 import React, { useEffect, useState } from "react";
-import { Helmet } from "react-helmet";
+// import { Helmet } from "react-helmet";
 
 import DownloadIcon from "@mui/icons-material/Download";
 import { Link } from "@mui/material";
-import CircularProgress from "@mui/material/CircularProgress";
 
 import Lottie from "lottie-react";
 
@@ -19,20 +18,16 @@ const Documents = () => {
   const [data, setData] = useState(null);
 
   useEffect(() => {
-    axios
-      .get("api/documents")
-      .then(response => {
-        setData(response.data);
-      })
-      .catch(e => console.log(e));
+    axios.get("api/documents").then(response => {
+      setData(response.data);
+    }).catch;
   }, []);
 
   return (
     <>
-      <Helmet>
-        <meta charSet="utf-8" />
+      {/* <Helmet>
         <title>Downloads</title>
-      </Helmet>
+      </Helmet> */}
 
       <Toolbar>
         <div className="download">

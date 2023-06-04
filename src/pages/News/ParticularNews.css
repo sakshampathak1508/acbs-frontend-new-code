@@ -37,6 +37,7 @@
 .particular-news-page > main > main .image-section {
   margin-bottom: 1.5rem;
 }
+
 .particular-news-page > main > main .image-section img {
   border-radius: 8px;
 }
@@ -120,9 +121,11 @@
 ul.shareLinks li:hover {
   color: var(--red);
 }
+
 .particular-news-page .shareLinks button {
   margin: 0;
 }
+
 .particular-news-page
   > main
   > main
@@ -163,6 +166,7 @@ ul.shareLinks li:hover {
     margin: 0;
     order: 0;
   }
+
   .particular-news-page
     > main
     > main

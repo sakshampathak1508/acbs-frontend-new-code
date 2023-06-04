@@ -3,20 +3,17 @@ import React, { useState, useEffect, useRef, useContext } from "react";
 import { Box, MenuItem } from "@mui/material";
 import CircularProgress from "@mui/material/CircularProgress";
 import FormControl from "@mui/material/FormControl";
-import IconButton from "@mui/material/IconButton";
 import Select from "@mui/material/Select";
 
-import SearchIcon from "../../assets/searchIcon.png";
 import axios from "../../axios";
 import EventImageTitle from "../../component/card/EventImageTitle";
 import Footer from "../../component/Footer/Footer";
-import Header from "../../component/header/header";
+import { Toolbar } from "../../layout/BaseLayout.styles";
 import { StateContext } from "../../StateProvider";
 
 import "./Event.css";
-import { Toolbar } from "../../layout/BaseLayout.styles";
 
-const Event = props => {
+const Event = () => {
   const [state, setState] = React.useState({
     year: "all",
     category: "all",
@@ -57,7 +54,6 @@ const Event = props => {
   };
 
   useEffect(() => {
-    console.log(state);
     setIsLoading(true);
 
     let api_url = `/events/all/?p=${page.value}`;
@@ -71,29 +67,23 @@ const Event = props => {
 
     const regex_pattern = /\/events\/all/;
 
-    axios
-      .get(api_url)
-      .then(res => {
-        // console.log(res?.data);
+    axios.get(api_url).then(res => {
+      setIsLoading(false);
 
-        setIsLoading(false);
+      if (regex_pattern.test(api_url)) {
+        if (res?.data?.results?.length < limitPerPage) setHasMore(false);
 
-        if (regex_pattern.test(api_url)) {
-          console.log(res.data?.results);
-          if (res?.data?.results?.length < limitPerPage) setHasMore(false);
-
-          setState(prev => ({
-            ...prev,
-            ["event"]: prev?.event?.concat(res?.data?.results),
-          }));
-        } else {
-          setState(prev => ({
-            ...prev,
-            ["event"]: res?.data,
-          }));
-        }
-      })
-      .catch(e => console.log(e));
+        setState(prev => ({
+          ...prev,
+          ["event"]: prev?.event?.concat(res?.data?.results),
+        }));
+      } else {
+        setState(prev => ({
+          ...prev,
+          ["event"]: res?.data,
+        }));
+      }
+    }).catch;
   }, [page]);
 
   return (

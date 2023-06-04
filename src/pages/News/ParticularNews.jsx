@@ -1,43 +1,35 @@
-import React, { useEffect, useState, useRef, useContext } from "react";
+import React, { useEffect, useRef, useContext } from "react";
 import { useParams } from "react-router-dom";
 import {
   FacebookShareButton,
   TwitterShareButton,
   WhatsappShareButton,
 } from "react-share";
-import Slider from "react-slick";
 
 import { Visibility } from "@mui/icons-material";
 import FacebookIcon from "@mui/icons-material/Facebook";
 import InstagramIcon from "@mui/icons-material/Instagram";
-import KeyboardBackspaceIcon from "@mui/icons-material/KeyboardBackspace";
 import MailOutlineIcon from "@mui/icons-material/MailOutline";
 import PrintIcon from "@mui/icons-material/Print";
 import TwitterIcon from "@mui/icons-material/Twitter";
 import WhatsAppIcon from "@mui/icons-material/WhatsApp";
-import { Box, CircularProgress, Typography } from "@mui/material";
+import { Box } from "@mui/material";
 import Avatar from "@mui/material/Avatar";
-import FormControl from "@mui/material/FormControl";
-import IconButton from "@mui/material/IconButton";
-import MenuItem from "@mui/material/MenuItem";
-import Select from "@mui/material/Select";
+import { styled } from "@mui/material/styles";
 
 import Lottie from "lottie-react";
 import moment from "moment";
 
-import Partnews from "../../assets/partnews.png";
 import searchAnimation from "../../assets/search.json";
-import SearchIcon from "../../assets/searchIcon.png";
 import axios from "../../axios";
-import ImageTitleDate from "../../component/card/ImageTitleDate";
 import Footer from "../../component/Footer/Footer";
-import Header from "../../component/header/header";
+import { StyledLink } from "../../component/styles/Styles";
 import { API_URL } from "../../constant/api";
 import { StateContext } from "../../StateProvider";
 
 import "./ParticularNews.css";
 
-const ParticularNews = props => {
+const ParticularNews = () => {
   const [state, setState] = React.useState({
     year: "",
     event: "",
@@ -47,6 +39,7 @@ const ParticularNews = props => {
 
   const shareUrl = `https://ibsf.info/news/`;
   const instaUrl = "http://www.instagram.com";
+  const emailUrl = "http://www.ibsfinfo@gmail.com";
   const { id } = useParams();
   const yearRef = useRef();
   const baseUrl = API_URL;
@@ -72,11 +65,6 @@ const ParticularNews = props => {
       select?.appendChild(option);
     }
   }, []);
-
-  const handleChange = event => {
-    const name = event.target.name;
-    const value = event.target.value;
-  };
 
   return (
     <>
@@ -138,27 +126,16 @@ const ParticularNews = props => {
                         <li>
                           <PrintIcon onClick={() => window.print()}></PrintIcon>
                         </li>
-                        <li>
-                          <MailOutlineIcon
-                            onClick={() =>
-                              (window.location.href =
-                                "mailto: ibsfinfo@gmail.com ")
-                            }
-                          />
-                        </li>
 
                         <li>
                           <FacebookShareButton url={shareUrl} quote={"oo"}>
                             <FacebookIcon round={true} />
                           </FacebookShareButton>
                         </li>
-
                         <li>
-                          <InstagramIcon
-                            onClick={() => {
-                              window.open(instaUrl, "blank");
-                            }}
-                          />
+                          <WhatsappShareButton url={shareUrl} separator=":: ">
+                            <WhatsAppIcon round={true} />
+                          </WhatsappShareButton>
                         </li>
                         <li>
                           <TwitterShareButton url={shareUrl}>
@@ -166,9 +143,17 @@ const ParticularNews = props => {
                           </TwitterShareButton>
                         </li>
                         <li>
-                          <WhatsappShareButton url={shareUrl} separator=":: ">
-                            <WhatsAppIcon round={true} />
-                          </WhatsappShareButton>
+                          <StyledLink href={instaUrl} target="_blank">
+                            <InstagramIcon />
+                          </StyledLink>
+                        </li>
+                        <li>
+                          <StyledLink
+                            href={"mailto:" + emailUrl}
+                            target="_blank"
+                          >
+                            <MailOutlineIcon />
+                          </StyledLink>
                         </li>
                       </ul>
                     </div>

@@ -1,13 +1,11 @@
 import React, { useEffect, useState } from "react";
-import { Helmet } from "react-helmet";
-import { useParams } from "react-router-dom";
+// import { Helmet } from "react-helmet";
 
 import { Box } from "@mui/material";
 
 import Lottie from "lottie-react";
 
 import searchAnimation from "../../assets/search.json";
-import animationData from "../../assets/search.json";
 import axios from "../../axios";
 import Footer from "../../component/Footer/Footer";
 import { Toolbar } from "../../layout/BaseLayout.styles";
@@ -17,21 +15,16 @@ const Rules = () => {
   const [data, setData] = useState(null);
 
   useEffect(() => {
-    axios
-      .get("api/rule")
-      .then(res => {
-        console.log(res.data);
-        setData(res.data);
-      })
-      .catch(e => console.log(e));
+    axios.get("api/rule").then(res => {
+      setData(res.data);
+    }).catch;
   }, []);
 
   return (
     <Box className="rules">
-      <Helmet>
-        <meta charSet="utf-8" />
+      {/* <Helmet>
         <title>Rules ACBS</title>
-      </Helmet>
+      </Helmet> */}
       <Toolbar>
         <Box sx={{ width: "100%" }}>
           <h4 className="heading">Rules</h4>

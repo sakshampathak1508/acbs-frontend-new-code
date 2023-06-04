@@ -6,8 +6,6 @@ import { Box, useMediaQuery } from "@mui/material";
 
 import moment from "moment";
 
-// import carouselEx from "../../assets/carouselEx.jpg";
-
 import "./ImageTitleDate.css";
 
 const ImageTitleDate = ({
@@ -20,8 +18,6 @@ const ImageTitleDate = ({
   maxWidth,
 }) => {
   const navigate = useNavigate();
-  // const page = props.page;
-  // const baseUrl = "https://sakshampathak.pythonanywhere.com/";
   const isMobile = useMediaQuery("(max-width:769px)");
 
   return (

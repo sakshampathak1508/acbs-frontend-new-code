@@ -1,48 +1,73 @@
 import React, { useContext, useEffect, useState } from "react";
-import { Helmet } from "react-helmet";
+// import { Helmet } from "react-helmet";
+import { useParams } from "react-router";
 
 import { Box, FormControl, MenuItem, Select } from "@mui/material";
 import CircularProgress from "@mui/material/CircularProgress";
 
-import image1 from "../../assets/cardEx.png";
-import image2 from "../../assets/sponsor1.png";
 import axios from "../../axios";
-import ExecutiveCard from "../../component/card/Executive";
+import EventImageTitle from "../../component/card/EventImageTitle";
+import ImageTitleDate from "../../component/card/ImageTitleDate";
 import Footer from "../../component/Footer/Footer";
-import Header from "../../component/header/header";
+import { API_URL } from "../../constant/api";
 import { Toolbar } from "../../layout/BaseLayout.styles";
 import { StateContext } from "../../StateProvider";
 
-// import "./Executive.css";
-
-const Category = props => {
+const Category = () => {
   const [data, setData] = useState([]);
+  const [hasMore, setHasMore] = useState(true);
   const { isLoading, setIsLoading } = useContext(StateContext);
-
+  const { category } = useParams();
   const [type, setTypes] = useState("news");
+  const [page, setPage] = useState({ value: 1 });
+  const limitPerPage = 1;
 
   const handleChange = event => {
     setTypes(event.target.value);
+    setPage(() => {
+      return { value: 1 };
+    });
     setData([]);
+  };
+
+  window.onscroll = () => {
+    console.log(
+      document.documentElement.offsetHeight,
+      document.documentElement.scrollTop
+    );
+    if (
+      window.innerHeight + document.documentElement.scrollTop + 0 >=
+        document.documentElement.offsetHeight &&
+      hasMore === true &&
+      isLoading === false
+    ) {
+      setPage(prev => {
+        return { value: prev.value + 1 };
+      });
+    }
   };
 
   useEffect(() => {
     setIsLoading(true);
     axios
-      .get("api/executives")
+      .get(`api/category-footer/?type=${type}&cat=${category}&p=${page.value}`)
       .then(res => {
+        console.log(res.data);
+        if (res?.data?.length < limitPerPage) setHasMore(false);
+        setData(prev => {
+          return prev.concat(res?.data?.results);
+        });
         setData(res.data);
         setIsLoading(false);
-      })
-      .catch(e => console.log(e));
-  }, [type]);
+      }).catch;
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [type, category, page]);
 
   return (
     <div style={{ paddingTop: "1rem" }}>
-      <Helmet>
-        <meta charSet="utf-8" />
+      {/* <Helmet>
         <title>Category | {type}</title>
-      </Helmet>
+      </Helmet> */}
       <Toolbar>
         <Box sx={{ width: "100%" }}>
           <Box
@@ -61,7 +86,7 @@ const Category = props => {
                 alignItems: "center",
               }}
             >
-              <label>Type</label>
+              <span>Type</span>
               <FormControl
                 variant="outlined"
                 sx={{
@@ -81,12 +106,27 @@ const Category = props => {
               </FormControl>
             </Box>
           </Box>
-
-          {data.length != 0 ? (
+          {data.length !== 0 ? (
             <div style={{ display: "flex", flexWrap: "wrap", gap: "1rem" }}>
-              {data.map((data, index) => (
-                <ExecutiveCard key={index} data={data} />
-              ))}
+              {type === "event"
+                ? data &&
+                  data.map((data, index) => (
+                    <EventImageTitle data={data} endPoint="event" key={index} />
+                  ))
+                : data &&
+                  data.map((data, index) => (
+                    <ImageTitleDate
+                      id={data.id}
+                      slug={data.slug}
+                      maxWidth={"25rem"}
+                      image={`${API_URL}/${data.image}`}
+                      title={data.title}
+                      timestamp={data.timestamp}
+                      views={data.views}
+                      key={index}
+                      data={data}
+                    />
+                  ))}
             </div>
           ) : (
             <>

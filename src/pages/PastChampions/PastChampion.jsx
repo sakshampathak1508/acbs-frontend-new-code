@@ -1,35 +1,28 @@
-import React, { useContext, useEffect, useState } from "react";
-import { Helmet } from "react-helmet";
-import { useParams } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+// import { Helmet } from "react-helmet";
 
 import { CircularProgress } from "@mui/material";
 
 import axios from "../../axios";
 import ImageTitle from "../../component/card/ImageTitle";
 import Footer from "../../component/Footer/Footer";
-import { StateContext } from "../../StateProvider";
+
 import "./PastChampion.css";
 
-const PastChampion = props => {
-  const { isLoading, setIsLoading } = useContext(StateContext);
-
+const PastChampion = () => {
   const [data, setData] = useState(null);
-  const { id } = useParams();
 
   useEffect(() => {
-    axios
-      .get("api/allchamps")
-      .then(res => {
-        setData(res.data);
-      })
-      .catch(e => console.log(e));
+    axios.get("api/allchamps").then(res => {
+      setData(res.data);
+    }).catch;
   }, []);
 
   return (
     <>
-      <Helmet>
+      {/* <Helmet>
         <title>Past champions</title>
-      </Helmet>
+      </Helmet> */}
 
       <div className="container past-champions">
         <div style={{ marginBottom: "2rem" }}>

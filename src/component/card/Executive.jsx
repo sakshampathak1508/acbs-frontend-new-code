@@ -7,15 +7,14 @@ import InstagramIcon from "@mui/icons-material/Instagram";
 import MailOutlineIcon from "@mui/icons-material/MailOutline";
 import { Box } from "@mui/material";
 
-import carouselEx from "../../assets/carouselEx.jpg";
-
-import "./Executive.css";
 import { API_URL } from "../../constant/api";
+import { StyledLink } from "../styles/Styles";
+import "./Executive.css";
 
 const Card = props => {
   const history = useNavigate();
-  // const page = props.page
   props = props?.data;
+
   return (
     <Box
       key={props.id}
@@ -33,32 +32,24 @@ const Card = props => {
         <h5> {props.name}</h5>
         <div className="icons">
           {props.facebook && (
-            <FacebookIcon
-              onClick={() => {
-                window.open(props.facebook, "blank");
-              }}
-            />
-          )}
-          {props.instagram && (
-            <InstagramIcon
-              onClick={() => {
-                window.open(props.instagram, "blank");
-              }}
-            />
-          )}
-          {props.email && (
-            <MailOutlineIcon
-              onClick={() => {
-                window.open(props.email, "blank");
-              }}
-            />
+            <StyledLink href={props.facebook} target="_blank">
+              <FacebookIcon />
+            </StyledLink>
           )}
           {props.twitter && (
-            <Twitter
-              onClick={() => {
-                window.open(props.twitter, "blank");
-              }}
-            />
+            <StyledLink href={props.twitter} target="_blank">
+              <Twitter />
+            </StyledLink>
+          )}
+          {props.instagram && (
+            <StyledLink href={props.instagram} target="_blank">
+              <InstagramIcon />
+            </StyledLink>
+          )}
+          {props.email && (
+            <StyledLink href={"mailto:" + props.email} target="_blank">
+              <MailOutlineIcon />
+            </StyledLink>
           )}
         </div>
       </section>

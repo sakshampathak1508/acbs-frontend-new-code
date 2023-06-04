@@ -1,36 +1,30 @@
-import React, { useContext, useEffect, useState } from "react";
-import { Helmet } from "react-helmet";
+import React, { useEffect, useState } from "react";
+// import { Helmet } from "react-helmet";
 
 import MailOutlineIcon from "@mui/icons-material/MailOutline";
 import PersonIcon from "@mui/icons-material/Person";
-import { Box, CircularProgress } from "@mui/material";
+import { Box } from "@mui/material";
 
 import Lottie from "lottie-react";
 
 import searchAnimation from "../../assets/search.json";
 import axios from "../../axios";
 import Footer from "../../component/Footer/Footer";
+import { StyledLink } from "../../component/styles/Styles";
 import { Toolbar } from "../../layout/BaseLayout.styles";
-import { StateContext } from "../../StateProvider";
 import "./Contact.css";
 
 const Contact = () => {
   const [data, setData] = useState(null);
 
   useEffect(() => {
-    axios
-      .get("api/contact")
-      .then(res => {
-        setData(res.data);
-      })
-      .catch(e => console.log(e));
+    axios.get("api/contact").then(res => {
+      setData(res.data);
+    }).catch;
   }, []);
+
   return (
     <Box className="contact-us">
-      <Helmet>
-        <meta charSet="utf-8" />
-        <title>Contact ACBS</title>
-      </Helmet>
       <Toolbar>
         <Box sx={{ width: "100%" }}>
           <h4 className="heading">Contact ACBS</h4>
@@ -79,14 +73,11 @@ const Contact = () => {
                     <h4 className="item">
                       <PersonIcon /> {data.name1}
                     </h4>
-                    <Box
-                      className="item item2"
-                      onClick={() =>
-                        (window.location.href = `mailto: ${data.email1}`)
-                      }
-                    >
+                    <Box className="item item2">
                       <MailOutlineIcon />
-                      <h4 className="text">{data.email1}</h4>
+                      <StyledLink href={"mailto:" + data.email1}>
+                        <h4 className="text">{data.email1}</h4>
+                      </StyledLink>
                     </Box>
                   </Box>
                 )}
@@ -96,14 +87,11 @@ const Contact = () => {
                       <PersonIcon />
                       {data.name2}
                     </h4>
-                    <Box
-                      className="item item2"
-                      onClick={() =>
-                        (window.location.href = `mailto: ${data.email2}`)
-                      }
-                    >
+                    <Box className="item item2">
                       <MailOutlineIcon />
-                      <h4 className="text">{data.email2}</h4>
+                      <StyledLink href={"mailto:" + data.email2}>
+                        <h4 className="text">{data.email2}</h4>
+                      </StyledLink>
                     </Box>
                   </Box>
                 )}
@@ -113,14 +101,11 @@ const Contact = () => {
                       <PersonIcon />
                       {data.name3}
                     </h4>
-                    <Box
-                      className="item item2"
-                      onClick={() =>
-                        (window.location.href = `mailto: ${data.email3}`)
-                      }
-                    >
-                      <MailOutlineIcon />{" "}
-                      <h4 className="text">{data.email3}</h4>
+                    <Box className="item item2">
+                      <MailOutlineIcon />
+                      <StyledLink href={"mailto:" + data.email3}>
+                        <h4 className="text">{data.email3}</h4>
+                      </StyledLink>
                     </Box>
                   </Box>
                 )}
@@ -130,14 +115,11 @@ const Contact = () => {
                       <PersonIcon />
                       {data.name4}
                     </h4>
-                    <Box
-                      className="item item2"
-                      onClick={() =>
-                        (window.location.href = `mailto: ${data.email4}`)
-                      }
-                    >
+                    <Box className="item item2">
                       <MailOutlineIcon />
-                      <h4 className="text">{data.email4}</h4>;
+                      <StyledLink href={"mailto:" + data.email4}>
+                        <h4 className="text">{data.email4}</h4>;
+                      </StyledLink>
                     </Box>
                   </Box>
                 )}

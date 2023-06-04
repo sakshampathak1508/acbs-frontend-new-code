@@ -58,7 +58,7 @@
     "react/jsx-props-no-spreading": "off",
     "react/jsx-no-useless-fragment": "off",
     "import/no-unresolved": "off",
-    "react/prop-types": "warn",
+    "react/prop-types": "off",
     "import/no-extraneous-dependencies": "off"
   }
 }

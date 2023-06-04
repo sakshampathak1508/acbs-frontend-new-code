@@ -36,6 +36,7 @@
   text-transform: uppercase;
   margin-bottom: 1rem;
 }
+
 /*  */
 
 .executive-outer > .executive-content > p > strong {
@@ -44,7 +45,7 @@
 
 .executive-outer > .executive-content > .icons {
   display: flex;
-  flex-direction: row-reverse;
+  margin-left: auto;
   margin-top: auto;
   gap: 0.5rem;
 }
