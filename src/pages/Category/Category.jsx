@@ -1,8 +1,8 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 // import { Helmet } from "react-helmet";
 import { useParams } from "react-router";
 
-import { Box, FormControl, MenuItem, Select } from "@mui/material";
+import { Box, Container, FormControl, MenuItem, Select } from "@mui/material";
 import CircularProgress from "@mui/material/CircularProgress";
 
 import axios from "../../axios";
@@ -10,13 +10,12 @@ import EventImageTitle from "../../component/card/EventImageTitle";
 import ImageTitleDate from "../../component/card/ImageTitleDate";
 import Footer from "../../component/Footer/Footer";
 import { API_URL } from "../../constant/api";
-import { Toolbar } from "../../layout/BaseLayout.styles";
-import { StateContext } from "../../StateProvider";
+import { SEO } from "../../helper/Seo";
 
 const Category = () => {
   const [data, setData] = useState([]);
   const [hasMore, setHasMore] = useState(true);
-  const { isLoading, setIsLoading } = useContext(StateContext);
+  const [isLoading, setIsLoading] = useState(true);
   const { category } = useParams();
   const [type, setTypes] = useState("news");
   const [page, setPage] = useState({ value: 1 });
@@ -65,86 +64,81 @@ const Category = () => {
 
   return (
     <div style={{ paddingTop: "1rem" }}>
-      {/* <Helmet>
-        <title>Category | {type}</title>
-      </Helmet> */}
-      <Toolbar>
-        <Box sx={{ width: "100%" }}>
+      <SEO title={`Category | ${type}`} />
+
+      <Container maxWidth="xl">
+        <Box
+          sx={{
+            display: "flex",
+            justifyContent: "flex-start",
+            alignItems: "center",
+            gap: "6%",
+            mb: "2rem",
+          }}
+        >
+          <h4 className="executive-heading">Categories</h4>
           <Box
             sx={{
               display: "flex",
-              justifyContent: "flex-start",
               alignItems: "center",
-              gap: "6%",
-              mb: "2rem",
             }}
           >
-            <h4 className="executive-heading">Categories</h4>
-            <Box
+            <span>Type</span>
+            <FormControl
+              variant="outlined"
               sx={{
-                display: "flex",
-                alignItems: "center",
+                minWidth: 130,
+                m: "0rem 1rem 0rem 1rem",
+                height: "2.7rem",
               }}
             >
-              <span>Type</span>
-              <FormControl
-                variant="outlined"
-                sx={{
-                  minWidth: 130,
-                  m: "0rem 1rem 0rem 1rem",
-                  height: "2.7rem",
-                }}
+              <Select
+                sx={{ height: "100%" }}
+                value={type}
+                onChange={handleChange}
               >
-                <Select
-                  sx={{ height: "100%" }}
-                  value={type}
-                  onChange={handleChange}
-                >
-                  <MenuItem value={"news"}>News</MenuItem>
-                  <MenuItem value={"events"}>Events</MenuItem>
-                </Select>
-              </FormControl>
-            </Box>
+                <MenuItem value={"news"}>News</MenuItem>
+                <MenuItem value={"events"}>Events</MenuItem>
+              </Select>
+            </FormControl>
           </Box>
-          {data.length !== 0 ? (
-            <div style={{ display: "flex", flexWrap: "wrap", gap: "1rem" }}>
-              {type === "event"
-                ? data &&
-                  data.map((data, index) => (
-                    <EventImageTitle data={data} endPoint="event" key={index} />
-                  ))
-                : data &&
-                  data.map((data, index) => (
-                    <ImageTitleDate
-                      id={data.id}
-                      slug={data.slug}
-                      maxWidth={"25rem"}
-                      image={`${API_URL}/${data.image}`}
-                      title={data.title}
-                      timestamp={data.timestamp}
-                      views={data.views}
-                      key={index}
-                      data={data}
-                    />
-                  ))}
-            </div>
-          ) : (
-            <>
-              {isLoading ? (
-                <div id="loader" style={{ width: "100%", textAlign: "center" }}>
-                  <p>
-                    <CircularProgress />
-                  </p>
-                </div>
-              ) : (
-                <div id="loader" style={{ width: "100%", textAlign: "center" }}>
-                  <h3>Nothing Found...</h3>
-                </div>
-              )}
-            </>
-          )}
         </Box>
-      </Toolbar>
+        {data.length !== 0 ? (
+          <div style={{ display: "flex", flexWrap: "wrap", gap: "1rem" }}>
+            {type === "event"
+              ? data &&
+                data.map((data, index) => (
+                  <EventImageTitle data={data} endPoint="event" key={index} />
+                ))
+              : data &&
+                data.map((data, index) => (
+                  <ImageTitleDate
+                    id={data.id}
+                    slug={data.slug}
+                    maxWidth={"25rem"}
+                    image={`${API_URL}/${data.image}`}
+                    title={data.title}
+                    timestamp={data.timestamp}
+                    views={data.views}
+                    key={index}
+                    data={data}
+                  />
+                ))}
+          </div>
+        ) : (
+          <>
+            {isLoading ? (
+              <div style={{ width: "100%", textAlign: "center" }}>
+                <CircularProgress />
+              </div>
+            ) : (
+              <Box sx={{ width: "100%", textAlign: "center", my: "4rem" }}>
+                <h3>Nothing Found...</h3>
+              </Box>
+            )}
+          </>
+        )}
+      </Container>
       {!isLoading && <Footer />}
     </div>
   );

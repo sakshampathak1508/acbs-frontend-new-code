@@ -1,59 +1,52 @@
-import React, { useEffect, useState } from "react";
-// import { Helmet } from "react-helmet";
+import React from "react";
 
-import { Box } from "@mui/material";
+import { Box, Container } from "@mui/material";
 import CircularProgress from "@mui/material/CircularProgress";
 
-import axios from "../../axios";
 import ExecutiveCard from "../../component/card/Executive";
+import Footer from "../../component/Footer/Footer";
+import { useAPI } from "../../helper/swr";
 
 import "./Executive.css";
-
 const Executive = () => {
-  const [data, setData] = useState([]);
-  const [loading, setloading] = useState(true);
+  const { data, isLoading: loading } = useAPI("api/executives/");
 
-  useEffect(() => {
-    axios.get("api/executives").then(res => {
-      setData(res.data);
-      setloading(false);
-    }).catch;
-  }, []);
   return (
     <>
       {/* <Helmet>
         <title>Executives</title>
       </Helmet> */}
+      <Container maxWidth="xl">
+        <div style={{ paddingTop: "1rem" }}>
+          <Box sx={{ mb: "2rem" }}>
+            <h4 className="executive-heading">EXECUTIVES</h4>
+          </Box>
 
-      <div className="ui container" style={{ paddingTop: "1rem" }}>
-        <Box sx={{ mb: "2rem" }}>
-          <h4 className="executive-heading">EXECUTIVES</h4>
-        </Box>
+          {!loading && data ? (
+            <div style={{ display: "flex", flexWrap: "wrap", gap: "1rem" }}>
+              {data.map((data, index) => (
+                <ExecutiveCard data={data} key={index} />
+              ))}
+            </div>
+          ) : (
+            <>
+              {loading ? (
+                <div style={{ width: "100%", textAlign: "center" }}>
+                  <p>
+                    <CircularProgress />
+                  </p>
+                </div>
+              ) : (
+                <div style={{ width: "100%", textAlign: "center" }}>
+                  <h3>Nothing Found...</h3>{" "}
+                </div>
+              )}
+            </>
+          )}
+        </div>
+      </Container>
 
-        {data.length != 0 ? (
-          <div style={{ display: "flex", flexWrap: "wrap", gap: "1rem" }}>
-            {data.map((data, index) => (
-              <ExecutiveCard data={data} key={index} />
-            ))}
-          </div>
-        ) : (
-          <>
-            {loading ? (
-              <div id="loader" style={{ width: "100%", textAlign: "center" }}>
-                {" "}
-                <p>
-                  <CircularProgress />
-                </p>{" "}
-              </div>
-            ) : (
-              <div id="loader" style={{ width: "100%", textAlign: "center" }}>
-                {" "}
-                <h3>Nothing Found...</h3>{" "}
-              </div>
-            )}
-          </>
-        )}
-      </div>
+      {!loading && <Footer />}
     </>
   );
 };

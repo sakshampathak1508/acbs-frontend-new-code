@@ -5,17 +5,13 @@
 .navbar-toggler:focus {
   box-shadow: 0 0 0 1px !important;
 }
+
 .carousel_caption {
   --width: 100%;
   --time: 0.7s;
-
-  /* background-color: rgba(0, 0, 0, 0.6); */
   color: white;
   width: fit-content;
-  /* max-width: 40vw; */
-  /* max-height: 30vh; */
 
-  /* margin-left: auto; */
   margin-right: auto;
 
   overflow: hidden;
@@ -24,8 +20,7 @@
 }
 
 .mainPage_carousel .carousel-caption {
-  /* width: 70%; */
-  /* bottom:0; */
+  z-index: 2;
   bottom: 3%;
   left: 12%;
   max-width: 60%;
@@ -71,6 +66,12 @@
 .carousel-caption button.info {
   background-color: var(--red);
   color: var(--white);
+  padding: 0;
+}
+
+.carousel-caption button.info:hover {
+  background-color: var(--white);
+  color: var(--red);
 }
 
 .carousel-caption button.groups {
@@ -128,17 +129,19 @@ input.MuiSelect-nativeInput :hover {
   border: 0;
   outline: 0;
 }
+
 .carousel-caption .css-igs3ac {
   outline: 0;
   border: 0;
 }
+
 .carousel-caption .MuiInputBase-root {
   height: 100%;
 }
 
 @media only screen and (max-width: 900px) {
   .mainPage_carousel .carousel-caption {
-    bottom: 20%;
+    bottom: 10%;
     left: 13%;
     max-width: 100%;
     padding: 0rem 0rem;
@@ -158,7 +161,7 @@ input.MuiSelect-nativeInput :hover {
 
   .mainPage_carousel .carousel-caption button {
     width: 30.3vw;
-    height: 7vw;
+    height: 8vw;
     font-size: 3vw;
     /* font-family: 'Arial, Helvetica, sans-serif'; */
     font-weight: 500 !important;

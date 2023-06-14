@@ -1,5 +1,4 @@
 import React from "react";
-import { useNavigate } from "react-router";
 
 import CallOutlinedIcon from "@mui/icons-material/CallOutlined";
 import LanguageOutlinedIcon from "@mui/icons-material/LanguageOutlined";
@@ -11,15 +10,10 @@ import { StyledLink } from "../styles/Styles";
 import "./Members.css";
 
 const Card = props => {
-  const history = useNavigate();
   props = props?.data;
 
   return (
-    <Box
-      key={props.id}
-      onClick={() => history.push(`/news/${props?.id}/${props?.slug}`)}
-      className="members-outer"
-    >
+    <Box key={props.id} className="members-outer">
       <section
         className="members-image"
         style={{

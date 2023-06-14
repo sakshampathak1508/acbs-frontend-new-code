@@ -1,81 +1,46 @@
-import React, { useEffect, useState } from "react";
-// import { Helmet } from "react-helmet";
+import React from "react";
 
-import { Box } from "@mui/material";
+import { Box, CircularProgress, Container } from "@mui/material";
 
-import Lottie from "lottie-react";
-
-import searchAnimation from "../../assets/search.json";
-import axios from "../../axios";
 import Footer from "../../component/Footer/Footer";
-import { Toolbar } from "../../layout/BaseLayout.styles";
+import { SEO } from "../../helper/Seo";
+import { useAPI } from "../../helper/swr";
+
 import "./Rules.css";
 
 const Rules = () => {
-  const [data, setData] = useState(null);
-
-  useEffect(() => {
-    axios.get("api/rule").then(res => {
-      setData(res.data);
-    }).catch;
-  }, []);
+  const { data, isLoading } = useAPI("api/rule/");
 
   return (
     <Box className="rules">
-      {/* <Helmet>
-        <title>Rules ACBS</title>
-      </Helmet> */}
-      <Toolbar>
-        <Box sx={{ width: "100%" }}>
-          <h4 className="heading">Rules</h4>
-          {data !== null && data.content !== undefined ? (
-            <div>
-              <div
-                style={{
-                  display: "flex",
-                  flexDirection: "column",
-                  flexWrap: "wrap",
-                  gap: "2rem",
-                }}
-              >
-                <Box
-                  className="contact_responsive"
-                  sx={{ display: "flex", flexDirection: "column" }}
-                >
-                  <h4 style={{ color: "var(--red)" }}>Address</h4>
-                  <div dangerouslySetInnerHTML={{ __html: data.content }}></div>
-                </Box>
-              </div>
-            </div>
-          ) : (
-            data !== null && (
-              <div id="loader" style={{ width: "100%", textAlign: "center" }}>
-                <h3>Nothing Found...</h3>
-              </div>
-            )
-          )}
-        </Box>
-      </Toolbar>
-      {data === null ? (
-        <div
-          id="loader"
-          style={{
-            width: "100%",
-            height: "100%",
-            display: "flex",
-            justifyContent: "center",
-            alignItems: "center",
-          }}
-        >
-          <Lottie
-            style={{ maxWidth: "650px" }}
-            animationData={searchAnimation}
-            loop={true}
-          />
-        </div>
-      ) : (
-        <Footer />
-      )}
+      <SEO title={`ACBS | Rules`} />
+      <Container maxWidth="xl">
+        <h4 className="heading">Rules</h4>
+        {isLoading ? (
+          <div
+            style={{
+              width: "100%",
+              textAlign: "center",
+              marginTop: "2rem",
+            }}
+          >
+            <CircularProgress />
+          </div>
+        ) : data ? (
+          <Box
+            className="contact_responsive"
+            sx={{ display: "flex", flexDirection: "column" }}
+          >
+            <h4 style={{ color: "var(--red)" }}>Address</h4>
+            <div dangerouslySetInnerHTML={{ __html: data.content }}></div>
+          </Box>
+        ) : (
+          <div style={{ width: "100%", textAlign: "center" }}>
+            <h3>Nothing Found...</h3>
+          </div>
+        )}
+      </Container>
+      {!isLoading && <Footer />}
     </Box>
   );
 };

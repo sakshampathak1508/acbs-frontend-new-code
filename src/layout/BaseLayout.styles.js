@@ -4,8 +4,8 @@ import { styled } from "@mui/material/styles";
 export const MainContent = styled(Box)(({ theme }) => ({
   background: theme.palette.grey.main,
   scrollBehavior: "smooth",
-  height: "100vh",
-  overflow: "auto",
+  // height: "100vh",
+  // overflow: "auto",
 }));
 
 export const Toolbar = styled(MuiToolbar)(() => ({

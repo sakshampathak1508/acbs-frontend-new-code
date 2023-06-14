@@ -8,15 +8,14 @@ import carouselEx from "../../assets/carouselEx.jpg";
 import "./Image.css";
 
 const ImageCard = props => {
-  const history = useNavigate();
   const page = props.page;
-
+  const navigate = useNavigate();
   useMediaQuery("(min-width:600px)");
 
   props = props?.data;
   return (
     <Box
-      onClick={() => history.push(`/news/${props?.id}/${props?.slug}`)}
+      onClick={() => navigate(`/news/${props?.id}/${props?.slug}`)}
       className="imagecard"
       style={
         page === "main" && window.innerWidth > 768

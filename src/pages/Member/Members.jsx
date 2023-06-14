@@ -1,71 +1,56 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 // import { Helmet } from "react-helmet";
 
-import { Box } from "@mui/material";
+import { Box, Container } from "@mui/material";
 import CircularProgress from "@mui/material/CircularProgress";
 
-import axios from "../../axios";
 import MemberCard from "../../component/card/Member";
 import Footer from "../../component/Footer/Footer";
 import "./Members.css";
-import { Toolbar } from "../../layout/BaseLayout.styles";
+import { SEO } from "../../helper/Seo";
+import { useAPI } from "../../helper/swr";
 
 const Members = () => {
-  const [data, setData] = useState(null);
-
-  useEffect(() => {
-    axios.get("api/member-countries/").then(res => {
-      setData(res.data);
-    }).catch;
-  }, []);
+  const { data, isLoading } = useAPI("api/member-countries/");
 
   return (
     <>
-      {/* <Helmet>
-        <title>Members</title>
-      </Helmet> */}
-      <Box>
-        <Toolbar>
-          <Box sx={{ width: "100%", height: "100%" }}>
-            <section className="member-heading">
-              <h4>MEMBERS</h4>
-            </section>
+      <SEO title={`ACBS | Members`} />
 
-            {data !== null && data.length != 0 ? (
-              <div style={{ display: "flex", flexWrap: "wrap", gap: "1rem" }}>
-                {data.map(data => (
-                  <MemberCard key={data.id} data={data} />
-                ))}
+      <Container maxWidth="xl">
+        <section className="member-heading">
+          <h4>MEMBERS</h4>
+        </section>
+
+        {!isLoading && data ? (
+          <div style={{ display: "flex", flexWrap: "wrap", gap: "1rem" }}>
+            {data.map(data => (
+              <MemberCard key={data.id} data={data} />
+            ))}
+          </div>
+        ) : (
+          <>
+            {isLoading ? (
+              <div
+                style={{
+                  width: "100%",
+                  margin: "auto",
+                  textAlign: "center",
+                }}
+              >
+                <p>
+                  <CircularProgress />
+                </p>
               </div>
             ) : (
-              <>
-                {data === null ? (
-                  <div
-                    id="loader"
-                    style={{
-                      width: "100%",
-                      margin: "auto",
-                      textAlign: "center",
-                    }}
-                  >
-                    <p>
-                      <CircularProgress />
-                    </p>{" "}
-                  </div>
-                ) : (
-                  <div
-                    id="loader"
-                    style={{ width: "100%", textAlign: "center" }}
-                  >
-                    <h3>Nothing Found...</h3>{" "}
-                  </div>
-                )}
-              </>
+              <div style={{ width: "100%", textAlign: "center" }}>
+                <h3>Nothing Found...</h3>{" "}
+              </div>
             )}
-          </Box>
-        </Toolbar>
-        {data !== null && <Footer />}
-      </Box>
+          </>
+        )}
+      </Container>
+      {!isLoading && <Footer />}
     </>
   );
 };

@@ -9,6 +9,7 @@ import {
   AppBar,
   Box,
   Button,
+  Container,
   Drawer,
   List,
   ListItem,
@@ -30,11 +31,11 @@ const Header = () => {
   const [searched, setSearched] = useState();
   const isMobile = useMediaQuery("(min-width:900px)");
 
-  const [mobileOpen, setMobileOpen] = React.useState(false);
+  const [sideNav, setSideNav] = React.useState(false);
 
   const drawerWidth = 250;
   const handleDrawerToggle = () => {
-    setMobileOpen(prevState => !prevState);
+    setSideNav(prevState => !prevState);
   };
 
   const handleSearch = event => {
@@ -94,16 +95,28 @@ const Header = () => {
           </Box>
         </ListItem>
         <ListItem>
-          <Styles.Link to="/news">Documents</Styles.Link>
+          <Styles.Link onClick={handleDrawerToggle} to="/documents">
+            Documents
+          </Styles.Link>
         </ListItem>
         <ListItem className="dropdown">
-          <Box sx={{ overflowX: "hidden" }}>
+          <Box>
             <Typography variant="span">
               Gallery&apos;s <KeyboardArrowDown />
             </Typography>
             <Box className="dropdown-content">
-              <Styles.Link to="/photographs">Photographs</Styles.Link>
-              <Styles.Link to="/executives">Videos</Styles.Link>
+              <Styles.Anchor
+                target="_blank"
+                href="https://www.facebook.com/acbsport/photos_albums"
+              >
+                Photographs
+              </Styles.Anchor>
+              <Styles.Anchor
+                href="https://www.youtube.com/@acbstv/videos"
+                target="_blank"
+              >
+                Videos
+              </Styles.Anchor>
             </Box>
           </Box>
         </ListItem>
@@ -125,13 +138,18 @@ const Header = () => {
   );
 
   return (
-    // Do i need this?
-    <header>
+    <>
       <AppBar
-        sx={{ position: "sticky", minHeight: "64px", background: "white" }}
+        sx={{
+          position: "sticky",
+          top: 0,
+          minHeight: "64px",
+          background: "white",
+        }}
       >
-        <Box sx={{ maxWidth: "1350px", width: "100%", margin: "0 auto" }}>
+        <Container maxWidth="xl">
           <Toolbar
+            disableGutters
             sx={{
               background: "white",
               justifyContent: "space-between",
@@ -177,9 +195,9 @@ const Header = () => {
                   <Styles.Link to="/documents">Documents</Styles.Link>
                 </ListItem>
                 <ListItem className="dropdown">
-                  <Styles.Link to="/photographs">
+                  <Typography variant="span" sx={{ display: "flex" }}>
                     Gallery&apos;s <KeyboardArrowDown />
-                  </Styles.Link>
+                  </Typography>
                   <Box className="dropdown-content">
                     <Styles.Anchor
                       target="_blank"
@@ -257,13 +275,13 @@ const Header = () => {
               <MenuIcon />
             </IconButton>
           </Toolbar>
-        </Box>
+        </Container>
       </AppBar>
       <Box component="nav">
         <Drawer
           anchor="right"
           variant="temporary"
-          open={isMobile ? false : mobileOpen}
+          open={isMobile ? false : sideNav}
           onClose={handleDrawerToggle}
           ModalProps={{
             keepMounted: true, // Better open performance on mobile.
@@ -279,7 +297,7 @@ const Header = () => {
           {drawer}
         </Drawer>
       </Box>
-    </header>
+    </>
   );
 };
 

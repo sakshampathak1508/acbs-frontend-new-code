@@ -1,53 +1,49 @@
-import React, { useEffect, useState } from "react";
-// import { Helmet } from "react-helmet";
+import React from "react";
 import { useParams } from "react-router-dom";
 
 import Lottie from "lottie-react";
 
 import searchAnimation from "../../assets/search.json";
-import axios from "../../axios";
+import Footer from "../../component/Footer/Footer";
 import { API_URL } from "../../constant/api";
+import { SEO } from "../../helper/Seo";
+import { useAPI } from "../../helper/swr";
+
 import "./PastParticularChampion.css";
+import { Box, Container } from "@mui/material";
 
 const PastParticularChampion = () => {
-  const [data, setData] = useState(null);
   const { id } = useParams();
 
-  useEffect(() => {
-    axios.get(`api/champ/?id=${id}`).then(res => {
-      setData(res.data);
-    }).catch;
-  }, [id]);
+  const { data, isLoading } = useAPI(`api/champ/?id=${id}`);
 
   return (
     <>
-      {data !== null ? (
+      {!isLoading && data ? (
         <>
-          {/* <Helmet>
-            <title>Past champions | {data?.name}</title>
-          </Helmet> */}
+          <SEO title={`Champion | ${data.name}`} />
 
-          <div className="container particular-champ">
-            <h2 className="title">{data.name}</h2>
+          <Container maxWidth="xl">
+            <Box className="particular-champ">
+              <h2 className="title">{data.name}</h2>
 
-            <section>
-              <img
-                alt="champion"
-                src={`${API_URL}${data.image}`}
-                style={{ width: "100%", maxHeight: "100%" }}
-              />
+              <section>
+                <img
+                  alt="champion"
+                  src={`${API_URL}${data.image}`}
+                  style={{ width: "100%", maxHeight: "100%" }}
+                />
 
-              <br></br>
-              <br></br>
+                <br></br>
+                <br></br>
 
-              <div dangerouslySetInnerHTML={{ __html: data.content }} />
-            </section>
-          </div>
-          <br></br>
+                <div dangerouslySetInnerHTML={{ __html: data.content }} />
+              </section>
+            </Box>
+          </Container>
         </>
       ) : (
         <div
-          id="loader"
           style={{
             width: "100%",
             height: "100%",
@@ -63,6 +59,7 @@ const PastParticularChampion = () => {
           />
         </div>
       )}
+      {!isLoading && <Footer />}
     </>
   );
 };

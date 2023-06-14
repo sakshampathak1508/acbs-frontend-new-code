@@ -6,7 +6,7 @@ const ScrollToTop = () => {
   const { pathname } = useLocation();
   // Automatically scrolls to top whenever pathname changes
   useEffect(() => {
-    document.getElementsByClassName("main-content")[0].scrollTo(0, 0);
+    window.scrollTo(0, 0);
   }, [pathname]);
 };
 

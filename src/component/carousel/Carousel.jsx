@@ -1,35 +1,24 @@
 import React from "react";
-import { useNavigate } from "react-router";
-import { Link as RouteLink } from "react-router-dom";
 
-import { Link, MenuItem, useMediaQuery } from "@mui/material";
+import { MenuItem } from "@mui/material";
 import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
-import { styled } from "@mui/material/styles";
 
 import Carousel from "react-bootstrap/Carousel";
 
+import { StyledButtonLink } from "./Carousel.style";
 import { API_URL } from "../../constant/api";
 import { StyledLink } from "../styles/Styles";
+
 import "./carousel.css";
 import "bootstrap/dist/css/bootstrap.css";
 
 const ControlledCarousel = ({ data }) => {
-  const isMobile = useMediaQuery("(max-width:900px)");
-
-  const history = useNavigate();
-
   return (
     <Carousel className="mainPage_carousel" interval={4000} indicators={false}>
       {data &&
         data.map((val, index) => (
-          <Carousel.Item
-            key={index}
-            style={{
-              height: isMobile ? "32vh" : "calc(100vh - 64px)",
-              overflow: "hidden",
-            }}
-          >
+          <Carousel.Item key={index}>
             <img
               loading="lazy"
               className="d-block w-100"
@@ -40,34 +29,20 @@ const ControlledCarousel = ({ data }) => {
               alt="Pre Slide"
             />
 
-            <Carousel.Caption
-              onClick={() => history.push(`/news`)}
-              className="carousel_caption"
-            >
-              {/* <span></span> */}
+            <Carousel.Caption className="carousel_caption">
               <h3> {val.news ? val.news.title : val.event.name}</h3>
               <div className="dropdown">
-                <button className="info">
-                  <RouteLink
-                    style={{
-                      all: "reset",
-                      textDecoration: "none",
-                      color: "inherit",
-                      width: "100%",
-                      height: "100%",
-                      display: "flex",
-                      justifyContent: "center",
-                      alignItems: "center",
-                    }}
-                    to={
-                      val.news
-                        ? `/news/${val.news.id}/${val.news.slug}`
-                        : `/event/${val.event.id}/${val.event.slug}`
-                    }
-                  >
-                    {val.news ? "Read More" : "Tournament Info"}
-                  </RouteLink>
-                </button>
+                {/* <button className="info"> */}
+                <StyledButtonLink
+                  to={
+                    val.news
+                      ? `/news/${val.news.id}/${val.news.slug}`
+                      : `/event/${val.event.id}/${val.event.slug}`
+                  }
+                >
+                  {val.news ? "Read More" : "Tournament Info"}
+                </StyledButtonLink>
+                {/* </button> */}
 
                 {val.event && (
                   <button className="groups dropbtn">
@@ -88,13 +63,10 @@ const ControlledCarousel = ({ data }) => {
                           <em>Links</em>
                         </MenuItem>
                         {val.event.groups && (
-                          <MenuItem
-                            sx={{ fontWeight: 700 }}
-                            component={StyledLink}
-                            href={val.event.groups}
-                            target="_blank"
-                          >
-                            Groups
+                          <MenuItem sx={{ fontWeight: 700 }}>
+                            <StyledLink href={val.event.groups} target="_blank">
+                              Groups
+                            </StyledLink>
                           </MenuItem>
                         )}
                         {val.event.knockouts && (
@@ -144,7 +116,6 @@ const ControlledCarousel = ({ data }) => {
                           </MenuItem>
                         )}
                       </Select>
-                      {/* <FormHelperText>Without label</FormHelperText> */}
                     </FormControl>
                   </button>
                 )}

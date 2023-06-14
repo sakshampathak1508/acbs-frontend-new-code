@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { useLocation } from "react-router";
 
 import {
@@ -7,14 +7,14 @@ import {
   MenuItem,
   Select,
   FormControl,
+  Container,
 } from "@mui/material";
 
 import EventTable from "./EventTable";
 import NewsTable from "./NewsTable";
-import axios from "../../axios";
 import Footer from "../../component/Footer/Footer";
 import { SEO } from "../../helper/Seo";
-import { Toolbar } from "../../layout/BaseLayout.styles";
+import { useAPI } from "../../helper/swr";
 import "./Search.css";
 
 const Search = () => {
@@ -22,30 +22,19 @@ const Search = () => {
   const searchParams = new URLSearchParams(location.search);
   const query = searchParams.get("query");
 
-  const [searchdata, setSearchdata] = useState(null);
-
   const [type, setTypes] = useState("news");
 
   const handleChange = event => {
     setTypes(event.target.value);
   };
 
-  useEffect(() => {
-    setSearchdata(null);
-    axios.get(`api/search/?query=${query}`).then(res => {
-      setSearchdata(res.data);
-    }).catch;
-  }, [query]);
+  const { data: searchData, isLoading } = useAPI(`api/search/?query=${query}`);
 
   return (
-    <Box className="search">
-      <SEO title="Search" description={`Search Results for ${query}`} />
-      <Toolbar>
-        <div
-          style={{
-            width: "100%",
-          }}
-        >
+    <>
+      <Box className="search">
+        <SEO title="Search" description={`Search Results for ${query}`} />
+        <Container maxWidth="xl">
           <Box
             sx={{
               display: "flex",
@@ -82,21 +71,21 @@ const Search = () => {
               </FormControl>
             </Box>
           </Box>
-          {searchdata !== null ? (
+          {!isLoading ? (
             <>
               {/* For news */}
-              {type === "news" && searchdata.news.length > 0 && (
-                <NewsTable data={searchdata.news} />
+              {type === "news" && searchData.news.length > 0 && (
+                <NewsTable data={searchData.news} />
               )}
 
               {/* For Events */}
-              {type === "events" && searchdata.events.length > 0 && (
-                <EventTable data={searchdata.events} />
+              {type === "events" && searchData.events.length > 0 && (
+                <EventTable data={searchData.events} />
               )}
               {
-                <div>
-                  {((type === "news" && searchdata.news.length === 0) ||
-                    (type === "events" && searchdata.events.length === 0)) && (
+                <Box>
+                  {((type === "news" && searchData.news.length === 0) ||
+                    (type === "events" && searchData.events.length === 0)) && (
                     <>
                       <h4>No Search results</h4>
                       <p>
@@ -116,12 +105,11 @@ const Search = () => {
                       </ul>
                     </>
                   )}
-                </div>
+                </Box>
               }
             </>
           ) : (
             <div
-              id="loader"
               style={{
                 width: "100%",
                 textAlign: "center",
@@ -133,10 +121,11 @@ const Search = () => {
               </p>
             </div>
           )}
-        </div>
-      </Toolbar>
-      {searchdata !== null && <Footer />}
-    </Box>
+        </Container>
+      </Box>
+
+      {!isLoading && <Footer />}
+    </>
   );
 };
 

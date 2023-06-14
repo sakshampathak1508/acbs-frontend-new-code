@@ -1,39 +1,27 @@
-import React, { useEffect, useState } from "react";
-// import { Helmet } from "react-helmet";
+import React from "react";
 
 import DownloadIcon from "@mui/icons-material/Download";
-import { Link } from "@mui/material";
+import { CircularProgress, Container, Link } from "@mui/material";
 
-import Lottie from "lottie-react";
-
-import searchAnimation from "../../assets/search.json";
-import axios from "../../axios";
 import Footer from "../../component/Footer/Footer";
 import { API_URL } from "../../constant/api";
-import { Toolbar } from "../../layout/BaseLayout.styles";
+import { SEO } from "../../helper/Seo";
+import { useAPI } from "../../helper/swr";
 
 import "./Documents.css";
 
 const Documents = () => {
-  const [data, setData] = useState(null);
-
-  useEffect(() => {
-    axios.get("api/documents").then(response => {
-      setData(response.data);
-    }).catch;
-  }, []);
+  const { data, isLoading } = useAPI("api/documents/");
 
   return (
     <>
-      {/* <Helmet>
-        <title>Downloads</title>
-      </Helmet> */}
+      <SEO title="ACBS | Documents" />
 
-      <Toolbar>
+      <Container maxWidth="xl">
         <div className="download">
           <h4 className="headline">Downloads </h4>
 
-          {data !== null && data.length != 0 ? (
+          {!isLoading ? (
             <section>
               <p>
                 Relevant Documents related to Asian Confederation of Billiard
@@ -67,33 +55,26 @@ const Documents = () => {
             </section>
           ) : (
             <>
-              {data === null ? (
+              {isLoading ? (
                 <div
-                  id="loader"
                   style={{
                     width: "100%",
-                    height: "100%",
-                    display: "flex",
-                    justifyContent: "center",
-                    alignItems: "center",
+                    textAlign: "center",
+                    marginTop: "2rem",
                   }}
                 >
-                  <Lottie
-                    style={{ maxWidth: "650px" }}
-                    animationData={searchAnimation}
-                    loop={true}
-                  />
+                  <CircularProgress />
                 </div>
               ) : (
-                <div id="loader" style={{ width: "100%", textAlign: "center" }}>
+                <div style={{ width: "100%", textAlign: "center" }}>
                   <h3>Nothing Found...</h3>
                 </div>
               )}
             </>
           )}
         </div>
-      </Toolbar>
-      {data !== null && <Footer />}
+      </Container>
+      {!isLoading && <Footer />}
     </>
   );
 };

@@ -7,7 +7,7 @@ import { Box, useMediaQuery } from "@mui/material";
 import "./Title.css";
 
 const Title = props => {
-  const history = useNavigate();
+  const navigate = useNavigate();
   const page = props.page;
 
   useMediaQuery("(min-width:600px)");
@@ -15,7 +15,7 @@ const Title = props => {
   props = props?.data;
   return (
     <Box
-      onClick={() => history.push(`/news/${props?.id}/${props?.slug}`)}
+      onClick={() => navigate(`/news/${props?.id}/${props?.slug}`)}
       className="title-card_body"
       style={
         page === "main" && window.innerWidth > 768

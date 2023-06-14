@@ -1,63 +1,52 @@
-import React, { useEffect, useState } from "react";
-// import { Helmet } from "react-helmet";
+import React from "react";
 
-import { CircularProgress } from "@mui/material";
+import { Box, CircularProgress, Container } from "@mui/material";
 
-import axios from "../../axios";
 import ImageTitle from "../../component/card/ImageTitle";
 import Footer from "../../component/Footer/Footer";
-
+import { SEO } from "../../helper/Seo";
+import { useAPI } from "../../helper/swr";
 import "./PastChampion.css";
 
 const PastChampion = () => {
-  const [data, setData] = useState(null);
-
-  useEffect(() => {
-    axios.get("api/allchamps").then(res => {
-      setData(res.data);
-    }).catch;
-  }, []);
+  const { data, isLoading } = useAPI("api/allchamps/");
 
   return (
     <>
-      {/* <Helmet>
-        <title>Past champions</title>
-      </Helmet> */}
+      <SEO title="ACBS | Past Champions" />
 
-      <div className="container past-champions">
-        <div style={{ marginBottom: "2rem" }}>
-          <h3 className="heading">Past champions</h3>
-        </div>
-        {data !== null && (
-          <div
-            style={{
-              display: "flex",
-              flexWrap: "wrap",
-              justifyContent: "flex-start",
-              gap: "1rem",
-            }}
-          >
-            {data.map(data => (
-              <ImageTitle data={data} key={data.id} />
-            ))}
+      <Container maxWidth="xl">
+        <Box className="past-champions">
+          <div style={{ marginBottom: "2rem" }}>
+            <h3 className="heading">Past champions</h3>
           </div>
-        )}
-        {data !== null && data.length === 0 && (
-          <div style={{ margin: "auto", width: "fit-content" }}>
-            <h3 style={{ width: "fit-content" }}>Nothing Found...</h3>
-          </div>
-        )}
-      </div>
-      {data === null ? (
-        <div
-          id="loader"
-          style={{ width: "100%", textAlign: "center", marginTop: "2rem" }}
-        >
-          <CircularProgress />
-        </div>
-      ) : (
-        <Footer />
-      )}
+          {!isLoading && data ? (
+            <div
+              style={{
+                display: "flex",
+                flexWrap: "wrap",
+                justifyContent: "flex-start",
+                gap: "1rem",
+              }}
+            >
+              {data.map(data => (
+                <ImageTitle data={data} key={data.id} />
+              ))}
+            </div>
+          ) : !isLoading ? (
+            <div style={{ margin: "auto", width: "fit-content" }}>
+              <h3 style={{ width: "fit-content" }}>Nothing Found...</h3>
+            </div>
+          ) : (
+            <div
+              style={{ width: "100%", textAlign: "center", marginTop: "2rem" }}
+            >
+              <CircularProgress />
+            </div>
+          )}
+        </Box>
+      </Container>
+      {!isLoading && <Footer />}
     </>
   );
 };

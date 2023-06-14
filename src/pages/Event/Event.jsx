@@ -1,6 +1,6 @@
-import React, { useState, useEffect, useRef, useContext } from "react";
+import React, { useState, useEffect, useRef } from "react";
 
-import { Box, MenuItem } from "@mui/material";
+import { Box, Container, MenuItem } from "@mui/material";
 import CircularProgress from "@mui/material/CircularProgress";
 import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
@@ -8,8 +8,7 @@ import Select from "@mui/material/Select";
 import axios from "../../axios";
 import EventImageTitle from "../../component/card/EventImageTitle";
 import Footer from "../../component/Footer/Footer";
-import { Toolbar } from "../../layout/BaseLayout.styles";
-import { StateContext } from "../../StateProvider";
+import { SEO } from "../../helper/Seo";
 
 import "./Event.css";
 
@@ -24,7 +23,7 @@ const Event = () => {
   const yearRef = useRef();
   const [hasMore, setHasMore] = useState(true);
   const [page, setPage] = useState({ value: 1 });
-  const { isLoading, setIsLoading } = useContext(StateContext);
+  const [isLoading, setIsLoading] = useState(true);
 
   const currentYear = new Date().getFullYear();
 
@@ -88,90 +87,86 @@ const Event = () => {
 
   return (
     <Box>
-      <Toolbar>
-        <Box sx={{ width: "100%" }}>
-          <div className="event-page">
-            <header
-              style={{
-                display: "flex",
-                gap: "2rem",
-                paddingTop: "24px",
-                flexWrap: "wrap",
-              }}
-            >
-              <Box className="year">
-                <span>Year</span>
-                <FormControl
-                  variant="outlined"
-                  sx={{ m: 1, minWidth: 120, height: "2.7rem" }}
-                  ref={yearRef}
+      <SEO title="ACBS | Events" />
+      <Container maxWidth="xl">
+        <div className="event-page">
+          <header
+            style={{
+              display: "flex",
+              gap: "2rem",
+              paddingTop: "24px",
+              flexWrap: "wrap",
+            }}
+          >
+            <Box className="year">
+              <span>Year</span>
+              <FormControl
+                variant="outlined"
+                sx={{ m: 1, minWidth: 120, height: "2.7rem" }}
+                ref={yearRef}
+              >
+                <Select
+                  sx={{ height: "100%" }}
+                  value={state.year}
+                  className="input-label-select"
+                  onChange={handleChange}
+                  displayEmpty
+                  name="year"
                 >
-                  <Select
-                    sx={{ height: "100%" }}
-                    value={state.year}
-                    className="input-label-select"
-                    onChange={handleChange}
-                    displayEmpty
-                    name="year"
-                  >
-                    <MenuItem value={"all"}>All</MenuItem>
-                    {[...Array(currentYear - 2009)].map((_, index) => {
-                      const year = currentYear - index;
-                      return (
-                        <MenuItem key={year} value={year}>
-                          {year}
-                        </MenuItem>
-                      );
-                    })}
-                  </Select>
-                </FormControl>
-              </Box>
-              <Box className="category">
-                <span>Category</span>
-                <FormControl
-                  variant="outlined"
-                  sx={{ m: 1, minWidth: 190, height: "2.7rem" }}
+                  <MenuItem value={"all"}>All</MenuItem>
+                  {[...Array(currentYear - 2009)].map((_, index) => {
+                    const year = currentYear - index;
+                    return (
+                      <MenuItem key={year} value={year}>
+                        {year}
+                      </MenuItem>
+                    );
+                  })}
+                </Select>
+              </FormControl>
+            </Box>
+            <Box className="category">
+              <span>Category</span>
+              <FormControl
+                variant="outlined"
+                sx={{ m: 1, minWidth: 190, height: "2.7rem" }}
+              >
+                <Select
+                  sx={{ height: "100%" }}
+                  value={state.category}
+                  className="input-label-select"
+                  onChange={handleChange}
+                  // displayEmpty
+                  name="category"
                 >
-                  <Select
-                    sx={{ height: "100%" }}
-                    value={state.category}
-                    className="input-label-select"
-                    onChange={handleChange}
-                    // displayEmpty
-                    name="category"
-                  >
-                    <MenuItem value={"all"}>All</MenuItem>
-                    <MenuItem value={1}>Snokker / Billiards</MenuItem>
-                    <MenuItem value={2}>Pool</MenuItem>
-                  </Select>
-                </FormControl>
-              </Box>
-            </header>
-            <main>
-              <section className="events">
-                <h4>Events</h4>
-                <div className="events-container">
-                  {state?.event?.map((val, index) => (
-                    <EventImageTitle data={val} endPoint="event" key={index} />
-                  ))}
-                  {state?.event?.length == 0 &&
-                    hasMore === false &&
-                    isLoading === false && (
-                      <div style={{ margin: "auto" }}>
-                        <h3>Nothing Found...</h3>
-                      </div>
-                    )}
-                </div>
-              </section>
-            </main>
-          </div>
-        </Box>
-      </Toolbar>
+                  <MenuItem value={"all"}>All</MenuItem>
+                  <MenuItem value={1}>Snokker / Billiards</MenuItem>
+                  <MenuItem value={2}>Pool</MenuItem>
+                </Select>
+              </FormControl>
+            </Box>
+          </header>
+          <main>
+            <section className="events">
+              <h4>Events</h4>
+              <div className="events-container">
+                {state?.event?.map((val, index) => (
+                  <EventImageTitle data={val} endPoint="event" key={index} />
+                ))}
+                {state?.event?.length == 0 &&
+                  hasMore === false &&
+                  isLoading === false && (
+                    <div style={{ margin: "auto" }}>
+                      <h3>Nothing Found...</h3>
+                    </div>
+                  )}
+              </div>
+            </section>
+          </main>
+        </div>
+      </Container>
       {isLoading ? (
-        <div
-          id="loader"
-          style={{ width: "100%", textAlign: "center", marginTop: "2rem" }}
-        >
+        <div style={{ width: "100%", textAlign: "center", marginTop: "2rem" }}>
           <CircularProgress />
         </div>
       ) : (
