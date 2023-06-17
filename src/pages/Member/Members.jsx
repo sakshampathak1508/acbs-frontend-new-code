@@ -43,8 +43,8 @@ const Members = () => {
                 </p>
               </div>
             ) : (
-              <div style={{ width: "100%", textAlign: "center" }}>
-                <h3>Nothing Found...</h3>{" "}
+              <div style={{ textAlign: "center", margin: "6rem auto" }}>
+                <h3>Nothing Found...</h3>
               </div>
             )}
           </>

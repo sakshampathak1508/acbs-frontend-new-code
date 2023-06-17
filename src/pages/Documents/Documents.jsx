@@ -12,7 +12,7 @@ import "./Documents.css";
 
 const Documents = () => {
   const { data, isLoading } = useAPI("api/documents/");
-
+  
   return (
     <>
       <SEO title="ACBS | Documents" />
@@ -21,7 +21,7 @@ const Documents = () => {
         <div className="download">
           <h4 className="headline">Downloads </h4>
 
-          {!isLoading ? (
+          {!isLoading && data ? (
             <section>
               <p>
                 Relevant Documents related to Asian Confederation of Billiard
@@ -66,7 +66,7 @@ const Documents = () => {
                   <CircularProgress />
                 </div>
               ) : (
-                <div style={{ width: "100%", textAlign: "center" }}>
+                <div style={{ textAlign: "center", margin: "6rem auto" }}>
                   <h3>Nothing Found...</h3>
                 </div>
               )}

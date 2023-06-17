@@ -149,7 +149,7 @@ const AllNews = () => {
               data?.length == 0 &&
               hasMore === false &&
               isLoading === false && (
-                <div style={{ margin: "auto" }}>
+                <div style={{ textAlign: "center", margin: "6rem auto" }}>
                   <h3>Nothing Found...</h3>
                 </div>
               )

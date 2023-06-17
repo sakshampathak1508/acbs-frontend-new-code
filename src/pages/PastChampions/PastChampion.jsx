@@ -34,8 +34,8 @@ const PastChampion = () => {
               ))}
             </div>
           ) : !isLoading ? (
-            <div style={{ margin: "auto", width: "fit-content" }}>
-              <h3 style={{ width: "fit-content" }}>Nothing Found...</h3>
+            <div style={{ textAlign: "center", margin: "6rem auto" }}>
+              <h3>Nothing Found...</h3>
             </div>
           ) : (
             <div

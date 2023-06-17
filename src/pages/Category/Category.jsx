@@ -132,9 +132,9 @@ const Category = () => {
                 <CircularProgress />
               </div>
             ) : (
-              <Box sx={{ width: "100%", textAlign: "center", my: "4rem" }}>
+              <div style={{ textAlign: "center", margin: "6rem auto" }}>
                 <h3>Nothing Found...</h3>
-              </Box>
+              </div>
             )}
           </>
         )}

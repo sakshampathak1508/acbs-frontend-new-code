@@ -40,7 +40,7 @@ const AboutAcbs = () => {
                   <CircularProgress />
                 </div>
               ) : (
-                <div style={{ width: "100%", textAlign: "center" }}>
+                <div style={{ textAlign: "center", margin: "6rem auto" }}>
                   <h3>Nothing Found...</h3>
                 </div>
               )}
