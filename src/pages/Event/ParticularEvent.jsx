@@ -13,7 +13,6 @@ import Lottie from "lottie-react";
 import moment from "moment";
 
 import searchAnimation from "../../assets/search.json";
-import axios from "../../axios";
 import Footer from "../../component/Footer/Footer";
 import { SEO } from "../../helper/Seo";
 import { useAPI } from "../../helper/swr";

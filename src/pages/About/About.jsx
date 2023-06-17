@@ -1,15 +1,12 @@
 import React from "react";
 
-import Lottie from "lottie-react";
+import { Box, CircularProgress, Container } from "@mui/material";
 
-import searchAnimation from "../../assets/search.json";
 import Footer from "../../component/Footer/Footer";
 import { SEO } from "../../helper/Seo";
 import { useAPI } from "../../helper/swr";
-import * as Styled from "../../layout/BaseLayout.styles";
 
 import "./About.css";
-import { Box, CircularProgress, Container } from "@mui/material";
 
 const AboutAcbs = () => {
   const { data, isLoading } = useAPI("api/about-us/");

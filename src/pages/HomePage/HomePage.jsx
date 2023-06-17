@@ -3,13 +3,7 @@ import Slider from "react-slick";
 
 import EventIcon from "@mui/icons-material/Event";
 import TwitterIcon from "@mui/icons-material/Twitter";
-import {
-  Box,
-  Container,
-  LinearProgress,
-  Stack,
-  useMediaQuery,
-} from "@mui/material";
+import { Container, LinearProgress, Stack, useMediaQuery } from "@mui/material";
 
 import useSWR from "swr";
 
@@ -45,9 +39,9 @@ const HomePage = () => {
         return acc;
       }, []);
 
-      if (data.news.length > data.events.length) {
+      if (data?.news?.length > data?.events?.length) {
         mergedArray.push(
-          ...data.news.slice(data.events.length).map(news => ({ news }))
+          ...data.news.slice(data.events?.length).map(news => ({ news }))
         );
       }
       return mergedArray;
@@ -70,8 +64,8 @@ const HomePage = () => {
     speed: 500,
     slidesToShow: isMobile
       ? 1
-      : !loading1 && latestNews.length <= 2
-      ? latestNews.length
+      : !loading1 && latestNews?.length <= 2
+      ? latestNews?.length
       : 3,
   };
 
@@ -107,7 +101,7 @@ const HomePage = () => {
             <section className="latest-news">
               <h4 className="heading">Latest News</h4>
               <Slider arrows={false} {...settings}>
-                {latestNews.map(data => (
+                {latestNews?.map(data => (
                   <ImageTitleDate
                     key={data.id}
                     views={data.views}
