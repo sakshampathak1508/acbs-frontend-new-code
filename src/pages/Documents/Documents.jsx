@@ -12,7 +12,7 @@ import "./Documents.css";
 
 const Documents = () => {
   const { data, isLoading } = useAPI("api/documents/");
-  
+
   return (
     <>
       <SEO title="ACBS | Documents" />

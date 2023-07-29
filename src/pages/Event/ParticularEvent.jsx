@@ -42,7 +42,6 @@ const ParticularEvent = () => {
       {!isLoading && data && (
         <>
           <SEO title={`Event | ${data.name}`} />
-
           <Container maxWidth="xl">
             <Box className="event-page">
               <main>

@@ -1,21 +1,13 @@
 import React from "react";
-// import { Helmet } from "react-helmet";
 
 import MailOutlineIcon from "@mui/icons-material/MailOutline";
 import PersonIcon from "@mui/icons-material/Person";
 import { Box, CircularProgress, Container } from "@mui/material";
 
-import Lottie from "lottie-react";
-import useSWR from "swr";
-
-import searchAnimation from "../../assets/search.json";
-import axios from "../../axios";
 import Footer from "../../component/Footer/Footer";
 import { StyledLink } from "../../component/styles/Styles";
-import { API_URL } from "../../constant/api";
 import { SEO } from "../../helper/Seo";
 import { useAPI } from "../../helper/swr";
-import { Toolbar } from "../../layout/BaseLayout.styles";
 
 import "./Contact.css";
 const Contact = () => {

@@ -9,7 +9,7 @@
   flex-direction: column;
 }
 
-.executive-outer>.executive-image {
+.executive-outer > .executive-image {
   height: 100%;
   width: 100%;
   border-radius: 4px;
@@ -19,7 +19,7 @@
   /* width: 100px; */
 }
 
-.executive-outer>.executive-content {
+.executive-outer > .executive-content {
   /* height: 0%; */
   display: flex;
   flex-direction: column;
@@ -29,7 +29,7 @@
   float: right;
 }
 
-.executive-outer>.executive-content>h6 {
+.executive-outer > .executive-content > h6 {
   /* font-size: 1.1rem; */
   text-decoration: underline var(--red) 2px;
   text-underline-offset: 8px;
@@ -39,24 +39,24 @@
 
 /*  */
 
-.executive-outer>.executive-content>p>strong {
+.executive-outer > .executive-content > p > strong {
   color: rgba(0, 0, 0, 1);
 }
 
-.executive-outer>.executive-content>.icons {
+.executive-outer > .executive-content > .icons {
   display: flex;
   margin-left: auto;
   margin-top: auto;
   gap: 0.5rem;
 }
 
-.executive-outer>.executive-content>.icons * {
+.executive-outer > .executive-content > .icons * {
   font-size: 1.8rem;
   cursor: pointer;
   transition: color 100ms;
 }
 
-.executive-outer>.executive-content>.icons *:hover {
+.executive-outer > .executive-content > .icons *:hover {
   font-size: 1.8rem;
   cursor: pointer;
   color: var(--red);

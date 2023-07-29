@@ -5,17 +5,17 @@ import CircularProgress from "@mui/material/CircularProgress";
 
 import ExecutiveCard from "../../component/card/Executive";
 import Footer from "../../component/Footer/Footer";
+import { SEO } from "../../helper/Seo";
 import { useAPI } from "../../helper/swr";
 
 import "./Executive.css";
+
 const Executive = () => {
   const { data, isLoading: loading } = useAPI("api/executives/");
 
   return (
     <>
-      {/* <Helmet>
-        <title>Executives</title>
-      </Helmet> */}
+      <SEO title="ACBS | Executives" />
       <Container maxWidth="xl">
         <div style={{ paddingTop: "1rem" }}>
           <Box sx={{ mb: "2rem" }}>

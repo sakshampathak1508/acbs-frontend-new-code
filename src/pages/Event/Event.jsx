@@ -1,13 +1,15 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useEffect, useRef } from "react";
 
-import { Box, Container, MenuItem } from "@mui/material";
+import { Box, Container, MenuItem, useMediaQuery } from "@mui/material";
 import CircularProgress from "@mui/material/CircularProgress";
 import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
 
-import axios from "../../axios";
+import useSWRInfinite from "swr/infinite";
+
 import EventImageTitle from "../../component/card/EventImageTitle";
 import Footer from "../../component/Footer/Footer";
+import { API_URL, LIMIT_PER_PAGE } from "../../constant/api";
 import { SEO } from "../../helper/Seo";
 
 import "./Event.css";
@@ -19,71 +21,87 @@ const Event = () => {
     event: [],
     search: "",
   });
-  const limitPerPage = 30;
   const yearRef = useRef();
-  const [hasMore, setHasMore] = useState(true);
-  const [page, setPage] = useState({ value: 1 });
-  const [isLoading, setIsLoading] = useState(true);
 
   const currentYear = new Date().getFullYear();
+  const isMobile = useMediaQuery("(max-width:900px)");
 
-  window.onscroll = () => {
-    if (
-      window.innerHeight + document.documentElement.scrollTop + 0 >=
-        document.documentElement.offsetHeight &&
-      hasMore === true &&
-      isLoading === false
-    ) {
-      // setIsLoading(true);
-      setPage(prev => {
-        return { value: prev.value + 1 };
-      });
-    }
-  };
+  let api_url = `/events/year/?year=${state?.year}`;
+  const regex_pattern = /\/events\/all/;
 
   const handleChange = event => {
     const name = event.target.name;
     const value = event.target.value;
-    setState(prev => ({ ...prev, [name]: value }));
-    setPage(() => {
-      return { value: 1 };
-    });
 
-    setState(prev => ({ ...prev, ["event"]: [] }));
+    setSize(1);
+    setState(prev => ({ ...prev, [name]: value, event: [] }));
   };
 
-  useEffect(() => {
-    setIsLoading(true);
+  const fetcher = url =>
+    fetch(url)
+      .then(res => {
+        if (res.status != 200) {
+          throw new Error();
+        }
+        return res.json();
+      })
+      .then(res => {
+        if (regex_pattern.test(api_url)) return res.results;
+        else return res;
+      })
+      .catch(e => {
+        return e;
+      });
 
-    let api_url = `/events/all/?p=${page.value}`;
-
-    if (state?.year != "all" && state?.category == "all")
-      api_url = `/events/year/?year=${state?.year}`;
+  const getKey = pageIndex => {
+    if (state?.year == "all" && state?.category == "all")
+      api_url = `/events/all/?p=${pageIndex + 1}`;
     else if (state?.year == "all" && state?.category != "all")
       api_url = `/events/year/?cat=${state?.category}`;
     else if (state?.year != "all" && state?.category != "all")
       api_url = `/events/year/?year=${state?.year}&cat=${state?.category}`;
 
-    const regex_pattern = /\/events\/all/;
+    return API_URL + api_url;
+  };
 
-    axios.get(api_url).then(res => {
-      setIsLoading(false);
+  let {
+    data: fetchData,
+    size,
+    setSize,
+    isValidating,
+  } = useSWRInfinite(getKey, fetcher);
 
-      if (regex_pattern.test(api_url)) {
-        if (res?.data?.results?.length < limitPerPage) setHasMore(false);
+  let data = fetchData ? [...fetchData] : [];
+  const isReachingEnd =
+    (data && data[data?.length - 1] instanceof Error) ||
+    (data && data[data?.length - 1]?.length < LIMIT_PER_PAGE);
+  while (data && data[data?.length - 1] instanceof Error) data.pop();
 
-        setState(prev => ({
-          ...prev,
-          ["event"]: prev?.event?.concat(res?.data?.results),
-        }));
-      } else {
-        setState(prev => ({
-          ...prev,
-          ["event"]: res?.data,
-        }));
-      }
-    }).catch;
-  }, [page]);
+  data?.flat();
+
+  data = data ? [].concat(...data) : [];
+
+  const handleScroll = () => {
+    if (
+      document.documentElement.clientHeight +
+        document.documentElement.scrollTop +
+        (isMobile ? 1200 : 700) >=
+        document.documentElement.scrollHeight &&
+      isReachingEnd === false &&
+      isValidating === false
+    ) {
+      setSize(size + 1);
+    }
+  };
+
+  useEffect(() => {
+    if (regex_pattern.test(api_url)) {
+      window.addEventListener("scroll", handleScroll);
+      return () => {
+        window.removeEventListener("scroll", handleScroll);
+      };
+    }
+  }, [isValidating]);
 
   return (
     <Box>
@@ -136,7 +154,6 @@ const Event = () => {
                   value={state.category}
                   className="input-label-select"
                   onChange={handleChange}
-                  // displayEmpty
                   name="category"
                 >
                   <MenuItem value={"all"}>All</MenuItem>
@@ -150,12 +167,12 @@ const Event = () => {
             <section className="events">
               <h4>Events</h4>
               <div className="events-container">
-                {state?.event?.map((val, index) => (
+                {data?.map((val, index) => (
                   <EventImageTitle data={val} endPoint="event" key={index} />
                 ))}
-                {state?.event?.length == 0 &&
-                  hasMore === false &&
-                  isLoading === false && (
+                {data?.length == 0 &&
+                  isReachingEnd === true &&
+                  isValidating === false && (
                     <div style={{ textAlign: "center", margin: "6rem auto" }}>
                       <h3>Nothing Found...</h3>
                     </div>
@@ -165,7 +182,7 @@ const Event = () => {
           </main>
         </div>
       </Container>
-      {isLoading ? (
+      {isValidating ? (
         <div style={{ width: "100%", textAlign: "center", marginTop: "2rem" }}>
           <CircularProgress />
         </div>

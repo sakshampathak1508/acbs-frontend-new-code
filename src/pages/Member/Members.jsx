@@ -1,7 +1,6 @@
 import React from "react";
-// import { Helmet } from "react-helmet";
 
-import { Box, Container } from "@mui/material";
+import { Container } from "@mui/material";
 import CircularProgress from "@mui/material/CircularProgress";
 
 import MemberCard from "../../component/card/Member";

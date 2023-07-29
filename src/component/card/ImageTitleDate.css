@@ -1,5 +1,6 @@
 .imageTitleDate-card_body {
   height: 22rem;
+  min-width: 25rem;
   margin-right: 20px;
   outline: 0;
   cursor: pointer;
@@ -45,16 +46,6 @@
   transition: color 250ms;
 }
 
-.imageTitleDate-card_body .card_container > .title:hover {
-  color: var(--red);
-}
-
-/* .imageTitleDate-card_body:hover
-{
-    border: 1px solid black;
-
-    transition: all 0.5s linear;
-} */
 .imageTitleDate-card_body .card_container h4:hover {
   color: var(--red);
   transition: color 500ms;

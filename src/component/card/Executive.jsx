@@ -7,7 +7,6 @@ import MailOutlineIcon from "@mui/icons-material/MailOutline";
 import { Box } from "@mui/material";
 
 import { API_URL } from "../../constant/api";
-import { SEO } from "../../helper/Seo";
 import { StyledLink } from "../styles/Styles";
 import "./Executive.css";
 
@@ -15,7 +14,6 @@ const Card = props => {
   props = props?.data;
   return (
     <Box key={props.id} className="executive-outer">
-      <SEO title="ACBS | Executives" />
       <section
         className="executive-image"
         style={{

@@ -6,7 +6,6 @@ import TwitterIcon from "@mui/icons-material/Twitter";
 import YouTubeIcon from "@mui/icons-material/YouTube";
 import { Box, Container, List, ListItem, styled } from "@mui/material";
 
-import { Toolbar } from "../../layout/BaseLayout.styles";
 import { StyledLink, StyledRouteLink } from "../styles/Styles";
 
 import "./Footer.css";

@@ -1,7 +1,7 @@
 /* .event-page>main {
 } */
 
-.event-page>main>header {
+.event-page > main > header {
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -10,30 +10,30 @@
   width: 66%;
 }
 
-.event-page>main {
+.event-page > main {
   padding: 1rem 0;
 }
 
-.event-page>main>h2 {
+.event-page > main > h2 {
   font-size: 2.6rem;
   padding-bottom: 1rem;
 }
 
-.event-page>main>header>section.event-name {
+.event-page > main > header > section.event-name {
   width: 100%;
   box-sizing: border-box;
   margin-right: 0;
 }
 
-.event-page>main>header section label {
+.event-page > main > header section label {
   margin-bottom: 0;
 }
 
-.event-page>main>header>section>.event-select {
+.event-page > main > header > section > .event-select {
   width: 100%;
 }
 
-.event-page>main>header section.search #searchForm {
+.event-page > main > header section.search #searchForm {
   min-width: 20rem;
   border-radius: 32px;
   height: 48px;
@@ -42,13 +42,13 @@
   align-items: center;
 }
 
-.event-page>main>header section.search input {
+.event-page > main > header section.search input {
   width: 85%;
   border: none;
   outline: none;
 }
 
-.event-page>main>main h2 {
+.event-page > main > main h2 {
   font-size: 3rem;
   line-height: 3rem;
   text-transform: capitalize;
@@ -57,23 +57,23 @@
   padding: 0;
 }
 
-.event-page>main>section.event-content {
+.event-page > main > section.event-content {
   display: flex;
   justify-content: space-between;
 }
 
-.event-page>main>section.event-content .left-container {
+.event-page > main > section.event-content .left-container {
   width: 66%;
   overflow: hidden;
 }
 
-.event-page>main>section.event-content .right-container {
+.event-page > main > section.event-content .right-container {
   width: 32%;
   display: flex;
   flex-direction: column;
 }
 
-.event-page>main>section.event-content .right-container section.top {
+.event-page > main > section.event-content .right-container section.top {
   padding: 2.5rem 2rem;
   background: #ffffff;
   box-shadow: 0px 0px 6px rgba(52, 52, 52, 0.25);
@@ -81,19 +81,19 @@
   margin-bottom: 2rem;
 }
 
-.event-page>main>section.event-content .right-container .top div,
+.event-page > main > section.event-content .right-container .top div,
 .bottom div {
   margin-bottom: 1.5rem;
 }
 
-.event-page>main>section.event-content .right-container .top div.date,
+.event-page > main > section.event-content .right-container .top div.date,
 div.date h5 {
   display: flex;
   justify-content: space-between;
   margin-bottom: 0;
 }
 
-.event-page>main>section.event-content .right-container h4 {
+.event-page > main > section.event-content .right-container h4 {
   text-transform: uppercase;
   color: var(--black);
   margin-bottom: 1rem;
@@ -103,46 +103,58 @@ div.date h5 {
   font-weight: 900;
 }
 
-.event-page>main>section.event-content>.right-container>.bottom {
+.event-page > main > section.event-content > .right-container > .bottom {
   background: #f8f8f8;
   border-radius: 4px;
   padding: 2.5rem 2rem;
 }
 
-.event-page>main>section.event-content>.right-container>.bottom>h4 {
+.event-page > main > section.event-content > .right-container > .bottom > h4 {
   margin-bottom: 1.2rem;
 }
 
-.event-page>main>section.event-content>.right-container>.bottom>.links-icon {
+.event-page
+  > main
+  > section.event-content
+  > .right-container
+  > .bottom
+  > .links-icon {
   display: flex;
   flex-wrap: wrap;
   gap: 1rem;
   margin: 0;
 }
 
-.event-page>main>section.event-content>.right-container>.bottom>.links-icon>h5>span {
+.event-page
+  > main
+  > section.event-content
+  > .right-container
+  > .bottom
+  > .links-icon
+  > h5
+  > span {
   font-size: 1rem;
   margin-left: 0.5rem;
 }
 
 @media only screen and (max-width: 900px) {
-  .event-page>main>section.event-content {
+  .event-page > main > section.event-content {
     flex-direction: column;
   }
 
-  .event-page>main>section.event-content .left-container {
+  .event-page > main > section.event-content .left-container {
     width: 100%;
   }
 
-  .event-page>main>section.event-content .right-container {
+  .event-page > main > section.event-content .right-container {
     width: 100%;
   }
 
-  .event-page>main>header {
+  .event-page > main > header {
     flex-wrap: wrap;
   }
 
-  .event-page>main>header>section>.event-select {
+  .event-page > main > header > section > .event-select {
     width: 100%;
   }
 }

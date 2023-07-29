@@ -2,6 +2,7 @@ import React from "react";
 import {
   createBrowserRouter,
   createRoutesFromElements,
+  Navigate,
   Route,
 } from "react-router-dom";
 
@@ -25,7 +26,7 @@ import Search from "../pages/Search/Search";
 
 const AllRoute = createBrowserRouter(
   createRoutesFromElements(
-    <Route path="/" element={<BaseLayout />}>
+    <Route path="/" element={<BaseLayout />} errorElement={<Error />}>
       <Route index element={<Homepage />} />
       <Route path="/news" element={<AllNews />} />
       <Route path="/news/:id/:slug?" element={<ParticularNews />} />
@@ -45,7 +46,7 @@ const AllRoute = createBrowserRouter(
       <Route path="/documents" exact element={<Documents />} />
       <Route path="/rules" exact element={<Rules />} />
       <Route path="/search" element={<Search />} />
-      <Route path="*" element={<Error />} />
+      <Route path="*" element={<Navigate to="/" replace />} />
     </Route>
   )
 );

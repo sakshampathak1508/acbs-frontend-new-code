@@ -1,6 +1,8 @@
 import React from "react";
 import { useParams } from "react-router-dom";
 
+import { Box, Container } from "@mui/material";
+
 import Lottie from "lottie-react";
 
 import searchAnimation from "../../assets/search.json";
@@ -10,7 +12,6 @@ import { SEO } from "../../helper/Seo";
 import { useAPI } from "../../helper/swr";
 
 import "./PastParticularChampion.css";
-import { Box, Container } from "@mui/material";
 
 const PastParticularChampion = () => {
   const { id } = useParams();
