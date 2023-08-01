@@ -27,7 +27,7 @@ const ImageTitle = props => {
           className="card_image"
           style={{
             backgroundImage: `url(${API_URL}${props.image})`,
-            backgroundSize: "cover",
+            backgroundSize: "100% 100%",
             backgroundRepeat: "no-repeat",
           }}
         ></Box>

@@ -23,8 +23,8 @@ const ParticularEvent = () => {
   const StyledLink = styled(Link)(() => ({
     all: "unset",
     display: "flex",
-    padding: "1rem",
-    fontSize: "1.2rem",
+    padding: "0.8rem",
+    fontSize: "1.1rem",
     border: "1px solid var(--blue)",
     borderRadius: "4px",
     cursor: "pointer",
@@ -49,9 +49,10 @@ const ParticularEvent = () => {
                 <section className="event-content">
                   <section
                     className="left-container"
-                    dangerouslySetInnerHTML={{ __html: data.content1 }}
+                    dangerouslySetInnerHTML={{
+                      __html: data.content1 + data.content2,
+                    }}
                   ></section>
-
                   <section className="right-container">
                     <section className="top">
                       <div className="location">

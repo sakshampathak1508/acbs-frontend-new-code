@@ -43,7 +43,7 @@ const ParticularNews = () => {
       {!isLoading ? (
         <>
           <SEO title={`News | ${data?.title}`} />
-          <Container maxWidth="xl">
+          <Container maxWidth="lg">
             <div className="particular-news-page">
               <header>
                 <section className="title">
@@ -55,7 +55,7 @@ const ParticularNews = () => {
               </header>
               <Box component="main">
                 <section className="image-section">
-                  <img src={baseUrl + data?.image} width={"100%"} alt="News" />
+                  <img src={baseUrl + data?.image} width="100%" alt="News" />
                 </section>
 
                 <section className="event-section">

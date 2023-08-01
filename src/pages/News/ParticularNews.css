@@ -12,6 +12,7 @@
 
 .particular-news-page > main .image-section img {
   border-radius: 8px;
+  max-height: 35rem;
 }
 
 .particular-news-page > main .event-section {

@@ -32,7 +32,8 @@ const EventImageTitle = props => {
           className="card_image"
           style={{
             backgroundImage: `url(${API_URL}${props?.event_banner})`,
-            backgroundSize: "cover",
+
+            backgroundSize: "100% 100%",
             backgroundRepeat: "no-repeat",
           }}
         ></Box>

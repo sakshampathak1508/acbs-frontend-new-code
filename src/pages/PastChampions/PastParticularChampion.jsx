@@ -24,7 +24,7 @@ const PastParticularChampion = () => {
         <>
           <SEO title={`Champion | ${data.name}`} />
 
-          <Container maxWidth="xl">
+          <Container maxWidth="lg">
             <Box className="particular-champ">
               <h2 className="title">{data.name}</h2>
 
@@ -32,7 +32,7 @@ const PastParticularChampion = () => {
                 <img
                   alt="champion"
                   src={`${API_URL}${data.image}`}
-                  style={{ width: "100%", maxHeight: "100%" }}
+                  style={{ width: "100%", maxHeight: "35rem" }}
                 />
 
                 <br></br>

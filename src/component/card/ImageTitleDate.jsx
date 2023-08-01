@@ -30,9 +30,9 @@ const ImageTitleDate = ({
       <CardActionArea sx={{ height: "100%" }}>
         <Box
           className="card_image"
-          style={{
+          sx={{
             backgroundImage: `url(${image})`,
-            backgroundSize: "cover",
+            backgroundSize: "100% 100%",
             backgroundRepeat: "no-repeat",
           }}
         ></Box>

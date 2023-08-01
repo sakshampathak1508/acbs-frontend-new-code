@@ -18,6 +18,7 @@ const Card = props => {
         className="executive-image"
         style={{
           backgroundImage: `url(${API_URL}${props.image})`,
+          backgroundSize: "cover",
         }}
       ></section>
       <section className="executive-content">

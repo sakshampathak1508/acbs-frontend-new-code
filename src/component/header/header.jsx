@@ -40,7 +40,8 @@ const Header = () => {
 
   const handleSearch = event => {
     event.preventDefault();
-    if (searched != "") navigate(`search/?query=${searched}`);
+
+    if (searched) navigate(`search/?query=${searched}`);
   };
 
   const drawer = (

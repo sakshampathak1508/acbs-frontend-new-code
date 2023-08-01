@@ -101,6 +101,11 @@ div.date h5 {
   text-underline-offset: 8px;
   font-style: normal;
   font-weight: 900;
+  font-size: 1.2rem;
+}
+
+.event-page > main > section.event-content .right-container h5 {
+  font-size: 1.1rem;
 }
 
 .event-page > main > section.event-content > .right-container > .bottom {
