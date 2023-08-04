@@ -5,9 +5,7 @@
   height: auto;
   margin: auto;
   padding-top: 3rem;
-  /* background: red; */
   background-color: rgba(0, 0, 0, 0);
-  /* max-width: 1300px; */
 }
 
 .middle_widgets .middle_widget_header {
@@ -34,6 +32,7 @@
   margin: 0;
   padding: 0;
 }
+
 .middle_widgets .middle_widget_header p {
   font-size: 0.8rem;
   font-weight: 800;
@@ -42,12 +41,12 @@
   margin: 0;
   color: rgb(13, 161, 255);
 }
-.middle_widgets > * {
-  min-width: 33%;
-  max-width: 390px;
-  /* margin-right: 1%; */
+
+.middle_widgets>* {
+  width: 100%;
   margin-bottom: 3%;
 }
+
 .middle_widgets .MuiTableCell-root {
   font-size: 1.25rem;
   font-weight: 600;
@@ -57,7 +56,5 @@
   .middle_widgets {
     flex-direction: column;
   }
-  .middle_widgets > * {
-    min-width: 100%;
-  }
+
 }

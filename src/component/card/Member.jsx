@@ -21,10 +21,18 @@ const Card = props => {
         }}
       ></section>
       <section className="members-content">
-        <h6> {props.name}</h6>
-        <p>
-          <strong>President:</strong> {props.president}
-        </p>
+        <h6> {props?.name}</h6>
+        {props?.person1 && (
+          <span>
+            <strong>{props.position1}:</strong> {props.person1}
+          </span>
+        )}
+        {props?.person2 && (
+          <span>
+            <strong>{props.position2}:</strong> {props.person2}
+          </span>
+        )}
+
         <div className="icons">
           {props.email && (
             <StyledLink href={"mailto:" + props.email} target="_blank">

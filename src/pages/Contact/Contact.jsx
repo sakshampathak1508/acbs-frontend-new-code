@@ -16,7 +16,7 @@ const Contact = () => {
   return (
     <Box className="contact-us">
       <SEO title={`ACBS | Contact Us`} />
-      <Container maxWidth="xl">
+      <Container maxWidth="lg">
         <h4 className="heading">Contact ACBS</h4>
         {!isLoading && (
           <div>

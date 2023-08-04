@@ -19,7 +19,7 @@ const AboutAcbs = () => {
                 The Asian Billiards & Snooker Federation (ABSF), now renamed the Asian Confederation of Billiards Sports (ACBS), was officially inaugurated in 1984 with eight founding member countries, of which Malaysia was one."
       />
 
-      <Container maxWidth="xl">
+      <Container maxWidth="lg">
         <Box className=" about-us">
           <h4 className="heading">About ACBS</h4>
 

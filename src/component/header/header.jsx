@@ -148,7 +148,7 @@ const Header = () => {
           background: "white",
         }}
       >
-        <Container maxWidth="xl">
+        <Container maxWidth="lg">
           <Toolbar
             disableGutters
             sx={{

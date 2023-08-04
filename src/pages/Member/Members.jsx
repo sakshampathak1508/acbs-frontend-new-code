@@ -16,7 +16,7 @@ const Members = () => {
     <>
       <SEO title={`ACBS | Members`} />
 
-      <Container maxWidth="xl">
+      <Container maxWidth="lg">
         <section className="member-heading">
           <h4>MEMBERS</h4>
         </section>

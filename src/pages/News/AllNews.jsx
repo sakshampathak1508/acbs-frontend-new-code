@@ -96,7 +96,7 @@ const AllNews = () => {
   return (
     <div className="newspage">
       <SEO title="ACBS | News" />
-      <Container maxWidth="xl">
+      <Container maxWidth="lg">
         <main className="main-news-page">
           <header className="header-title">
             <h4>News</h4>
@@ -137,11 +137,10 @@ const AllNews = () => {
             {data &&
               data?.length > 0 &&
               data?.map((val, index) => (
-                // <p>Hello WOrld</p>
                 <ImageTitleDate
                   id={val.id}
                   slug={val.slug}
-                  maxWidth={"25rem"}
+                  maxWidth={"23rem"}
                   image={`${API_URL}/${val.image}`}
                   title={val.title}
                   timestamp={val.timestamp}

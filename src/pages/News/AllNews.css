@@ -1,11 +1,8 @@
 .newspage {
-  /* display: flex; */
-  /* margin-top: 1rem;
-    margin-bottom: 3rem; */
   padding-top: 1rem;
 }
 
-.newspage .main-news-page > .header-title {
+.newspage .main-news-page>.header-title {
   display: flex;
   align-items: center;
   text-align: center;
@@ -14,7 +11,7 @@
   margin-bottom: 2rem;
 }
 
-.newspage .main-news-page > .header-title > h4 {
+.newspage .main-news-page>.header-title>h4 {
   margin: auto 0;
   text-transform: uppercase;
   color: var(--black);
@@ -22,7 +19,8 @@
   text-decoration: underline var(--red) 2px;
   text-underline-offset: 8px;
 }
-.newspage .main-news-page > .header-title > .year {
+
+.newspage .main-news-page>.header-title>.year {
   /* display: flex;
     justify-content: center; */
   display: flex;
@@ -30,19 +28,19 @@
   text-align: center;
 }
 
-.newspage .main-news-page > .header-title > .year > label {
+.newspage .main-news-page>.header-title>.year>label {
   /* background-color: red; */
   font-size: 1.1rem;
 }
-.newspage .main-news-page > .header-title > .year > .form-control {
+
+.newspage .main-news-page>.header-title>.year>.form-control {
   margin-bottom: 2rem;
 }
 
-.newspage .main-news-page > .news-cards-section {
+.newspage .main-news-page>.news-cards-section {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
-  gap: 1rem;
 }
 
 .css-19xm0h7-MuiButtonBase-root-MuiPaginationItem-root.Mui-selected {

@@ -16,7 +16,7 @@ const Executive = () => {
   return (
     <>
       <SEO title="ACBS | Executives" />
-      <Container maxWidth="xl">
+      <Container maxWidth="lg">
         <div style={{ paddingTop: "1rem" }}>
           <Box sx={{ mb: "2rem" }}>
             <h4 className="executive-heading">EXECUTIVES</h4>

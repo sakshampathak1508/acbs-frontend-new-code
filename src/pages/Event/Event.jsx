@@ -106,7 +106,7 @@ const Event = () => {
   return (
     <Box>
       <SEO title="ACBS | Events" />
-      <Container maxWidth="xl">
+      <Container maxWidth="lg">
         <div className="event-page">
           <header
             style={{

@@ -17,7 +17,7 @@ const Documents = () => {
     <>
       <SEO title="ACBS | Documents" />
 
-      <Container maxWidth="xl">
+      <Container maxWidth="lg">
         <div className="download">
           <h4 className="headline">Downloads </h4>
 

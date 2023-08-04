@@ -25,7 +25,7 @@ import "slick-carousel/slick/slick-theme.css";
 import "./Homepage.css";
 
 const HomePage = () => {
-  const isMobile = useMediaQuery("(max-width:900px)");
+  const isMobile = useMediaQuery("(max-width:769px)");
 
   const fetcher = async url => {
     try {
@@ -75,7 +75,7 @@ const HomePage = () => {
       {!loading1 && !loading2 && !loading3 ? (
         <section>
           <Carousel data={carouselDataBefore} />
-          <Container maxWidth="xl">
+          <Container maxWidth="lg">
             <div>
               <div className="middle_widgets">
                 <div>

@@ -1,6 +1,6 @@
 .eventimageTitle-card_body {
-  height: 24rem;
-  width: 26rem;
+  height: 22rem;
+  width: 23rem;
   margin-right: 0;
   outline: 0;
   cursor: pointer;
@@ -30,14 +30,15 @@
   overflow: hidden;
   text-overflow: ellipsis;
   font-weight: 600;
-  font-size: 1.3rem;
+  font-size: 1.1rem;
+  line-height: 1.3rem;
   color: #000000d9;
   margin: 0;
 }
 
-.eventimageTitle-card_body .card_container > p {
-  font-size: 1.2rem;
-  line-height: 128%;
+.eventimageTitle-card_body .card_container>p {
+  font-size: 1rem;
+  line-height: 0rem;
   color: #222222;
   margin-bottom: 0rem;
 }
@@ -55,7 +56,7 @@
   /* justify-content: space-between; */
 }
 
-.eventimageTitle-card_body .card_container .location-date > .location {
+.eventimageTitle-card_body .card_container .location-date>.location {
   display: flex;
   flex-direction: row;
   font-size: 1rem;
@@ -64,36 +65,24 @@
   margin-bottom: 0.2rem;
 }
 
-.eventimageTitle-card_body .card_container .location-date > .location > svg {
-  font-size: 1.1rem;
-  margin-left: -0.2rem;
-}
-
-.eventimageTitle-card_body .card_container .location-date > .location > p {
+.eventimageTitle-card_body .card_container .location-date>.location>p {
   margin: 0;
-  font-size: 1.1rem;
+  font-size: 1rem;
 }
 
-.eventimageTitle-card_body .card_container .location-date > .start-end-date {
+.eventimageTitle-card_body .card_container .location-date>.start-end-date {
   display: flex;
-  justify-content: space-between;
+  gap: 2rem;
+  /* justify-content: space-between; */
 }
 
-.eventimageTitle-card_body
-  .card_container
-  .location-date
-  > .start-end-date
-  > .start-date-fields,
+.eventimageTitle-card_body .card_container .location-date>.start-end-date>.start-date-fields,
 .end-date-fields {
   display: flex;
   flex-direction: column;
 }
 
-.eventimageTitle-card_body
-  .card_container
-  .location-date
-  > .start-end-date
-  label {
+.eventimageTitle-card_body .card_container .location-date>.start-end-date label {
   color: var(--black);
   -webkit-text-decoration: underline var(--red) 2px;
   text-decoration: underline var(--red) 1px;

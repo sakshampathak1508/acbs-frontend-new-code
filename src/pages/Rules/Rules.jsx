@@ -14,7 +14,7 @@ const Rules = () => {
   return (
     <Box className="rules">
       <SEO title={`ACBS | Rules`} />
-      <Container maxWidth="xl">
+      <Container maxWidth="lg">
         <h4 className="heading">Rules</h4>
         {isLoading ? (
           <div

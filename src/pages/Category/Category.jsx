@@ -90,7 +90,7 @@ const Category = () => {
     <div style={{ paddingTop: "1rem" }}>
       <SEO title={`Category | ${type}`} />
 
-      <Container maxWidth="xl">
+      <Container maxWidth="lg">
         <Box
           sx={{
             display: "flex",

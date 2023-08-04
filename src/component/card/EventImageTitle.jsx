@@ -42,7 +42,7 @@ const EventImageTitle = props => {
 
           <Box className="location-date">
             <section className="location">
-              <LocationOnIcon />
+              <LocationOnIcon sx={{ fontSize: "1.2rem" }} />
               <p>{props?.location}</p>
             </section>
             <section className="start-end-date">

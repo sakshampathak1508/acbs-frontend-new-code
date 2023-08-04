@@ -19,7 +19,7 @@ const Footer = () => {
 
   return (
     <footer className="all_footer">
-      <Container maxWidth="xl">
+      <Container maxWidth="lg">
         <Box className="inner-footer">
           <Box className="home_footer">
             <Box>

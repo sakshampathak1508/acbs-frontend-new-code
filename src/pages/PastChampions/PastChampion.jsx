@@ -15,7 +15,7 @@ const PastChampion = () => {
     <>
       <SEO title="ACBS | Past Champions" />
 
-      <Container maxWidth="xl">
+      <Container maxWidth="lg">
         <Box className="past-champions">
           <div style={{ marginBottom: "2rem" }}>
             <h3 className="heading">Past champions</h3>
@@ -30,7 +30,15 @@ const PastChampion = () => {
               }}
             >
               {data.map(data => (
-                <ImageTitle data={data} key={data.id} />
+                <>
+                  <ImageTitle data={data} key={data.id} />
+
+                  <ImageTitle data={data} key={data.id} />
+
+                  <ImageTitle data={data} key={data.id} />
+
+                  <ImageTitle data={data} key={data.id} />
+                </>
               ))}
             </div>
           ) : !isLoading ? (

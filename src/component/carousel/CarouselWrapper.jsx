@@ -1,7 +1,7 @@
 import React from "react";
 import Slider from "react-slick";
 
-import { Box } from "@mui/material";
+import { Box, useMediaQuery } from "@mui/material";
 
 import "./CarouselWrapper.css";
 
@@ -10,11 +10,13 @@ import "slick-carousel/slick/slick-theme.css";
 import { API_URL } from "../../constant/api";
 
 const CarouselWrapper = ({ data }) => {
+  const isMobile = useMediaQuery("(max-width:769px)");
+
   const setting = {
     dots: false,
     infinite: true,
     speed: 1000,
-    slidesToShow: 1,
+    slidesToShow: isMobile ? 1 : 2,
     slidesToScroll: 1,
     autoplay: true,
   };

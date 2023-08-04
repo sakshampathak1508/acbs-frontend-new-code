@@ -42,7 +42,7 @@ const ParticularEvent = () => {
       {!isLoading && data && (
         <>
           <SEO title={`Event | ${data.name}`} />
-          <Container maxWidth="xl">
+          <Container maxWidth="lg">
             <Box className="event-page">
               <main>
                 <h2>{data.name}</h2>
@@ -96,12 +96,10 @@ const ParticularEvent = () => {
                             <span>{<SportsKabaddiIcon />}</span>
                           </StyledLink>
                         )}
-                        {data.results && (
-                          // <h5>
-                          <StyledLink href={data.results} target="_blank">
+                        {data.details && (
+                          <StyledLink href={data.details} target="_blank">
                             Results &nbsp;<span>{<AttachmentIcon />}</span>
                           </StyledLink>
-                          // </h5>
                         )}
                         {data.live && (
                           <StyledLink href={data.live} target="_blank">

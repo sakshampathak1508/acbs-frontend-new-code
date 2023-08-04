@@ -34,7 +34,7 @@ const Search = () => {
     <>
       <Box className="search">
         <SEO title="Search" description={`Search Results for ${query}`} />
-        <Container maxWidth="xl">
+        <Container maxWidth="lg">
           <Box
             sx={{
               display: "flex",
