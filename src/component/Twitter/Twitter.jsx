@@ -5,8 +5,11 @@ const Twitter = () => {
   return (
     <>
       <Timeline
-        dataSource={{ sourceType: "profile", screenName: "ACBSport" }}
-        options={{ height: 400 }}
+        dataSource={{
+          sourceType: "profile",
+          screenName: "ACBSport",
+        }}
+        options={{ height: 400, id: "profile:ACBSport" }}
       />
     </>
   );

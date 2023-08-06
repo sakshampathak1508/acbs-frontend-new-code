@@ -78,19 +78,21 @@ const HomePage = () => {
           <Container maxWidth="lg">
             <div>
               <div className="middle_widgets">
-                <div>
-                  <Widget
-                    Icon={EventIcon}
-                    link="champion"
-                    text="snooker - Billiards"
-                  />
-                  <EventList
-                    data={frontEvents && frontEvents["snooker-billiards"]}
-                  />
-                </div>
-                <div>
-                  <Widget Icon={EventIcon} link="champion" text="Pool" />
-                  <EventList data={frontEvents?.pool} />
+                <div className="responsive_widgets">
+                  <div>
+                    <Widget
+                      Icon={EventIcon}
+                      link="champion"
+                      text="snooker - Billiards"
+                    />
+                    <EventList
+                      data={frontEvents && frontEvents["snooker-billiards"]}
+                    />
+                  </div>
+                  <div>
+                    <Widget Icon={EventIcon} link="champion" text="Pool" />
+                    <EventList data={frontEvents?.pool} />
+                  </div>
                 </div>
                 <div>
                   <Widget Icon={TwitterIcon} link="champion" text="Tweets" />

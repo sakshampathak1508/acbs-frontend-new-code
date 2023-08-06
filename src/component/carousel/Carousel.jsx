@@ -62,6 +62,15 @@ const ControlledCarousel = ({ data }) => {
                         <MenuItem disabled value="Links">
                           <em>Links</em>
                         </MenuItem>
+                        {val.event.details && (
+                          <MenuItem
+                            component={StyledLink}
+                            href={val.event.details}
+                            target="_blank"
+                          >
+                            Details
+                          </MenuItem>
+                        )}
                         {val.event.groups && (
                           <MenuItem sx={{ fontWeight: 700 }}>
                             <StyledLink href={val.event.groups} target="_blank">
@@ -79,15 +88,6 @@ const ControlledCarousel = ({ data }) => {
                           </MenuItem>
                         )}
 
-                        {val.event.results && (
-                          <MenuItem
-                            component={StyledLink}
-                            href={val.event.results}
-                            target="_blank"
-                          >
-                            Results
-                          </MenuItem>
-                        )}
                         {val.event.live && (
                           <MenuItem
                             component={StyledLink}

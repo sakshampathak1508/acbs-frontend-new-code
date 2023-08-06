@@ -98,7 +98,7 @@ const ParticularEvent = () => {
                         )}
                         {data.details && (
                           <StyledLink href={data.details} target="_blank">
-                            Results &nbsp;<span>{<AttachmentIcon />}</span>
+                            Details &nbsp;<span>{<AttachmentIcon />}</span>
                           </StyledLink>
                         )}
                         {data.live && (

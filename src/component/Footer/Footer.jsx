@@ -36,6 +36,7 @@ const Footer = () => {
                   color="#FFFFFF"
                   href="https://www.facebook.com/acbsport/"
                   target="_blank"
+                  title="facebook"
                 >
                   <FacebookIcon />
                 </StyledLink>
@@ -43,6 +44,7 @@ const Footer = () => {
                   color="#FFFFFF"
                   href="https://twitter.com/ACBSport"
                   target="_blank"
+                  title="twitter"
                 >
                   <TwitterIcon />
                 </StyledLink>
@@ -50,6 +52,7 @@ const Footer = () => {
                   color="#FFFFFF"
                   href="https://www.instagram.com/acbsmedia/"
                   target="_blank"
+                  title="instagram"
                 >
                   <InstagramIcon />
                 </StyledLink>
@@ -57,6 +60,7 @@ const Footer = () => {
                   color="#FFFFFF"
                   href="https://www.youtube.com/@acbstv"
                   target="_blank"
+                  title="youtube"
                 >
                   <YouTubeIcon />
                 </StyledLink>
