@@ -8,7 +8,7 @@
   background-color: rgba(0, 0, 0, 0);
 }
 
-.middle_widgets > * {
+.middle_widgets>* {
   width: 33%;
 }
 
@@ -46,17 +46,12 @@
   color: rgb(13, 161, 255);
 }
 
-/* .middle_widgets .MuiTableCell-root {
-  font-size: 1.25rem;
-  font-weight: 600;
-} */
-
-@media only screen and (max-width: 769px) {
+@media only screen and (max-width: 900px) {
   .middle_widgets {
     flex-direction: column;
   }
 
-  .middle_widgets > * {
+  .middle_widgets>* {
     width: 100%;
   }
 }
