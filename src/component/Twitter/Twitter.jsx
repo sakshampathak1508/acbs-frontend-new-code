@@ -9,7 +9,7 @@ const Twitter = () => {
           sourceType: "profile",
           screenName: "ACBSport",
         }}
-        options={{ height: 400, id: "profile:ACBSport" }}
+        options={{ height: 400, width: "auto", id: "profile:ACBSport" }}
       />
     </>
   );

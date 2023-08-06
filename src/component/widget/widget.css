@@ -1,11 +1,15 @@
 .middle_widgets {
   display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
+  gap: 1rem;
   height: auto;
   margin: auto;
+  margin-bottom: 1rem;
   padding-top: 3rem;
   background-color: rgba(0, 0, 0, 0);
+}
+
+.middle_widgets > * {
+  width: 33%;
 }
 
 .middle_widgets .middle_widget_header {
@@ -42,19 +46,17 @@
   color: rgb(13, 161, 255);
 }
 
-.middle_widgets>* {
-  width: 100%;
-  margin-bottom: 1rem;
-}
-
-.middle_widgets .MuiTableCell-root {
+/* .middle_widgets .MuiTableCell-root {
   font-size: 1.25rem;
   font-weight: 600;
-}
+} */
 
-@media only screen and (max-width: 1400px) {
+@media only screen and (max-width: 769px) {
   .middle_widgets {
     flex-direction: column;
   }
 
+  .middle_widgets > * {
+    width: 100%;
+  }
 }

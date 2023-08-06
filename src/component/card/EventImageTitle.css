@@ -36,7 +36,7 @@
   margin: 0;
 }
 
-.eventimageTitle-card_body .card_container>p {
+.eventimageTitle-card_body .card_container > p {
   font-size: 1rem;
   line-height: 0rem;
   color: #222222;
@@ -56,7 +56,7 @@
   /* justify-content: space-between; */
 }
 
-.eventimageTitle-card_body .card_container .location-date>.location {
+.eventimageTitle-card_body .card_container .location-date > .location {
   display: flex;
   flex-direction: row;
   font-size: 1rem;
@@ -65,24 +65,32 @@
   margin-bottom: 0.2rem;
 }
 
-.eventimageTitle-card_body .card_container .location-date>.location>p {
+.eventimageTitle-card_body .card_container .location-date > .location > p {
   margin: 0;
   font-size: 1rem;
 }
 
-.eventimageTitle-card_body .card_container .location-date>.start-end-date {
+.eventimageTitle-card_body .card_container .location-date > .start-end-date {
   display: flex;
   gap: 2rem;
   /* justify-content: space-between; */
 }
 
-.eventimageTitle-card_body .card_container .location-date>.start-end-date>.start-date-fields,
+.eventimageTitle-card_body
+  .card_container
+  .location-date
+  > .start-end-date
+  > .start-date-fields,
 .end-date-fields {
   display: flex;
   flex-direction: column;
 }
 
-.eventimageTitle-card_body .card_container .location-date>.start-end-date label {
+.eventimageTitle-card_body
+  .card_container
+  .location-date
+  > .start-end-date
+  label {
   color: var(--black);
   -webkit-text-decoration: underline var(--red) 2px;
   text-decoration: underline var(--red) 1px;

@@ -21,10 +21,11 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
 const StyledTableCell = styled(TableCell)(() => ({
   "&.MuiTableCell-root": {
     fontSize: "0.9rem",
+    fontFamily: "inherit",
   },
 }));
 
-const EventList = ({ data }) => {
+const EventList = ({ data, type }) => {
   return (
     <TableContainer style={{ borderRadius: "5px" }} component={Paper}>
       <Table aria-label="customized table">
@@ -32,16 +33,18 @@ const EventList = ({ data }) => {
           {data &&
             data.map((row, index) => (
               <StyledTableRow key={row?.id}>
-                <StyledTableCell
-                  style={
-                    index % 2
-                      ? { background: "#ed1c24b3" }
-                      : { background: "var(--red)" }
-                  }
-                  align="center"
-                >
-                  {index + 1}
-                </StyledTableCell>
+                {type === "pool" && (
+                  <StyledTableCell
+                    style={
+                      index % 2
+                        ? { background: "#ed1c24b3" }
+                        : { background: "var(--red)" }
+                    }
+                    align="center"
+                  >
+                    {row?.location}
+                  </StyledTableCell>
+                )}
                 <StyledTableCell align="left">
                   <StyledRouteLink to={`/event/${row.id}/${row.slug}`}>
                     {row.name}
