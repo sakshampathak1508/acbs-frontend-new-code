@@ -4,11 +4,12 @@
 /node_modules
 /.pnp
 .pnp.js
+.onetoc2
 
 # testing
 /coverage
 
-# production
+# productionEve
 /build
 
 # misc

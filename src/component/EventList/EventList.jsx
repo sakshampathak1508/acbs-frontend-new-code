@@ -25,7 +25,7 @@ const StyledTableCell = styled(TableCell)(() => ({
   },
 }));
 
-const EventList = ({ data, type }) => {
+const EventList = ({ data }) => {
   return (
     <TableContainer style={{ borderRadius: "5px" }} component={Paper}>
       <Table aria-label="customized table">
@@ -33,29 +33,23 @@ const EventList = ({ data, type }) => {
           {data &&
             data.map((row, index) => (
               <StyledTableRow key={row?.id}>
-                {type === "pool" && (
-                  <StyledTableCell
-                    style={
-                      index % 2
-                        ? { background: "#ed1c24b3" }
-                        : { background: "var(--red)" }
-                    }
-                    align="center"
-                  >
-                    {row?.location}
-                  </StyledTableCell>
-                )}
+                <StyledTableCell
+                  style={
+                    index % 2
+                      ? { background: "#ed1c24b3" }
+                      : { background: "var(--red)" }
+                  }
+                  align="center"
+                >
+                  {moment(row?.start_date).format("MMMM DD, YYYY")}
+                </StyledTableCell>
+
                 <StyledTableCell align="left">
                   <StyledRouteLink to={`/event/${row.id}/${row.slug}`}>
                     {row.name}
                   </StyledRouteLink>
                 </StyledTableCell>
-
-                <StyledTableCell align="right">
-                  {moment(row?.start_date).format("MMMM DD, YYYY")}
-                  {" - "}
-                  {moment(row?.end_date).format("MMMM DD, YYYY")}
-                </StyledTableCell>
+                <StyledTableCell align="right">{row?.location}</StyledTableCell>
               </StyledTableRow>
             ))}
         </TableBody>
