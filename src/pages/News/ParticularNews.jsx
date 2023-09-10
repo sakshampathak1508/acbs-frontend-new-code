@@ -29,9 +29,15 @@ import { useAPI } from "../../helper/swr";
 import "./ParticularNews.css";
 
 const ParticularNews = () => {
-  const shareUrl = `https://ibsf.info/news/`;
-  const instaUrl = "http://www.instagram.com";
-  const emailUrl = "http://www.ibsfinfo@gmail.com";
+  const shareUrl = window.location.href;
+  const twitterUrl = "https://twitter.com/ACBSport";
+  const faceBookUrl = "https://www.facebook.com/acbsport/";
+  const instaUrl = "https://www.instagram.com/acbsmedia/";
+  const emailUrl = "";
+
+  const subject = `ACBS | News Article`;
+  const body = `Hi there! I found an interesting article on Asian Confederation of Billiard Sports(ACBS).
+Check it out: ${shareUrl}`;
 
   const { id } = useParams();
   const baseUrl = API_URL;
@@ -100,7 +106,7 @@ const ParticularNews = () => {
                           </li>
 
                           <li>
-                            <FacebookShareButton url={shareUrl} quote={"oo"}>
+                            <FacebookShareButton url={faceBookUrl} quote={"oo"}>
                               <FacebookIcon />
                             </FacebookShareButton>
                           </li>
@@ -110,7 +116,7 @@ const ParticularNews = () => {
                             </WhatsappShareButton>
                           </li>
                           <li>
-                            <TwitterShareButton url={shareUrl}>
+                            <TwitterShareButton url={twitterUrl}>
                               <TwitterIcon />
                             </TwitterShareButton>
                           </li>
@@ -121,7 +127,9 @@ const ParticularNews = () => {
                           </li>
                           <li>
                             <StyledLink
-                              href={"mailto:" + emailUrl}
+                              href={`mailto:${emailUrl}?subject=${encodeURIComponent(
+                                subject
+                              )}&body=${encodeURIComponent(body)}`}
                               target="_blank"
                             >
                               <MailOutlineIcon />
