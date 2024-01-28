@@ -11,7 +11,7 @@ import { useAPI } from "../../helper/swr";
 import "./Documents.css";
 
 const Documents = () => {
-  const { data, isLoading } = useAPI("api/documents/");
+  const { data, isLoading } = useAPI("/api/documents/");
 
   return (
     <>

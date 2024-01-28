@@ -62,6 +62,15 @@ const ControlledCarousel = ({ data }) => {
                         <MenuItem disabled value="Links">
                           <em>Links</em>
                         </MenuItem>
+                        {val.event.login && (
+                          <MenuItem
+                            component={StyledLink}
+                            href={val.event.login}
+                            target="_blank"
+                          >
+                            Login
+                          </MenuItem>
+                        )}
                         {val.event.details && (
                           <MenuItem
                             component={StyledLink}

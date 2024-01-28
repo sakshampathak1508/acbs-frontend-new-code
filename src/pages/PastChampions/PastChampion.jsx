@@ -9,7 +9,7 @@ import { useAPI } from "../../helper/swr";
 import "./PastChampion.css";
 
 const PastChampion = () => {
-  const { data, isLoading } = useAPI("api/allchamps/");
+  const { data, isLoading } = useAPI("/api/allchamps/");
 
   return (
     <>

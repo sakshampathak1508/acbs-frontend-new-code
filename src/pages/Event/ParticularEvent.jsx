@@ -2,6 +2,7 @@ import React from "react";
 import { useParams } from "react-router";
 
 import AttachmentIcon from "@mui/icons-material/Attachment";
+import LockIcon from '@mui/icons-material/Lock';
 import InsertPhotoIcon from "@mui/icons-material/InsertPhoto";
 import LiveTvIcon from "@mui/icons-material/LiveTv";
 import PlayCircleIcon from "@mui/icons-material/PlayCircle";
@@ -35,7 +36,7 @@ const ParticularEvent = () => {
     },
   }));
 
-  const { data, isLoading } = useAPI(`events/?id=${id}`);
+  const { data, isLoading } = useAPI(`/events/?id=${id}`);
 
   return (
     <>
@@ -76,7 +77,7 @@ const ParticularEvent = () => {
 
                         <div className="end-date">
                           <h4>End Date</h4>
-                          <h5>{moment(data.end).format("MMMM DD, YYYY")}</h5>
+                          <h5>{moment(data.end_date).format("MMMM DD, YYYY")}</h5>
                         </div>
                       </div>
                     </section>
@@ -99,6 +100,11 @@ const ParticularEvent = () => {
                         {data.details && (
                           <StyledLink href={data.details} target="_blank">
                             Details &nbsp;<span>{<AttachmentIcon />}</span>
+                          </StyledLink>
+                        )}
+                        {data.login && (
+                          <StyledLink href={data.login} target="_blank">
+                            Login &nbsp;<span>{<LockIcon />}</span>
                           </StyledLink>
                         )}
                         {data.live && (

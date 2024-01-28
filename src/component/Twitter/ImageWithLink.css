@@ -1,0 +1,15 @@
+.image-container {
+    position: relative;
+    display: inline-block;
+  }
+  
+  .hoverable-image {
+    width: 100%; /* Adjust the dimensions as needed */
+    height: 100%;
+    transition: filter 0.3s ease-in-out;
+  }
+  
+  .hoverable-image:hover {
+    filter: blur(1px); /* Adjust the blur radius for the hover effect */
+  }
+  

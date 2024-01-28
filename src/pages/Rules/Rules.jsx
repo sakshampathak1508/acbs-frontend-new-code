@@ -9,7 +9,7 @@ import { useAPI } from "../../helper/swr";
 import "./Rules.css";
 
 const Rules = () => {
-  const { data, isLoading } = useAPI("api/rule/");
+  const { data, isLoading } = useAPI("/api/rule/");
 
   return (
     <Box className="rules">

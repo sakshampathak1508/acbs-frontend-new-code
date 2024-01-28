@@ -9,7 +9,7 @@ import { useAPI } from "../../helper/swr";
 import "./About.css";
 
 const AboutAcbs = () => {
-  const { data, isLoading } = useAPI("api/about-us/");
+  const { data, isLoading } = useAPI("/api/about-us/");
 
   return (
     <>

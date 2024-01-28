@@ -39,7 +39,7 @@ const ImageTitleDate = ({
         <Box className="card_container">
           <p className="title">{title}</p>
           <Box className="dateviews">
-            <p className="time">{moment(timestamp).format("MMMM d, YYYY")}</p>
+            <p className="time">{moment(timestamp).format("MMMM DD, YYYY")}</p>
             <Box className="views">
               <VisibilityIcon fontSize="20px" />
               <p>{views}</p>

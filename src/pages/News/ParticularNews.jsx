@@ -42,7 +42,7 @@ Check it out: ${shareUrl}`;
   const { id } = useParams();
   const baseUrl = API_URL;
 
-  const { data, isLoading } = useAPI(`news/?id=${id}`);
+  const { data, isLoading } = useAPI(`/news/?id=${id}`);
 
   return (
     <>
@@ -55,7 +55,7 @@ Check it out: ${shareUrl}`;
                 <section className="title">
                   <h4 style={{ textAlign: "center" }}>{data?.title}</h4>
                   <p style={{ textAlign: "right" }}>
-                    {moment(data?.timestamp).format(`MMMM d, YYYY`)}
+                    {moment(data?.timestamp).format(`MMMM DD, YYYY`)}
                   </p>
                 </section>
               </header>
@@ -152,7 +152,8 @@ Check it out: ${shareUrl}`;
 
                         <h6>
                           {data.writer_name}{" "}
-                          {data.writer_title && `, ${data.writer_title}`}
+                          <br />
+                          {data.writer_title && ` ${data.writer_title}`}
                         </h6>
                       </div>
                     </div>

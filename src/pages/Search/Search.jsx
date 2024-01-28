@@ -28,7 +28,7 @@ const Search = () => {
     setTypes(event.target.value);
   };
 
-  const { data: searchData, isLoading } = useAPI(`api/search/?query=${query}`);
+  const { data: searchData, isLoading } = useAPI(`/api/search/?query=${query}`);
 
   return (
     <>

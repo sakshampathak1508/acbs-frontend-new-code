@@ -10,7 +10,7 @@ import { SEO } from "../../helper/Seo";
 import { useAPI } from "../../helper/swr";
 
 const Members = () => {
-  const { data, isLoading } = useAPI("api/member-countries/");
+  const { data, isLoading } = useAPI("/api/member-countries/");
 
   return (
     <>

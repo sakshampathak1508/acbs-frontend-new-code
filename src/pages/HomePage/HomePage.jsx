@@ -50,9 +50,9 @@ const HomePage = () => {
     }
   };
 
-  const { data: latestNews, isLoading: loading1 } = useAPI("news/latest");
-  const { data: frontEvents, isLoading: loading2 } = useAPI("events/front");
-  const { data: sponsors } = useAPI("api/sponsers");
+  const { data: latestNews, isLoading: loading1 } = useAPI("/news/latest");
+  const { data: frontEvents, isLoading: loading2 } = useAPI("/events/front");
+  const { data: sponsors } = useAPI("/api/sponsers");
   let { data: carouselDataBefore, isLoading: loading3 } = useSWR(
     "api/featured",
     fetcher
@@ -93,7 +93,7 @@ const HomePage = () => {
                   <EventList data={frontEvents?.pool} />
                 </div>
                 <div>
-                  <Widget Icon={TwitterIcon} link="champion" text="Tweets" />
+                  <Widget Icon={EventIcon} link="champion" text="ACBS SANCTIONED TOURNAMENTS" />
                   <Twitter />
                 </div>
               </div>

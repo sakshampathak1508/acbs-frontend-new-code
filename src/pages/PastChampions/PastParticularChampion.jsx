@@ -16,7 +16,7 @@ import "./PastParticularChampion.css";
 const PastParticularChampion = () => {
   const { id } = useParams();
 
-  const { data, isLoading } = useAPI(`api/champ/?id=${id}`);
+  const { data, isLoading } = useAPI(`/api/champ/?id=${id}`);
 
   return (
     <>

@@ -11,7 +11,7 @@ import { useAPI } from "../../helper/swr";
 
 import "./Contact.css";
 const Contact = () => {
-  const { data, isLoading } = useAPI("api/contact/");
+  const { data, isLoading } = useAPI("/api/contact/");
 
   return (
     <Box className="contact-us">

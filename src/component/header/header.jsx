@@ -127,12 +127,12 @@ const Header = () => {
           </Styles.Link>
         </ListItem>
         <ListItem>
-          <Styles.Login
-            href="https://acbsbackend.pythonanywhere.com/admin/login/?next=/admin/"
+          {/* <Styles.Login
+            href="http://ibsf.pl/entry_form_acbs/entry_form.php"
             target="_blank"
           >
             Login
-          </Styles.Login>
+          </Styles.Login> */}
         </ListItem>
       </List>
     </Toolbar>
@@ -253,8 +253,8 @@ const Header = () => {
                   />
                 </Styles.Search>
               </form>
-              <Styles.Login
-                href="https://acbsbackend.pythonanywhere.com/admin/login/?next=/admin/"
+              {/* <Styles.Login
+                href="http://ibsf.pl/entry_form_acbs/entry_form.php"
                 target="_blank"
                 sx={{
                   marginLeft: "0.8rem",
@@ -262,7 +262,7 @@ const Header = () => {
                 }}
               >
                 Login
-              </Styles.Login>
+              </Styles.Login> */}
             </Box>
 
             <IconButton
