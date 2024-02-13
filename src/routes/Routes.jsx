@@ -23,6 +23,8 @@ import PastChampion from "../pages/PastChampions/PastChampion";
 import PastParticularChampion from "../pages/PastChampions/PastParticularChampion";
 import Rules from "../pages/Rules/Rules";
 import Search from "../pages/Search/Search";
+import ExternalEvent from "../pages/ext_event/ExternalEvent";
+
 
 const AllRoute = createBrowserRouter(
   createRoutesFromElements(
@@ -39,6 +41,11 @@ const AllRoute = createBrowserRouter(
         path="/past-champion/:id/:slug?"
         exact
         element={<PastParticularChampion />}
+      />
+      <Route
+        path="/event/data/:id/:slug?"
+        exact
+        element={<ExternalEvent />}
       />
       <Route path="/category/:category" exact element={<Category />} />
       <Route path="/contact-us" exact element={<Contact />} />

@@ -87,7 +87,7 @@ const ParticularEvent = () => {
                       <div className="links-icon">
                         {data.groups && (
                           <StyledLink href={data.groups} target="_blank">
-                            Groups &nbsp; <span>{<SportsIcon />}</span>
+                            esnooker &nbsp; <span>{<SportsIcon />}</span>
                           </StyledLink>
                         )}
 
@@ -99,7 +99,7 @@ const ParticularEvent = () => {
                         )}
                         {data.details && (
                           <StyledLink href={data.details} target="_blank">
-                            Details &nbsp;<span>{<AttachmentIcon />}</span>
+                            Results &nbsp;<span>{<AttachmentIcon />}</span>
                           </StyledLink>
                         )}
                         {data.login && (

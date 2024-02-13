@@ -77,13 +77,13 @@ const ControlledCarousel = ({ data }) => {
                             href={val.event.details}
                             target="_blank"
                           >
-                            Details
+                            Results
                           </MenuItem>
                         )}
                         {val.event.groups && (
                           <MenuItem sx={{ fontWeight: 700 }}>
                             <StyledLink href={val.event.groups} target="_blank">
-                              Groups
+                              esnooker
                             </StyledLink>
                           </MenuItem>
                         )}
